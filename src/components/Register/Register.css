@@ -1,43 +1,43 @@
-.login-form{
-    display:block;
-    width: max-content;
-    position: relative ;
+.register-form {
+	display: block;
+	width: max-content;
+	position: relative;
 }
-.login-form:after{
-    content: "";
-    display: block;
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    z-index: 0;
-    background-image: linear-gradient(to bottom right, #FFCE00, #FE4880);
-}
-
-.login-form .form-inner .details{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.register-form:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	right: -5px;
+	bottom: -5px;
+	z-index: 0;
+	background-image: linear-gradient(to bottom right, #ffce00, #fe4880);
 }
 
-.login-form .form-inner .login-particulars{
-    margin-left: 50px;
+.register-form .form-inner .details {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
-.login-form .form-inner .register-title{
-    color:#FE4880;
+.register-form .form-inner .login-particulars {
+	margin-left: 50px;
 }
-.register-button{
-    display: inline-block;
-    padding: 8px 15px; 
-    border-radius: 8px;
-    background-image: linear-gradient(to right, #FFCE00, #FFCE00, #FE4880);
-    background-size: 200%;
-    background-position: 0%;
-    transition: 0.4s;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-left: 40px;
+
+.register-form .form-inner .register-title {
+	color: #fe4880;
+}
+.register-button {
+	display: inline-block;
+	padding: 8px 15px;
+	border-radius: 8px;
+	background-image: linear-gradient(to right, #ffce00, #ffce00, #fe4880);
+	background-size: 200%;
+	background-position: 0%;
+	transition: 0.4s;
+	font-weight: 700;
+	cursor: pointer;
+	margin-top: 10px;
+	margin-left: 40px;
 }
