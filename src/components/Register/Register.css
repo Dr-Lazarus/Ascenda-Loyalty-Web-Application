@@ -87,9 +87,14 @@
 	background-image: linear-gradient(to right, #ffce00, #ffce00, #fe4880);
 	background-size: 200%;
 	background-position: 0%;
+	color: #fff;
 	transition: 0.4s;
 	font-weight: 700;
 	cursor: pointer;
 	margin-top: 10px;
 	margin-left: 40px;
+}
+
+.register-button:hover {
+	background-position: 100% 0%;
 }

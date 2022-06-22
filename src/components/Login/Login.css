@@ -69,7 +69,7 @@
 	border-color: linear-gradient(to right, #ffce00, #ffce00, #fe4880);
 }
 
-.register-form .form-inner input[type="submit"],
+.login-form .form-inner input[type="submit"],
 .welcome button {
 	display: inline-block;
 	padding: 8px 15px;

@@ -1,38 +1,43 @@
 import "./Home.css";
-import React,{useState} from "react";
-import DatePicker from "react-datepicker"
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
+import { CalendarContainer } from "react-datepicker";
 
-function Home(){
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
-    return (
-      <div className="home">
-        <h1>Travel AnyWhere!</h1>
-        <div className="search">
-          <form className="search-form">
-            <input className="search-destination" type='text'/>
-            <DatePicker selected={startDate} onChange={onChange} 
-            startDate={startDate} endDate={endDate} selectsRange inline />
+function Home() {
+	return (
+		<div className="home">
+			<div className="search">
+				<h1>Travel AnyWhere!</h1>
+				<form className="search-form">
+					<input className="search-destination" type="text" />
+					<DateRangePickerComponent />
+					<label className="label-adults" for="number-of-adults">
+						Number of Adults
+					</label>
+					<select className="number-of-adults" id="number-of-adults">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
 
-            <label for= "number-of-rooms">Number of rooms:</label>
-            <select className= "number-of-rooms" id="number-of-rooms">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </form>
-        </div>
-        <img className= "deez" alt="" src="https://yt3.ggpht.com/l79cKyw3U8UsZJkdwTkvGoKI_pKu-63-s9eHuuTDM1zyy9ywYSMdJ4BjnozwovFSifX1uto9=s900-c-k-c0x00ffffff-no-rj"/>
-      </div>
-    );
-  };
-  
-  export default Home;
-  
+					<label className="label-rooms" for="number-of-rooms">
+						Number of Rooms
+					</label>
+					<select className="number-of-rooms" id="number-of-rooms">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+				</form>
+			</div>
+			<img
+				className="deez"
+				alt=""
+				src="https://yt3.ggpht.com/l79cKyw3U8UsZJkdwTkvGoKI_pKu-63-s9eHuuTDM1zyy9ywYSMdJ4BjnozwovFSifX1uto9=s900-c-k-c0x00ffffff-no-rj"
+			/>
+		</div>
+	);
+}
+
+export default Home;

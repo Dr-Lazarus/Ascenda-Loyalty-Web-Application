@@ -1,17 +1,41 @@
-.home{
-    display: flex;
-    flex-direction: column;
-    justify-content: top;
-    align-items: center;
+.home {
+	display: flex;
+	flex-direction: column;
+	justify-content: top;
+	align-items: center;
 }
 
-.home .deez{
-    height:400px;
-    width:400px;
+.home .deez {
+	height: 400px;
+	width: 400px;
 }
 
-.number-of-rooms{
-    height:20px;
-    width:40px;
+.home {
+	background-color: aliceblue;
+	height: fit-content;
+	width: 800px;
+}
 
+.search .search-form {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: azure;
+	padding: 50px 5px;
+	z-index: 1;
+}
+
+.home label {
+	width: 150px;
+}
+
+.number-of-adults {
+	height: 20px;
+	width: 60px;
+}
+
+.number-of-rooms {
+	height: 20px;
+	width: 60px;
 }
