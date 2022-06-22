@@ -1,0 +1,17 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+}
+
+.home .deez{
+    height:400px;
+    width:400px;
+}
+
+.number-of-rooms{
+    height:20px;
+    width:40px;
+
+}
