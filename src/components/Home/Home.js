@@ -1,41 +1,89 @@
 import "./Home.css";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
-import { CalendarContainer } from "react-datepicker";
+import "./react-datepicker.css";
+// import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
+// import { CalendarContainer } from "react-datepicker";
+// import { DateRangePicker } from "rsuite";
 
 function Home() {
+	const [startDate, setStartDate] = useState();
+	const [endDate, setEndDate] = useState();
+	function onChangeHandler(value) {
+		setStartDate(value[0]);
+		setEndDate(value[1]);
+	}
 	return (
-		<div className="home">
-			<div className="search">
-				<h1>Travel AnyWhere!</h1>
-				<form className="search-form">
-					<input className="search-destination" type="text" />
-					<DateRangePickerComponent />
-					<label className="label-adults" for="number-of-adults">
-						Number of Adults
-					</label>
-					<select className="number-of-adults" id="number-of-adults">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-					</select>
-
-					<label className="label-rooms" for="number-of-rooms">
-						Number of Rooms
-					</label>
-					<select className="number-of-rooms" id="number-of-rooms">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-					</select>
-				</form>
+		<div className="master">
+			<div className="title">
+				<h1>
+					<h1>Travel AnyWhere!</h1>
+				</h1>
 			</div>
-			<img
-				className="deez"
-				alt=""
-				src="https://yt3.ggpht.com/l79cKyw3U8UsZJkdwTkvGoKI_pKu-63-s9eHuuTDM1zyy9ywYSMdJ4BjnozwovFSifX1uto9=s900-c-k-c0x00ffffff-no-rj"
-			/>
+
+			<div className="home">
+				<form className="search-form">
+					<div className="search-1">
+						<div className="search-input">
+							<h3>Destination</h3>
+							<input className="input-destination" type="text" />
+						</div>
+						<div className="search-input">
+							<h3>Period of stay</h3>
+							<DatePicker
+								className="date-range"
+								id="dateStartEnd"
+								selectsRange={true}
+								startDate={startDate}
+								endDate={endDate}
+								onChange={onChangeHandler}
+								dateFormat="dd MMM yyyy"
+								showDisabledMonthNavigation
+							/>
+						</div>
+					</div>
+					<div className="search-2">
+						<label className="label-adults" for="number-of-adults">
+							Adults
+						</label>
+						<select className="options" id="number-of-adults">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+
+						<label className="label-rooms" for="number-of-rooms">
+							Rooms
+						</label>
+						<select className="options" id="number-of-rooms">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+
+						<label
+							className="label-children"
+							for="number-of-children"
+						>
+							Children
+						</label>
+						<select className="options" id="number-of-children">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+						<p>Search Icon Here</p>
+					</div>
+				</form>
+				<div className="items">
+					<img
+						className="deez"
+						alt=""
+						src="https://yt3.ggpht.com/l79cKyw3U8UsZJkdwTkvGoKI_pKu-63-s9eHuuTDM1zyy9ywYSMdJ4BjnozwovFSifX1uto9=s900-c-k-c0x00ffffff-no-rj"
+					/>
+				</div>
+			</div>
 		</div>
 	);
 }
