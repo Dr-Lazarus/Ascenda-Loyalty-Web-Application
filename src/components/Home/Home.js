@@ -75,6 +75,10 @@ function Home() {
 					></input>
 				</div>
 			</form>
+			<img
+				alt=""
+				src="https://www.koimoi.com/wp-content/new-galleries/2022/01/john-cena-on-him-being-a-part-of-wrestlemania-38-001.jpg"
+			/>
 			<div className="items">
 				<img
 					className="deez"
