@@ -16,9 +16,7 @@ function Home() {
 	return (
 		<div className="master">
 			<div className="title">
-				<h1>
-					<h1>Travel AnyWhere!</h1>
-				</h1>
+				<h1>Travel AnyWhere!</h1>
 			</div>
 			<form className="search-form">
 				<div className="search-1">

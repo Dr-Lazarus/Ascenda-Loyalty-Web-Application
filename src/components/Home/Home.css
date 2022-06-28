@@ -5,6 +5,12 @@
 	background-color: whitesmoke;
 	height: fit-content;
 	border-radius: 10px;
+	border-color: #fe4880;
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 6px;
+	border-color: #ffce00;
+	border-width: 5px;
 }
 
 .title h1 {
@@ -15,6 +21,7 @@
 	color: white;
 	transition: 0.4s;
 	color: #fe4880;
+	font-size: 64px;
 }
 .title h1:hover {
 	scale: 102%;
