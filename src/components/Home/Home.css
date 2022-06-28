@@ -1,17 +1,137 @@
-.home{
-    display: flex;
-    flex-direction: column;
-    justify-content: top;
-    align-items: center;
+.master {
+	display: flex;
+	flex-direction: column;
+	width: 95%;
+	background-color: whitesmoke;
+	height: fit-content;
+	border-radius: 10px;
 }
 
-.home .deez{
-    height:400px;
-    width:400px;
+.title h1 {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+	margin-top: 30px;
+	margin-left: 30px;
+	color: white;
+	transition: 0.4s;
+	color: #fe4880;
+}
+.title h1:hover {
+	scale: 102%;
 }
 
-.number-of-rooms{
-    height:20px;
-    width:40px;
+.search-from {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 95%;
+	background-color: aquamarine;
+	align-self: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-color: #ffce00;
+	border-radius: 5px;
+	border-width: 5px;
+}
 
+.search-1 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.input-destination {
+	height: 36px;
+	width: 450px;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+	font-size: 20px;
+	border-radius: 8px;
+	border-color: #ffce00;
+	border-width: 3px;
+}
+
+.search-input {
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 20px;
+}
+
+.search-input h3 {
+	transition: 0.4s;
+	font-size: 24px;
+}
+
+.search-input:focus-within h3 {
+	color: #fe4880;
+}
+
+.date-range {
+	height: 36px;
+	width: 250px;
+	text-align: center;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+	font-size: 20px;
+	border-radius: 8px;
+	border-color: #ffce00;
+	border-width: 3px;
+}
+
+.search-2 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.label {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+	font-size: 20px;
+}
+
+.options {
+	margin-left: 5px;
+	margin-right: 25px;
+	height: 30px;
+	width: 40px;
+	font-size: 16px;
+	border-radius: 4px;
+	border-color: #ffce00;
+	border-width: 3px;
+	background-color: #fff;
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.search-button {
+	display: inline-block;
+	padding: 10px 25px;
+	border-radius: 8px;
+	background-image: linear-gradient(to right, #ffce00, #ffce00, #fe4880);
+	background-size: 200%;
+	background-position: 0%;
+	color: #fff;
+	transition: 0.4s;
+	font-weight: 700;
+	cursor: pointer;
+	margin-left: 20px;
+	font-size: 16px;
+}
+
+.search-button:hover {
+	background-position: 100% 0%;
+}
+
+.items {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.deez {
+	height: 400px;
+	width: 400px;
 }
