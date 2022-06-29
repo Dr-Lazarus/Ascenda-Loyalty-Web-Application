@@ -44,12 +44,25 @@ function Profile() {
 						<label>Contact Number</label>
 						<p>+65 97795461</p>
 					</div>
-					<input
-						className="edit-profile-button"
-						type="submit"
-						value="Edit Profile"
-					></input>
 				</div>
+			</div>
+			<div className="buttons">
+				<input
+					className="button-row"
+					type="submit"
+					value="View Booking History"
+				></input>
+				<input
+					className="button-row"
+					type="submit"
+					value="Edit Profile"
+				></input>
+
+				<input
+					className="delete-account-button"
+					type="submit"
+					value="DELETE ACCOUNT"
+				></input>
 			</div>
 		</div>
 	);

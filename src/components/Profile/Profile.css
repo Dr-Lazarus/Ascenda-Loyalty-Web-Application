@@ -73,9 +73,20 @@
 	margin-bottom: 1px;
 }
 
-.edit-profile-button {
+.buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.button-row {
 	display: inline-block;
-	padding: 10px 25px;
+	margin-left: 50px;
+	margin-right: 50px;
+	width: 200px;
+	padding: 8px 15px;
 	border-radius: 8px;
 	background-image: linear-gradient(to right, #ffce00, #ffce00, #fe4880);
 	background-size: 200%;
@@ -87,6 +98,28 @@
 	font-size: 16px;
 }
 
-.edit-profile-button:hover {
+.button-row:hover {
 	background-position: 100% 0%;
+}
+
+.delete-account-button {
+	display: inline-block;
+	margin-left: 50px;
+	margin-right: 50px;
+	width: 200px;
+	padding: 8px 15px;
+	border-radius: 8px;
+	background-image: linear-gradient(to right, #f05c5c, #ff0000);
+	background-size: 300%;
+	background-position: 0%;
+	color: #fff;
+	transition: 0.4s;
+	font-weight: 700;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.delete-account-button:hover {
+	background-position: 100% 0%;
+	letter-spacing: 2px;
 }
