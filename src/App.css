@@ -7,6 +7,7 @@
 
 .App {
 	background-image: url(https://www.thecarnegiehotel.com/assets/images/home/newyork_city.jpg);
+	/* background-image: url(https://theculturetrip.com/wp-content/uploads/2019/04/viceroy-bali-ubud.jpg); */
 	background-position: center;
 	background-size: 100%;
 	height: 100vh;
