@@ -73,7 +73,7 @@ function Home() {
 					></input>
 				</div>
 			</form>
-			<img
+			{/* <img
 				alt=""
 				src="https://www.koimoi.com/wp-content/new-galleries/2022/01/john-cena-on-him-being-a-part-of-wrestlemania-38-001.jpg"
 			/>
@@ -90,7 +90,7 @@ function Home() {
 					alt="michael-jordan"
 					src="https://www.biography.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTYwODYxMjIwNzM0MjQ3OTkx/michael-jordan-getty-1965683.jpg"
 				/>
-			</div>
+			</div> */}
 		</div>
 	);
 }
