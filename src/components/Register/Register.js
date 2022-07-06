@@ -28,12 +28,8 @@ function Register() {
 						</div>
 
 						<div className="form-group">
-							<label htmlFor="location">Location</label>
-							<input
-								type="location"
-								name="location"
-								id="location"
-							/>
+							<label htmlFor="contact">Contact Number</label>
+							<input type="contact" name="contact" id="contact" />
 						</div>
 					</div>
 
