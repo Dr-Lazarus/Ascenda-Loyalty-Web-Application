@@ -1,13 +1,13 @@
-import React from 'react';
-import './Footer.css'
+import React from "react";
+import "./Footer.css";
 
 function Footer() {
-    return (
-        <div className='footer'>
-            <p>© 2020 Airbnb clone! No rights reserved - this is a demo!</p>
-            <p>Privacy · Terms · Sitemap · Company Details</p>
-        </div>
-    )
+	return (
+		<div className="footer">
+			<p>© 2022 Ascenda No rights reserved</p>
+			<p>Privacy · Terms · Sitemap · Company Details</p>
+		</div>
+	);
 }
 
-export default Footer
+export default Footer;
