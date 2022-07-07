@@ -17,7 +17,9 @@ function Header() {
 			</div>
 
 			<div className="header__right">
-				<Avatar />
+				<Link to="/login">
+					<Avatar />
+				</Link>
 			</div>
 		</div>
 	);
