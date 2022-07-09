@@ -1,10 +1,7 @@
-import React from "react";
-import "./Footer.css";
-
 function Footer() {
 	return (
-		<div className="footer">
-			<p>© 2022 Ascenda No rights reserved</p>
+		<div className='text-center bg-gray-200 p-4 space-y-1'>
+			<p>© 2022 Ascenda Loyalty -- No rights reserved</p>
 			<p>Privacy · Terms · Sitemap · Company Details</p>
 		</div>
 	);
