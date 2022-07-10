@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { DateRange } from "react-date-range";
-import { Button } from "@material-ui/core";
-import PeopleIcon from "@material-ui/icons/People";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 // DATE PICKER COMPONENT
 function Search() {
@@ -26,7 +26,7 @@ function Search() {
 		<div className="search">
 			<DateRange ranges={[selectionRange]} onChange={handleSelect} />
 			<h2>
-				Number of guests <PeopleIcon />
+				Number of guests <BsFillPeopleFill />
 			</h2>
 			<input min={0} defaultValue={2} type="number" />
 			<Button

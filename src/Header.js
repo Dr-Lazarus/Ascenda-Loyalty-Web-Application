@@ -1,15 +1,16 @@
-import SearchIcon from "@material-ui/icons/Search";
-import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { Avatar } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {
 	return (
-		<nav className="relative m-auto p-6 bg-white drop-shadow-xl">
+		<nav className="sticky top-0 z-50 m-auto p-6 bg-white drop-shadow-xl">
 			<div className="flex justify-between items-center align-middle space-x-6">
 				<div className="w-[20%]">
 					<Link to="/">
 						<img
-							className="justify-between items-center object-contain"
+							className=""
 							src={require("./img/ascenda_logo.png")}
 							alt="Ascenda logo"
 						/>
@@ -19,16 +20,18 @@ const Header = () => {
 					<input
 						type="search"
 						id="default-search"
-						class="flex-1 min-w-0"
+						className="flex-1 min-w-0"
 						placeholder="Search.."
 					/>
-					<SearchIcon className="flex-none right-2" />
+					<AiOutlineSearch className="flex-none right-2 mt-1 scale-125" />
 				</div>
 
-				<div className="flex space-x-3 items-center justify-between width-auto">
-					<p className="font-semibold">Login</p>
+				<div className="flex space-x-3 justify-end items-center">
+					<Button className="border" variant="gradient">
+						Login
+					</Button>
 					<Link to="/login">
-						<Avatar />
+						<Avatar src={require("./img/user.png")} size="md" />
 					</Link>
 				</div>
 			</div>

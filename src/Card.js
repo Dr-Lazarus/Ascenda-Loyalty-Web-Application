@@ -1,14 +1,41 @@
-const Card = ({ src, title, description, price }) => {
+import {
+	Card,
+	CardHeader,
+	CardBody,
+	CardFooter,
+	Typography,
+} from "@material-tailwind/react";
+
+const HotelCard = ({ src, title, description, price }) => {
 	return (
-		<div className='m-3 rounded-xl overflow-hidden drop-shadow-md transition ease-in-out delay-150 hover:scale-110 duration-300 cursor-pointer'>
-			<img className='object-fill w-full min-w-xl min-h-lg' src={src} alt='' />
-			<div className='mt-[-5%] rounded-xl p-6 pt-6  border'>
-				<h2 className='text-lg font-bold'>{title}</h2>
-				<h4 className='text-sm'>{description}</h4>
-				<h3 className='italic'>{price}</h3>
-			</div>
-		</div>
+		<Card className="mt-6 w-96">
+			<CardHeader className="relative h-56">
+				<img className="h-full w-full" src={src} alt="" />
+			</CardHeader>
+			<CardBody>
+				<Typography variant="h5" className="mb-2">
+					{title}
+				</Typography>
+				<Typography>{description}</Typography>
+			</CardBody>
+			{price && (
+				<CardFooter
+					divider
+					className="flex items-center justify-between py-3"
+				>
+					<Typography variant="small">{price}</Typography>
+					<Typography
+						variant="small"
+						color="grey"
+						className="flex gap-1"
+					>
+						<i className="fas fa-map-marker-alt fa-sm mt-[3px]" />
+						London
+					</Typography>
+				</CardFooter>
+			)}
+		</Card>
 	);
 };
 
-export default Card;
+export default HotelCard;
