@@ -16,11 +16,10 @@ function Search() {
 		key: "selection",
 	};
 
-	function handleSelect(ranges) {
+	const handleSelect = (ranges) => {
 		setStartDate(ranges.selection.startDate);
 		setEndDate(ranges.selection.endDate);
-		// console.log("Selection: ", ranges.selection.startDate);
-	}
+	};
 
 	return (
 		<div className="search">

@@ -5,7 +5,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {
 	return (
-		<nav className="sticky top-0 z-50 m-auto p-6 bg-white drop-shadow-xl">
+		<nav className="sticky top-0 z-50 m-auto p-6 pb-2 bg-white drop-shadow-xl">
 			<div className="flex justify-between items-center align-middle space-x-6">
 				<div className="w-[20%]">
 					<Link to="/">

@@ -22,17 +22,20 @@ function SearchPage() {
 		enddateobj.getFullYear();
 	console.log("oakar", location.state.start.getUTCMonth());
 	return (
-		<div className="searchPage">
-			<div className="searchPage__info">
-				<p>
+		<div className="">
+			<div className="p-6 space-4">
+				<p className="mb-2">
 					62 stays · {startDateString} to {endDateString} · 2 guest
 				</p>
-				<h1>Stays nearby</h1>
-				<Button variant="outlined">Cancellation Flexibility</Button>
-				<Button variant="outlined">Type of place</Button>
-				<Button variant="outlined">Price</Button>
-				<Button variant="outlined">Rooms and beds</Button>
-				<Button variant="outlined">More filters</Button>
+
+				<p className="text-2xl font-bold mb-10">Stays nearby</p>
+				<div className="flex flex-wrap gap-4">
+					<Button variant="outlined">Cancellation</Button>
+					<Button variant="outlined">Type of place</Button>
+					<Button variant="outlined">Price</Button>
+					<Button variant="outlined">Rooms and beds</Button>
+					<Button variant="outlined">More filters</Button>
+				</div>
 			</div>
 			<SearchResult
 				img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
