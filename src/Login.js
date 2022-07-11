@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Login.css";
+import { Button } from "@material-tailwind/react";
 
-function Login({ Login, error }) {
+const Login = ({ Login, error }) => {
 	const [details, setDetails] = useState({
 		name: "",
 		email: "",
@@ -15,13 +15,16 @@ function Login({ Login, error }) {
 	};
 
 	return (
-		<div className="form-inner-login">
-			<form className="login-form" onSubmit={submitHandler}>
-				<h2>Login</h2>
+		<div className="flex justify-center  p-20">
+			<form className="" onSubmit={submitHandler}>
+				<h2 className="text-5xl font-bold text-blue-500 mb-5">Login</h2>
 				{error !== "" ? <div className="error">{error}</div> : ""}
-				<div className="form-group">
-					<label htmlFor="email">Email</label>
+				<div className="flex flex-col mt-2">
+					<label className="text-lg" htmlFor="email">
+						Email
+					</label>
 					<input
+						className="border-2 border-black rounded h-8 duration-300 focus:outline-none focus-within:border-blue-500"
 						type="email"
 						name="email"
 						id="email"
@@ -31,9 +34,12 @@ function Login({ Login, error }) {
 						value={details.email}
 					/>
 				</div>
-				<div className="form-group">
-					<label htmlFor="password">Password</label>
+				<div className="flex flex-col mt-2">
+					<label className="text-lg" htmlFor="password">
+						Password
+					</label>
 					<input
+						className="border-2 border-black rounded h-8 duration-300 focus:outline-none focus-within:border-blue-500"
 						type="password"
 						name="password"
 						id="password"
@@ -47,14 +53,17 @@ function Login({ Login, error }) {
 					/>
 				</div>
 				<Link to={"/profile"} className="button-login">
-					<input type="submit" value="LOGIN"></input>
+					<Button className="flex w-52 justify-center mt-5">
+						LOGIN
+					</Button>
 				</Link>
+
 				<Link to={"/register"} className="button-register">
-					<p className="register">don't have an account?</p>
+					<p className="mt-2 text-sm">don't have an account?</p>
 				</Link>
 			</form>
 		</div>
 	);
-}
+};
 
 export default Login;

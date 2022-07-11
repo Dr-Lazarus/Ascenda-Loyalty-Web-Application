@@ -7,7 +7,13 @@ import App from "./App";
 
 ReactDOM.render(
 	<React.StrictMode>
+<<<<<<< HEAD
 		<App />
+=======
+		{/* <ThemeProvider> */}
+		<App />
+		{/* </ThemeProvider> */}
+>>>>>>> origin/oakar-new-design
 	</React.StrictMode>,
 	document.getElementById("root")
 );
