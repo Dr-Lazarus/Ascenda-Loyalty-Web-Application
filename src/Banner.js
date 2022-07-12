@@ -13,11 +13,11 @@ const Banner = () => {
 				{showSearch && <Search className="" />}
 
 				<Button
-					className="w-full"
+					className="w-full h-16 text-lg duration-300 hover:bg-white"
 					onClick={() => setShowSearch(!showSearch)}
 					variant="outlined"
 				>
-					{showSearch ? "Hide" : "Search Dates"}
+					{showSearch ? "Hide" : "Book your next desitnation here!"}
 				</Button>
 			</div>
 			<div className="invisible md:visible absolute z-0 bottom-0 left-0 bg-black w-80 pt-6 px-10 pb-8 text-white">

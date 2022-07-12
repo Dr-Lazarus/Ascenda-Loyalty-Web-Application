@@ -16,7 +16,6 @@ const Header = () => {
 						/>
 					</Link>
 				</div>
-				//////
 				<div className="flex space-x-3 justify-end items-center">
 					<Button className="border" variant="gradient">
 						Login

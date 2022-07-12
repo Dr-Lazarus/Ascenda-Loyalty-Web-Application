@@ -1,9 +1,14 @@
 import React from "react";
+import { useState } from "react";
+import Search from "./Search";
 import { Button } from "@material-tailwind/react";
 import SearchResult from "./SearchResult";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SearchPage() {
+	const navigate = useNavigate();
+	const [showSearch, setShowSearch] = useState(false);
 	const location = useLocation();
 	const startdateobj = location.state.start;
 	const enddateobj = location.state.end;
@@ -23,6 +28,17 @@ function SearchPage() {
 	console.log("oakar", location.state.start.getUTCMonth());
 	return (
 		<div className="">
+			<div className="flex flex-col relative justify-between z-10">
+				{showSearch && <Search className="" />}
+
+				<Button
+					className="w-full h-16 text-lg duration-300 hover:bg-white"
+					onClick={() => setShowSearch(!showSearch)}
+					variant="outlined"
+				>
+					{showSearch ? "Hide" : "Book your next desitnation here!"}
+				</Button>
+			</div>
 			<div className="p-6 space-4">
 				<p className="mb-2">
 					62 stays · {startDateString} to {endDateString} · 2 guest
