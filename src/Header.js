@@ -5,7 +5,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {
 	return (
-		<nav className="sticky top-0 z-50 px-6 py-2 bg-white drop-shadow-xl">
+		<nav className=" top-0 z-50 px-6 py-2 bg-white drop-shadow-xl">
 			<div className="flex justify-between items-center align-middle space-x-6">
 				<div className="w-[20%]">
 					<Link to="/">
@@ -16,16 +16,7 @@ const Header = () => {
 						/>
 					</Link>
 				</div>
-				<div className="invisible md:visible relative flex w-[40%] justify-between align-middle rounded-full border-2 p-2 ">
-					<input
-						type="search"
-						id="default-search"
-						className="flex-1 min-w-0"
-						placeholder="Search.."
-					/>
-					<AiOutlineSearch className="flex-none right-2 mt-1 scale-125" />
-				</div>
-
+				//////
 				<div className="flex space-x-3 justify-end items-center">
 					<Button className="border" variant="gradient">
 						Login
