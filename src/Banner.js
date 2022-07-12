@@ -19,7 +19,7 @@ const Banner = () => {
 					{showSearch ? "Hide" : "Search Dates"}
 				</Button>
 			</div>
-			<div className="md:visible absolute z-0 top-0 left-0 bg-black w-80 pt-6 px-10 pb-8 text-white">
+			<div className="invisible md:visible absolute z-0 top-0 left-0 bg-black w-80 pt-6 px-10 pb-8 text-white">
 				<p className="text-xl ">Get out and stretch your imagination</p>
 				<p className="text-sm m-2 ">
 					Plan a different kind of getaway to uncover the hidden gems

@@ -16,7 +16,7 @@ const Header = () => {
 						/>
 					</Link>
 				</div>
-				<div className="relative flex w-[40%] justify-between align-middle rounded-full border-2 p-2 ">
+				<div className="invisible md:visible relative flex w-[40%] justify-between align-middle rounded-full border-2 p-2 ">
 					<input
 						type="search"
 						id="default-search"
