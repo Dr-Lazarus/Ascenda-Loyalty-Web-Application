@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import Profile from "./Profile";
+import EditProfile from "./EditProfile";
 
 const App = () => {
 	return (
@@ -14,6 +15,10 @@ const App = () => {
 				<Header />
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
+					<Route
+						path="/edit-profile"
+						element={<EditProfile />}
+					></Route>
 					<Route path="/search" element={<SearchPage />}></Route>
 					<Route path="/login" element={<Login />}></Route>
 					<Route path="/profile" element={<Profile />}></Route>

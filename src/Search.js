@@ -74,8 +74,9 @@ function Search() {
 							</div>
 							<input
 								className="w-10 right-4 outline-none"
-								min={0}
-								defaultValue={0}
+								min={1}
+								max={3}
+								defaultValue={1}
 								type="number"
 							/>
 						</div>
@@ -88,6 +89,7 @@ function Search() {
 							<input
 								className="w-10 right-4 outline-none"
 								min={0}
+								max={3}
 								defaultValue={0}
 								type="number"
 							/>

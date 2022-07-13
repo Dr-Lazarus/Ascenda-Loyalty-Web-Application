@@ -1,17 +1,31 @@
 import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import "./Profile.css";
 
 const Profile = () => {
+	const navigate = useNavigate();
+	const location = useLocation();
+	const firstName = "Oakar";
+	const lastName = "Min";
+	const email = "oakkarrr00@gmail.com";
+	const contact = "97795461";
+	if (location.state != null) {
+		const firstName = location.state.firstName;
+		const lastName = location.state.lastName;
+		const email = location.state.email;
+		const contact = location.state.contact;
+	}
 	return (
 		<div className="m5-50 ">
-			<div className="text-5xl font-bold mb-10 mt-10">
+			<div className="justify-center text-5xl font-bold mb-10 mt-10">
 				<h1 className="flex justify-center">
 					Welcome, <span className="text-blue-500">{"Oakar"}</span>
 				</h1>
 			</div>
-			<div className="flex flex-row justify-center space-x-28">
-				<div className="">
+			<div className="flex flex-col md:flex-row justify-center items-center">
+				<div className="justify-center mx-12">
 					<img
 						className="rounded-full"
 						alt=""
@@ -19,41 +33,44 @@ const Profile = () => {
 					/>
 				</div>
 
-				<div className="">
-					<div className="mt-5 mb-5">
+				<div className="mx-12">
+					<div className="">
 						<label className="text-xl font-bold">First Name</label>
-						<p>Oakar</p>
+						<p>{firstName}</p>
 					</div>
 
-					<div className="mt-5 mb-5">
-						<label className="text-xl font-bold">Email</label>
-						<p>oakkarrr00@gmail.com</p>
-					</div>
-
-					<div className="mt-5 mb-5">
-						<label className="text-xl font-bold">Location</label>
-						<p>Singapore</p>
+					<div className="mt-8 mb-8">
+						<label className="text-xl font-bold">Last Name</label>
+						<p>{lastName}</p>
 					</div>
 				</div>
 
-				<div className="profile-detail-col">
-					<div className="mt-5 mb-5">
-						<label className="text-xl font-bold">Last Name</label>
-						<p>Min</p>
+				<div className="mx-12">
+					<div className="">
+						<label className="text-xl font-bold">Email</label>
+						<p>{email}</p>
 					</div>
-					<div className="mt-5 mb-5">
+
+					<div className="mt-8 mb-8">
 						<label className="text-xl font-bold">
 							Contact Number
 						</label>
-						<p>+65 97795461</p>
+						<p>{contact}</p>
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-row justify-center space-x-10 mt-10 mb-10">
-				<Button className="w-48">My favourites</Button>
-				<Button className="w-48">View Booking History</Button>
-				<Button className="w-48">Edit Profile</Button>
-				<Button className="w-48">Logout</Button>
+			<div className="flex flex-col md:flex-row items-center justify-center mt-10 mb-10">
+				<Button className="w-48 h-16 mx-4 my-4">My favourites</Button>
+				<Button className="w-48 h-16 mx-4 my-4">
+					View Booking History
+				</Button>
+				<Button
+					className="w-48 h-16 mx-4 my-4"
+					onClick={() => navigate("/edit-profile")}
+				>
+					Edit Profile
+				</Button>
+				<Button className="w-48 h-16 mx-4 my-4">Logout</Button>
 			</div>
 			<div className="flex flex-row justify-center space-x-10 mt-10 mb-10">
 				<Button className=" w-52 bg-red-600 hover:bg-white hover:text-red-600 hover:shadow-red-600">
