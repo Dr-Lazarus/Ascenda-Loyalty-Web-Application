@@ -8,12 +8,12 @@ const Banner = () => {
 	const [showSearch, setShowSearch] = useState(false);
 
 	return (
-		<div className="relative h-96 bg-center bg-[url('https://media.cntraveler.com/photos/5db1d0dd11c1e500092e7133/master/pass/airbnb-ski-aspen-28328347.jpg')]">
-			<div className="flex flex-col relative justify-between z-10">
+		<div className="relative h-[80vh] bg-center bg-[url('https://media.cntraveler.com/photos/5db1d0dd11c1e500092e7133/master/pass/airbnb-ski-aspen-28328347.jpg')]">
+			<div className="flex flex-col relative justify-between z-10 bg-white/75">
 				{showSearch && <Search className="" />}
 
 				<Button
-					className="w-full h-16 text-lg duration-300 hover:bg-white"
+					className="w-full h-16 text-lg duration-300 text-blue-500"
 					onClick={() => setShowSearch(!showSearch)}
 					variant="outlined"
 				>
