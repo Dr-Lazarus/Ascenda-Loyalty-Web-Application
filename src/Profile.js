@@ -7,15 +7,15 @@ import { useLocation } from "react-router-dom";
 const Profile = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const firstName = "Oakar";
-	const lastName = "Min";
-	const email = "oakkarrr00@gmail.com";
-	const contact = "97795461";
+	var firstName = "Oakar";
+	var lastName = "Min";
+	var email = "oakkarrr00@gmail.com";
+	var contact = "97795461";
 	if (location.state != null) {
-		const firstName = location.state.firstName;
-		const lastName = location.state.lastName;
-		const email = location.state.email;
-		const contact = location.state.contact;
+		firstName = location.state.firstName;
+		lastName = location.state.lastName;
+		email = location.state.email;
+		contact = location.state.contact;
 	}
 	return (
 		<div className="m5-50 ">
