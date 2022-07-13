@@ -31,9 +31,12 @@ function SearchPage() {
 
 	// pagingation management
 	const currentPage = 1;
-	const totalPages = 100;
+	const totalResults = 7;
+	const resultsPerPage = 2;
+	const totalPages = Math.ceil(totalResults / resultsPerPage);
 
 	const [page, setPage] = useState(currentPage);
+	console.log(hotels);
 
 	const onPageChange = (page) => {
 		setPage(page);
@@ -51,11 +54,19 @@ function SearchPage() {
 			setHotels(getHotelsFromServer);
 		};
 		getHotels();
-	}, []);
+	}, [page]);
 
+	const axios = require("axios");
 	const fetchHotels = async () => {
-		const res = await fetch("http://localhost:5001/Hotels");
-		const data = res.json();
+		console.log("resultsPerPage", resultsPerPage);
+		const res = await axios.get("http://localhost:5001/hotels", {
+			params: {
+				_page: page,
+				_limit: resultsPerPage,
+			},
+		});
+		const data = res.data;
+		// const totalResults = res.headers["x-total-count"]
 		return data;
 	};
 	//hotel fetching
@@ -75,7 +86,10 @@ function SearchPage() {
 			</div>
 			<div className="p-6 space-4">
 				<p className="mb-2">
-					62 stays · {startDateString} to {endDateString} · 2 guest
+					{totalResults} stays · {startDateString} to {endDateString}{" "}
+					· {location.state.inputRooms} Rooms ·{" "}
+					{location.state.inputAdults} Adults ·{" "}
+					{location.state.inputChildren} Children
 				</p>
 
 				<p className="text-2xl font-bold mb-10">Stays nearby</p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { BsFillPeopleFill } from "react-icons/bs";
@@ -9,6 +9,9 @@ import { FaBed } from "react-icons/fa";
 
 function Search() {
 	const navigate = useNavigate();
+	const [inputAdults, setInputAdults] = useState(1);
+	const [inputChildren, setInputChildren] = useState(0);
+	const [inputRooms, setInputRooms] = useState(1);
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
 	const [showDates, setShowDates] = useState(false);
@@ -61,6 +64,8 @@ function Search() {
 							</div>
 							<input
 								className="w-10 right-4 outline-none"
+								value={inputAdults}
+								onInput={(e) => setInputAdults(e.target.value)}
 								min={1}
 								max={5}
 								defaultValue={2}
@@ -74,6 +79,8 @@ function Search() {
 							</div>
 							<input
 								className="w-10 right-4 outline-none"
+								value={inputRooms}
+								onInput={(e) => setInputRooms(e.target.value)}
 								min={1}
 								max={3}
 								defaultValue={1}
@@ -88,6 +95,10 @@ function Search() {
 							</div>
 							<input
 								className="w-10 right-4 outline-none"
+								value={inputChildren}
+								onInput={(e) =>
+									setInputChildren(e.target.value)
+								}
 								min={0}
 								max={3}
 								defaultValue={0}
@@ -112,6 +123,9 @@ function Search() {
 							state: {
 								start: startDate,
 								end: endDate,
+								inputAdults: inputAdults,
+								inputChildren: inputChildren,
+								inputRooms: inputRooms,
 							},
 						})
 					}
