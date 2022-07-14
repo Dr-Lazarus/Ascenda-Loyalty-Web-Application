@@ -31,12 +31,11 @@ function SearchPage() {
 
 	// pagingation management
 	const currentPage = 1;
-	const totalResults = 7;
-	const resultsPerPage = 2;
+	const totalResults = 10;
+	const resultsPerPage = 3;
 	const totalPages = Math.ceil(totalResults / resultsPerPage);
 
 	const [page, setPage] = useState(currentPage);
-	console.log(hotels);
 
 	const onPageChange = (page) => {
 		setPage(page);
@@ -103,13 +102,20 @@ function SearchPage() {
 			</div>
 			{hotels.map((hotel) => (
 				<SearchResult
-					img={hotel.img}
-					location={hotel.location}
-					title={hotel.title}
+					data={hotel}
+					id={hotel.id}
+					img={
+						hotel.image_details.prefix +
+						hotel.default_image_index +
+						hotel.image_details.suffix
+					}
+					address={hotel.address}
+					hotelName={hotel.name}
 					description={hotel.description}
-					star={hotel.star}
-					price={hotel.price}
-					total={hotel.total}
+					amenities={Object.keys(hotel.amenities).join(" · ")}
+					star={hotel.trustyou.score.kaligo_overall}
+					price="$123"
+					total="$1234"
 				/>
 			))}
 

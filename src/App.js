@@ -7,6 +7,7 @@ import Register from "./Register";
 import Login from "./Login";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
+import HotelDetails from "./HotelDetails";
 
 const App = () => {
 	return (
@@ -20,6 +21,10 @@ const App = () => {
 						element={<EditProfile />}
 					></Route>
 					<Route path="/search" element={<SearchPage />}></Route>
+					<Route path=":id" element={<h1>ciao</h1>} />
+					<Route path={"/hotel"}>
+						<Route path=":id" element={<HotelDetails />} />
+					</Route>
 					<Route path="/login" element={<Login />}></Route>
 					<Route path="/profile" element={<Profile />}></Route>
 					<Route path="/register" element={<Register />}></Route>

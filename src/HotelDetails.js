@@ -1,31 +1,25 @@
+import { useLocation } from "react-router-dom";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
 
-const SearchResult = ({
-	data,
-	id,
-	img,
-	address,
-	hotelName,
-	description,
-	amenities,
-	star,
-	price,
-	total,
-}) => {
-	console.log("id: " + id);
-	const navigate = useNavigate();
+const HotelDetails = () => {
+	const location = useLocation();
+	const hotel = location.state.data;
+	const img =
+		hotel.image_details.prefix +
+		hotel.default_image_index +
+		hotel.image_details.suffix;
+	const address = hotel.address;
+	const hotelName = hotel.name;
+	const description = hotel.description;
+	const amenities = Object.keys(hotel.amenities).join(" · ");
+	const star = hotel.trustyou.score.kaligo_overall;
+	const price = "$123";
+	const total = "$1234";
+
 	return (
-		<div
-			onClick={() =>
-				navigate(`/hotel/${id}`, {
-					state: { data: data },
-				})
-			}
-			class="flex flex-col items-center bg-white rounded-lg shadow-md  m-6 md:flex-row md:max-w-full hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-		>
+		<div class="flex flex-col items-center bg-white rounded-lg shadow-md  m-6  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 			<img
-				class="object-cover md:object-fill w-full h-96 rounded-t-lg md:h-48 md:w-96 md:rounded-none md:rounded-l-lg"
+				class="object-cover w-full rounded-t-lg md:h-96   md:rounded-none md:rounded-l-lg"
 				src={img}
 				alt=""
 			/>
@@ -40,9 +34,9 @@ const SearchResult = ({
 					_____________
 				</p>
 				<div
-					className="md:hidden"
+					className=""
 					dangerouslySetInnerHTML={{
-						__html: description.match(/<p>(.*?)<\/p>/)[0],
+						__html: description,
 					}}
 				/>
 				<br className="md:hidden" />
@@ -63,4 +57,4 @@ const SearchResult = ({
 	);
 };
 
-export default SearchResult;
+export default HotelDetails;
