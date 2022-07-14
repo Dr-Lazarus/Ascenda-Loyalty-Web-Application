@@ -96,6 +96,12 @@ const EditProfile = () => {
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
 					Confirm Details
 				</Button>
+				<Button
+					className="w-48 h-16 mx-4 my-4"
+					onClick={() => navigate("/profile")}
+				>
+					Back
+				</Button>
 			</div>
 		</div>
 	);

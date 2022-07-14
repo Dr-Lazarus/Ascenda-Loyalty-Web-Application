@@ -7,6 +7,15 @@ import { useLocation } from "react-router-dom";
 const Profile = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const warnDelete = () => {
+		const delacc = window.confirm(
+			"Are you sure that you want to DELETE YOUR ACCOUNT?"
+		);
+		if (delacc == true) {
+			window.alert("Account deleted successfully");
+		}
+		console.log(delacc);
+	};
 	var firstName = "Oakar";
 	var lastName = "Min";
 	var email = "oakkarrr00@gmail.com";
@@ -73,7 +82,10 @@ const Profile = () => {
 				<Button className="w-48 h-16 mx-4 my-4">Logout</Button>
 			</div>
 			<div className="flex flex-row justify-center space-x-10 mt-10 mb-10">
-				<Button className=" w-52 bg-red-600 hover:bg-white hover:text-red-600 hover:shadow-red-600">
+				<Button
+					className=" w-52 bg-red-600 hover:bg-white hover:text-red-600 hover:shadow-red-600"
+					onClick={warnDelete}
+				>
 					DELETE ACCOUNT
 				</Button>
 			</div>

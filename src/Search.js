@@ -30,11 +30,11 @@ function Search() {
 
 	return (
 		<div className=" flex flex-col md:flex-row backdrop-blue-3xl bg-white/50 p-2 space-x-10 justify-center ">
-			<div className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px]">
+			<div className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px] focus-within:border-blue-500">
 				<input
 					type="search"
 					id="default-search"
-					className="flex-1 min-w-96 outline-none ml-4"
+					className="flex-1 min-w-96 border-0 focus:ring-0 "
 					placeholder="Search location"
 				/>
 			</div>
@@ -63,7 +63,7 @@ function Search() {
 								<p>Number of Adults: </p>
 							</div>
 							<input
-								className="w-10 right-4 outline-none"
+								className="w-16 right-4 outline-none"
 								value={inputAdults}
 								onInput={(e) => setInputAdults(e.target.value)}
 								min={1}
@@ -78,7 +78,7 @@ function Search() {
 								<p>Number of Rooms: </p>
 							</div>
 							<input
-								className="w-10 right-4 outline-none"
+								className="w-16 right-4 outline-none"
 								value={inputRooms}
 								onInput={(e) => setInputRooms(e.target.value)}
 								min={1}
@@ -94,7 +94,7 @@ function Search() {
 								<p>Number of Children: </p>
 							</div>
 							<input
-								className="w-10 right-4 outline-none"
+								className="w-16 right-4 outline-none"
 								value={inputChildren}
 								onInput={(e) =>
 									setInputChildren(e.target.value)
