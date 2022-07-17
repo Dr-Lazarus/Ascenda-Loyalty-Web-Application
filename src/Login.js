@@ -1,17 +1,60 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
+import { useLocation } from "react-router-dom";
 
 const Login = ({ Login, error }) => {
-	const [details, setDetails] = useState({
-		name: "",
-		email: "",
-		password: "",
-	});
+	const navigate = useNavigate();
+	const location = useLocation();
+	// const [details, setDetails] = useState({
+	// 	email: "",
+	// 	password: "",
+	// });
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState();
+	const [contact, setContact] = useState("");
+	var loginState = false;
+	console.log(location.state);
+	// if (location.state != null) {
+	// 	navigate("/profile", {
+	// 		state: {
+	// 			firstName: firstName,
+	// 			lastName: lastName,
+	// 			email: email,
+	// 			password: password,
+	// 			loginState: location.state.loginState,
+	// 			contact: contact,
+	// 		},
+	// 	});
+	// }
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		Login(details);
+		console.log(email);
+		if (email == "test@admin.com" && password == "123") {
+			console.log("login to test successful");
+			loginState = !loginState;
+			console.log(loginState);
+			navigate("/profile", {
+				state: {
+					firstName: firstName,
+					lastName: lastName,
+					email: email,
+					password: password,
+					loginState: loginState,
+					contact: contact,
+				},
+			});
+		} else {
+			alert(
+				"Your account doesn't exit\nPlease click on \"don't have an account?\" to register. "
+			);
+		}
+
+		// Login(details);
 	};
 
 	return (
@@ -28,10 +71,7 @@ const Login = ({ Login, error }) => {
 						type="email"
 						name="email"
 						id="email"
-						onChange={(e) =>
-							setDetails({ ...details, email: e.target.value })
-						}
-						value={details.email}
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</div>
 				<div className="flex flex-col mt-2">
@@ -43,17 +83,14 @@ const Login = ({ Login, error }) => {
 						type="password"
 						name="password"
 						id="password"
-						onChange={(e) =>
-							setDetails({
-								...details,
-								password: e.target.value,
-							})
-						}
-						value={details.password}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</div>
 				<Link to={"/profile"} className="button-login">
-					<Button className="flex w-52 justify-center mt-5">
+					<Button
+						onClick={submitHandler}
+						className="flex w-52 justify-center mt-5"
+					>
 						LOGIN
 					</Button>
 				</Link>

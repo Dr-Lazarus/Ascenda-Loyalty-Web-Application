@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -7,10 +8,11 @@ import { useLocation } from "react-router-dom";
 const EditProfile = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [contact, setContact] = useState("");
+	var firstName = location.state.firstName;
+	var lastName = location.state.lastName;
+	var email = location.state.email;
+	var contact = location.state.contact;
+	var loginState = location.state.loginState;
 	const handleClick = (event) => {
 		event.preventDefault();
 		if (firstName == "" || lastName == "" || contact == "" || email == "") {
@@ -21,11 +23,25 @@ const EditProfile = () => {
 					firstName: firstName,
 					lastName: lastName,
 					email: email,
+					loginState: location.state.loginState,
 					contact: contact,
 				},
 			});
 		}
 	};
+	const handleChangePassword = (e) => {
+		console.log(location.state.password);
+		const currentPassword = prompt("Please type your current password: ");
+		if (currentPassword == location.state.password) {
+			const newPassword = prompt("Please type your new password: ");
+			const confirmPassword = prompt(
+				"Please confirm your new password: "
+			);
+		} else {
+			alert("Incorrect Current Password!");
+		}
+	};
+
 	return (
 		<div className="m5-50 ">
 			<div className="justify-center text-5xl font-bold mb-10 mt-10">
@@ -48,9 +64,8 @@ const EditProfile = () => {
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={firstName}
-							value={firstName}
 							type="text"
-							onChange={(e) => setFirstName(e.target.value)}
+							onChange={(e) => (firstName = e.target.value)}
 						></input>
 					</div>
 
@@ -59,9 +74,8 @@ const EditProfile = () => {
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={lastName}
-							value={lastName}
 							type="text"
-							onChange={(e) => setLastName(e.target.value)}
+							onChange={(e) => (lastName = e.target.value)}
 						></input>
 					</div>
 				</div>
@@ -72,9 +86,8 @@ const EditProfile = () => {
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={email}
-							value={email}
 							type="text"
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={(e) => (email = e.target.value)}
 						></input>
 					</div>
 
@@ -85,24 +98,20 @@ const EditProfile = () => {
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={contact}
-							value={contact}
 							type="text"
-							onChange={(e) => setContact(e.target.value)}
+							onChange={(e) => (contact = e.target.value)}
 						></input>
 					</div>
 				</div>
 			</form>
-			<div className="flex flex-col md:flex-row items-center justify-center mt-10 mb-10">
+			<div className="flex flex-col md:flex-row items-center justify-center mt-10">
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
 					Confirm Details
 				</Button>
-				<Button
-					className="w-48 h-16 mx-4 my-4"
-					onClick={() => navigate("/profile")}
-				>
-					Back
-				</Button>
 			</div>
+			<Link to={"/register"} className="button-register">
+				<p className="text-center mb-10 text-sm">Reset Password</p>
+			</Link>
 		</div>
 	);
 };

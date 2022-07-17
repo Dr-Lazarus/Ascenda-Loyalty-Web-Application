@@ -20,17 +20,45 @@ const Profile = () => {
 	var lastName = "Min";
 	var email = "oakkarrr00@gmail.com";
 	var contact = "97795461";
-	if (location.state != null) {
+	console.log(location.state);
+	if (location.state.firstName != "") {
 		firstName = location.state.firstName;
+	}
+	if (location.state.lastName != "") {
 		lastName = location.state.lastName;
+	}
+	if (location.state.email != "") {
 		email = location.state.email;
+	}
+	if (location.state.contact != "") {
 		contact = location.state.contact;
 	}
+
+	const handleEdit = (e) => {
+		navigate("/edit-profile", {
+			state: {
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				password: location.state.password,
+				loginState: location.state.loginState,
+				contact: contact,
+			},
+		});
+	};
+	const handleLogout = (e) => {
+		location.state.loginState = !location.state.loginState;
+		navigate("/");
+	};
+
 	return (
 		<div className="m5-50 ">
 			<div className="justify-center text-5xl font-bold mb-10 mt-10">
 				<h1 className="flex justify-center">
-					Welcome, <span className="text-blue-500">{"Oakar"}</span>
+					{"Welcome, "}
+					<span className="text-blue-500">
+						{location.state.firstName}
+					</span>
 				</h1>
 			</div>
 			<div className="flex flex-col md:flex-row justify-center items-center">
@@ -68,18 +96,18 @@ const Profile = () => {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col md:flex-row items-center justify-center mt-10 mb-10">
+			<div className="flex flex-col md:flex-row items-center justify-center mt-10 ">
 				<Button className="w-48 h-16 mx-4 my-4">My favourites</Button>
 				<Button className="w-48 h-16 mx-4 my-4">
 					View Booking History
 				</Button>
-				<Button
-					className="w-48 h-16 mx-4 my-4"
-					onClick={() => navigate("/edit-profile")}
-				>
+				<Button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
 					Edit Profile
 				</Button>
-				<Button className="w-48 h-16 mx-4 my-4">Logout</Button>
+
+				<Button className="w-48 h-16 mx-4 my-4" onClick={handleLogout}>
+					Logout
+				</Button>
 			</div>
 			<div className="flex flex-row justify-center space-x-10 mt-10 mb-10">
 				<Button
