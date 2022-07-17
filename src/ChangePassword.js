@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 // import "./Profile.css";
 
-const EditProfile = () => {
+const ChangePassword = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	var firstName = location.state.firstName;
@@ -13,11 +13,16 @@ const EditProfile = () => {
 	var email = location.state.email;
 	var contact = location.state.contact;
 	var loginState = location.state.loginState;
+	const [current, setCurrent] = useState();
+	const [newPassword, setNewPassword] = useState();
+	const [confirmPassword, setConfirmPassword] = useState();
+
 	const handleClick = (event) => {
 		event.preventDefault();
-		if (firstName == "" || lastName == "" || contact == "" || email == "") {
-			alert("Please fill in ALL the details!");
+		if (confirmPassword != newPassword) {
+			alert("Your new passwords does not match.");
 		} else {
+			console.log("Password Reset Successful");
 			navigate("/profile", {
 				state: {
 					firstName: firstName,
@@ -28,30 +33,6 @@ const EditProfile = () => {
 				},
 			});
 		}
-	};
-	const handleChangePassword = (e) => {
-		console.log(location.state.password);
-		const currentPassword = prompt("Please type your current password: ");
-		if (currentPassword == location.state.password) {
-			const newPassword = prompt("Please type your new password: ");
-			const confirmPassword = prompt(
-				"Please confirm your new password: "
-			);
-		} else {
-			alert("Incorrect Current Password!");
-		}
-	};
-
-	const resetPasswordHandler = (e) => {
-		navigate("/change-password", {
-			state: {
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				loginState: location.state.loginState,
-				contact: contact,
-			},
-		});
 	};
 
 	return (
@@ -72,46 +53,36 @@ const EditProfile = () => {
 
 				<div className="mx-12">
 					<div className="flex flex-col w-48">
-						<label className="text-xl font-bold">First Name</label>
+						<label className="text-xl font-bold">
+							Current Password
+						</label>
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
-							placeholder={firstName}
-							type="text"
-							onChange={(e) => (firstName = e.target.value)}
-						></input>
-					</div>
-
-					<div className="flex flex-col mt-8 mb-8">
-						<label className="text-xl font-bold">Last Name</label>
-						<input
-							className="border-2 border-black rounded outline-none focus:border-blue-500"
-							placeholder={lastName}
-							type="text"
-							onChange={(e) => (lastName = e.target.value)}
-						></input>
-					</div>
-				</div>
-
-				<div className="mx-12">
-					<div className="flex flex-col w-48">
-						<label className="text-xl font-bold">Email</label>
-						<input
-							className="border-2 border-black rounded outline-none focus:border-blue-500"
-							placeholder={email}
-							type="text"
-							onChange={(e) => (email = e.target.value)}
+							type="password"
+							onChange={(e) => (setCurrent = e.target.value)}
 						></input>
 					</div>
 
 					<div className="flex flex-col mt-8 mb-8">
 						<label className="text-xl font-bold">
-							Contact Number
+							New Password
 						</label>
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
-							placeholder={contact}
-							type="text"
-							onChange={(e) => (contact = e.target.value)}
+							type="password"
+							onChange={(e) => (setNewPassword = e.target.value)}
+						></input>
+					</div>
+					<div className="flex flex-col mt-8 mb-8">
+						<label className="text-xl font-bold">
+							Confirm New Password
+						</label>
+						<input
+							className="border-2 border-black rounded outline-none focus:border-blue-500"
+							type="password"
+							onChange={(e) =>
+								(setConfirmPassword = e.target.value)
+							}
 						></input>
 					</div>
 				</div>
@@ -121,15 +92,8 @@ const EditProfile = () => {
 					Confirm Details
 				</Button>
 			</div>
-
-			<p
-				onClick={resetPasswordHandler}
-				className="text-center mb-10 text-sm"
-			>
-				Reset Password
-			</p>
 		</div>
 	);
 };
 
-export default EditProfile;
+export default ChangePassword;

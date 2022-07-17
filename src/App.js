@@ -8,6 +8,7 @@ import Login from "./Login";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import HotelDetails from "./HotelDetails";
+import ChangePassword from "./ChangePassword";
 
 const App = () => {
 	return (
@@ -21,6 +22,10 @@ const App = () => {
 						element={<EditProfile />}
 					></Route>
 					<Route path="/search" element={<SearchPage />}></Route>
+					<Route
+						path="/change-password"
+						element={<ChangePassword />}
+					></Route>
 					<Route path=":id" element={<h1>ciao</h1>} />
 					<Route path={"/hotel"}>
 						<Route path=":id" element={<HotelDetails />} />

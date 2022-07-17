@@ -13,6 +13,7 @@ const Profile = () => {
 		);
 		if (delacc == true) {
 			window.alert("Account deleted successfully");
+			navigate("/");
 		}
 		console.log(delacc);
 	};
