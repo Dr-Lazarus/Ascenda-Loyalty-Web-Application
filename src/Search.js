@@ -43,6 +43,7 @@ function Search() {
 					<DateRange
 						ranges={[selectionRange]}
 						onChange={handleSelect}
+						minDate={new Date()}
 					/>
 				)}
 
