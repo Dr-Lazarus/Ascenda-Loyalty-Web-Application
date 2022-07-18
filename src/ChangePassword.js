@@ -19,10 +19,13 @@ const ChangePassword = () => {
 
 	const handleClick = (event) => {
 		event.preventDefault();
+		console.log(current, newPassword, confirmPassword);
 		if (confirmPassword != newPassword) {
 			alert("Your new passwords does not match.");
+		} else if (current == confirmPassword) {
+			alert("You cannot change to your previous password.");
 		} else {
-			console.log("Password Reset Successful");
+			alert("Password Reset Successful");
 			navigate("/profile", {
 				state: {
 					firstName: firstName,
@@ -34,12 +37,23 @@ const ChangePassword = () => {
 			});
 		}
 	};
+	const handleBack = (event) => {
+		navigate("/profile", {
+			state: {
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				loginState: location.state.loginState,
+				contact: contact,
+			},
+		});
+	};
 
 	return (
 		<div className="m5-50 ">
 			<div className="justify-center text-5xl font-bold mb-10 mt-10">
 				<h1 className="flex justify-center">
-					Welcome, <span className="text-blue-500">{"Oakar"}</span>
+					Welcome, <span className="text-blue-500">{firstName}</span>
 				</h1>
 			</div>
 			<form className="flex flex-col md:flex-row justify-center items-center">
@@ -59,7 +73,7 @@ const ChangePassword = () => {
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							type="password"
-							onChange={(e) => (setCurrent = e.target.value)}
+							onChange={(e) => setCurrent(e.target.value)}
 						></input>
 					</div>
 
@@ -70,7 +84,7 @@ const ChangePassword = () => {
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							type="password"
-							onChange={(e) => (setNewPassword = e.target.value)}
+							onChange={(e) => setNewPassword(e.target.value)}
 						></input>
 					</div>
 					<div className="flex flex-col mt-8 mb-8">
@@ -80,9 +94,7 @@ const ChangePassword = () => {
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							type="password"
-							onChange={(e) =>
-								(setConfirmPassword = e.target.value)
-							}
+							onChange={(e) => setConfirmPassword(e.target.value)}
 						></input>
 					</div>
 				</div>
@@ -90,6 +102,9 @@ const ChangePassword = () => {
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10">
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
 					Confirm Details
+				</Button>
+				<Button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>
+					Back
 				</Button>
 			</div>
 		</div>
