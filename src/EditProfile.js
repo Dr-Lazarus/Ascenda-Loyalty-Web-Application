@@ -29,17 +29,28 @@ const EditProfile = () => {
 			});
 		}
 	};
-	const handleChangePassword = (e) => {
-		console.log(location.state.password);
-		const currentPassword = prompt("Please type your current password: ");
-		if (currentPassword == location.state.password) {
-			const newPassword = prompt("Please type your new password: ");
-			const confirmPassword = prompt(
-				"Please confirm your new password: "
-			);
-		} else {
-			alert("Incorrect Current Password!");
-		}
+	// const handleChangePassword = (e) => {
+	// 	console.log(location.state.password);
+	// 	const currentPassword = prompt("Please type your current password: ");
+	// 	if (currentPassword == location.state.password) {
+	// 		const newPassword = prompt("Please type your new password: ");
+	// 		const confirmPassword = prompt(
+	// 			"Please confirm your new password: "
+	// 		);
+	// 	} else {
+	// 		alert("Incorrect Current Password!");
+	// 	}
+	// };
+	const handleBack = (event) => {
+		navigate("/profile", {
+			state: {
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				loginState: location.state.loginState,
+				contact: contact,
+			},
+		});
 	};
 
 	const resetPasswordHandler = (e) => {
@@ -58,7 +69,7 @@ const EditProfile = () => {
 		<div className="m5-50 ">
 			<div className="justify-center text-5xl font-bold mb-10 mt-10">
 				<h1 className="flex justify-center">
-					Welcome, <span className="text-blue-500">{"Oakar"}</span>
+					Welcome, <span className="text-blue-500">{firstName}</span>
 				</h1>
 			</div>
 			<form className="flex flex-col md:flex-row justify-center items-center">
@@ -120,11 +131,13 @@ const EditProfile = () => {
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
 					Confirm Details
 				</Button>
+				<Button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>
+					Back
+				</Button>
 			</div>
-
 			<p
 				onClick={resetPasswordHandler}
-				className="text-center mb-10 text-sm"
+				className="text-center mb-10 text-sm hover:underline hover:text-blue-500"
 			>
 				Reset Password
 			</p>

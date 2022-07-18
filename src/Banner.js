@@ -17,7 +17,7 @@ const Banner = () => {
 					onClick={() => setShowSearch(!showSearch)}
 					variant="outlined"
 				>
-					{showSearch ? "Hide" : "Book your next desitnation here!"}
+					{showSearch ? "Hide" : "Book your next destination here!"}
 				</Button>
 			</div>
 			<div className="invisible md:visible absolute z-0 bottom-0 left-0 bg-black w-80 pt-6 px-10 pb-8 text-white">
