@@ -31,8 +31,8 @@ function SearchPage() {
 
 	// pagingation management
 	const currentPage = 1;
-	const totalResults = 10;
-	const resultsPerPage = 3;
+	const totalResults = 535;
+	const resultsPerPage = 10;
 	const totalPages = Math.ceil(totalResults / resultsPerPage);
 
 	const [page, setPage] = useState(currentPage);
