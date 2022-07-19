@@ -58,7 +58,7 @@ const Login = ({ Login, error }) => {
 	};
 
 	return (
-		<div className="flex justify-center  p-20">
+		<div className="flex justify-center  p-20" data-testid="login-1">
 			<form className="" onSubmit={submitHandler}>
 				<h2 className="text-5xl font-bold text-blue-500 mb-5">Login</h2>
 				{error !== "" ? <div className="error">{error}</div> : ""}

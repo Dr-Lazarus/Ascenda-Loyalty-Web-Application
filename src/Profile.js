@@ -47,6 +47,9 @@ const Profile = () => {
 			},
 		});
 	};
+	const returnComingSoon = (e) => {
+		window.alert("This feature will be implemented soon!");
+	};
 	const handleLogout = (e) => {
 		location.state.loginState = !location.state.loginState;
 		navigate("/");
@@ -98,8 +101,16 @@ const Profile = () => {
 				</div>
 			</div>
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10 ">
-				<Button className="w-48 h-16 mx-4 my-4">My favourites</Button>
-				<Button className="w-48 h-16 mx-4 my-4">
+				<Button
+					className="w-48 h-16 mx-4 my-4"
+					onClick={returnComingSoon}
+				>
+					My favourites
+				</Button>
+				<Button
+					className="w-48 h-16 mx-4 my-4"
+					onClick={returnComingSoon}
+				>
 					View Booking History
 				</Button>
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
