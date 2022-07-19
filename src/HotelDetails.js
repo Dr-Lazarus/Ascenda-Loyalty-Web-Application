@@ -19,6 +19,7 @@ const HotelDetails = () => {
 
 	return (
 		<>
+			<Gmaps />
 			<div class="flex flex-col items-center bg-white rounded-lg shadow-md  m-6  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 				<img
 					class="object-cover w-full rounded-t-lg md:h-96   md:rounded-none md:rounded-l-lg"
@@ -56,7 +57,6 @@ const HotelDetails = () => {
 				</div>
 				<AiOutlineHeart className="flex-none absolute right-0 mt-6 mr-10 self-start scale-150" />
 			</div>
-			<Gmaps />
 		</>
 	);
 };

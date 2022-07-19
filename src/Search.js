@@ -6,6 +6,9 @@ import { GrBaby } from "react-icons/gr";
 import { DateRange } from "react-date-range";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaBed } from "react-icons/fa";
+// import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import Select from "react-select";
+import { add } from "./addresses";
 
 function Search() {
 	const navigate = useNavigate();
@@ -28,15 +31,23 @@ function Search() {
 		setEndDate(ranges.selection.endDate);
 	};
 
+	const formatResult = (item) => {
+		return (
+			<>
+				<span className="block text-left text-gray-900">
+					id: {item.id}
+				</span>
+				<span className="block text-left text-gray-900">
+					name: {item.address}
+				</span>
+			</>
+		);
+	};
+
 	return (
 		<div className=" flex flex-col md:flex-row backdrop-blue-3xl bg-white/50 p-2 space-x-10 justify-center ">
 			<div className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px] focus-within:border-blue-500">
-				<input
-					type="search"
-					id="default-search"
-					className="flex-1 min-w-96 border-0 focus:ring-0 "
-					placeholder="Search location"
-				/>
+				<Select className="flex-1" options={add} />
 			</div>
 			<div className="flex flex-col relative justify-between z-12 w-[330px]">
 				{showDates && (
