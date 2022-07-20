@@ -1,43 +1,42 @@
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Login from "./components/Login/Login";
-import NavBar from "./components/NavBar/NavBar";
-import LoginForm from "./components/Login/LoginForm";
-import Register from "./components/Register/Register";
-import Profile from "./components/Profile/Profile";
-import "./App.css";
-// import "./index.css"
-import { Link } from "react-router-dom";
+import Home from "./Home";
+import Header from "./Header";
+import Footer from "./Footer";
+import SearchPage from "./SearchPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./Register";
+import Login from "./Login";
+import Profile from "./Profile";
+import EditProfile from "./EditProfile";
+import HotelDetails from "./HotelDetails";
+import ChangePassword from "./ChangePassword";
 
-export default function App() {
+const App = () => {
 	return (
-		<BrowserRouter>
-			<div className="App">
-				<NavBar />
-				<div className="content">
-					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-
-						<Route path="/login">
-							<LoginForm className="login-component" />
-						</Route>
-
-						<Route path="/register">
-							<Register className="register-component" />
-						</Route>
-
-						<Route path="/profile">
-							<Profile className="profile-component" />
-						</Route>
-					</Switch>
-				</div>
-			</div>
-		</BrowserRouter>
+		<div>
+			<BrowserRouter>
+				<Header />
+				<Routes>
+					<Route path="/" element={<Home />}></Route>
+					<Route
+						path="/edit-profile"
+						element={<EditProfile />}
+					></Route>
+					<Route path="/search" element={<SearchPage />}></Route>
+					<Route
+						path="/change-password"
+						element={<ChangePassword />}
+					></Route>
+					<Route path={"/hotel"}>
+						<Route path=":id" element={<HotelDetails />} />
+					</Route>
+					<Route path="/login" element={<Login />}></Route>
+					<Route path="/profile" element={<Profile />}></Route>
+					<Route path="/register" element={<Register />}></Route>
+				</Routes>
+				<Footer />
+			</BrowserRouter>
+		</div>
 	);
-}
+};
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(<App/>);
+export default App;
