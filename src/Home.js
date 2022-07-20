@@ -4,7 +4,7 @@ import HotelCard from "./Card";
 const Home = () => {
 	return (
 		<div className="">
-			<Banner />
+			<Banner data-testid="banner-test" />
 			<div className="flex flex-col items-center">
 				<div className="flex flex-col md:flex-row p-6 gap-6 items-center ">
 					<HotelCard

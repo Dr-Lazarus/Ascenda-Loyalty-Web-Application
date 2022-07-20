@@ -16,6 +16,7 @@ const Banner = () => {
 					className="w-full h-16 text-lg duration-300 text-blue-500"
 					onClick={() => setShowSearch(!showSearch)}
 					variant="outlined"
+					data-testid="showSearchButtonTest"
 				>
 					{showSearch ? "Hide" : "Book your next destination here!"}
 				</Button>

@@ -17,7 +17,7 @@ const Login = ({ Login, error }) => {
 	const [password, setPassword] = useState();
 	const [contact, setContact] = useState("");
 	var loginState = false;
-	console.log(location.state);
+	//console.log(location.state);
 	// if (location.state != null) {
 	// 	navigate("/profile", {
 	// 		state: {
@@ -33,11 +33,11 @@ const Login = ({ Login, error }) => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		console.log(email);
+		//console.log(email);
 		if (email == "test@admin.com" && password == "123") {
-			console.log("login to test successful");
+			//console.log("login to test successful");
 			loginState = !loginState;
-			console.log(loginState);
+			//console.log(loginState);
 			navigate("/profile", {
 				state: {
 					firstName: firstName,
@@ -58,7 +58,7 @@ const Login = ({ Login, error }) => {
 	};
 
 	return (
-		<div className="flex justify-center  p-20" data-testid="login-1">
+		<div className="flex justify-center  p-20" data-testid="login-page">
 			<form className="" onSubmit={submitHandler}>
 				<h2 className="text-5xl font-bold text-blue-500 mb-5">Login</h2>
 				{error !== "" ? <div className="error">{error}</div> : ""}
@@ -70,7 +70,7 @@ const Login = ({ Login, error }) => {
 						className="border-2 border-black rounded h-8 duration-300 focus:outline-none focus-within:border-blue-500"
 						type="email"
 						name="email"
-						id="email"
+						data-testid="email-input"
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</div>
@@ -82,7 +82,7 @@ const Login = ({ Login, error }) => {
 						className="border-2 border-black rounded h-8 duration-300 focus:outline-none focus-within:border-blue-500"
 						type="password"
 						name="password"
-						id="password"
+						data-testid="password-input"
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</div>
@@ -90,6 +90,7 @@ const Login = ({ Login, error }) => {
 					<Button
 						onClick={submitHandler}
 						className="flex w-52 justify-center mt-5"
+						data-testid="test-button"
 					>
 						LOGIN
 					</Button>
