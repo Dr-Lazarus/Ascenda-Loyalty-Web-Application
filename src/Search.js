@@ -6,11 +6,9 @@ import { GrBaby } from "react-icons/gr";
 import { DateRange } from "react-date-range";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaBed } from "react-icons/fa";
-// import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Select from "react-select";
-import { add } from "./addresses";
 
-function Search() {
+const Search = () => {
 	const navigate = useNavigate();
 	const [inputAdults, setInputAdults] = useState(1);
 	const [inputChildren, setInputChildren] = useState(0);
@@ -19,7 +17,15 @@ function Search() {
 	const [endDate, setEndDate] = useState(new Date());
 	const [showDates, setShowDates] = useState(false);
 	const [showDetails, setShowDetails] = useState(false);
+	const [destinationObj, setdestinationObj] = useState({
+		term: "Singapore, Singapore",
+		uid: "RsBU",
+		lat: 1.2800945,
+		lng: 103.8509491,
+		type: "city",
+	});
 
+	// get dates from date range picker
 	const selectionRange = {
 		startDate: startDate,
 		endDate: endDate,
@@ -31,23 +37,34 @@ function Search() {
 		setEndDate(ranges.selection.endDate);
 	};
 
-	const formatResult = (item) => {
-		return (
-			<>
-				<span className="block text-left text-gray-900">
-					id: {item.id}
-				</span>
-				<span className="block text-left text-gray-900">
-					name: {item.address}
-				</span>
-			</>
-		);
-	};
+	// get destination
+	const destinations = require("./destinations.json");
+	// console.log(destinations.length);
+	const uniqueData = [
+		...destinations
+			.reduce((map, obj) => map.set(obj.term, obj), new Map())
+			.values(),
+	];
 
 	return (
 		<div className=" flex flex-col md:flex-row backdrop-blue-3xl bg-white/50 p-2 space-x-10 justify-center ">
 			<div className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px] focus-within:border-blue-500">
-				<Select className="flex-1" options={add} />
+				<Select
+					className="flex-1"
+					options={uniqueData.slice(0, 1000)}
+					getOptionLabel={(option) => option.term}
+					getOptionValue={(option) => option.uid}
+					placeholder="Location..."
+					defaultValue={{
+						term: "Singapore, Singapore",
+						uid: "RsBU",
+						lat: 1.2800945,
+						lng: 103.8509491,
+						type: "city",
+					}}
+					value={destinationObj}
+					onChange={(e) => setdestinationObj(e)}
+				/>
 			</div>
 			<div className="flex flex-col relative justify-between z-12 w-[330px]">
 				{showDates && (
@@ -133,6 +150,7 @@ function Search() {
 					onClick={() =>
 						navigate("/search", {
 							state: {
+								destinationObj: destinationObj,
 								start: startDate,
 								end: endDate,
 								inputAdults: inputAdults,
@@ -147,6 +165,6 @@ function Search() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Search;

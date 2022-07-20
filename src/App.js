@@ -26,7 +26,6 @@ const App = () => {
 						path="/change-password"
 						element={<ChangePassword />}
 					></Route>
-					<Route path=":id" element={<h1>ciao</h1>} />
 					<Route path={"/hotel"}>
 						<Route path=":id" element={<HotelDetails />} />
 					</Route>

@@ -1,19 +1,32 @@
 import { useState, useEffect } from "react";
 import Search from "./Search";
+import {
+	getHotelsPricesForDestinationAsync,
+	getHotelInfoByIdAsync,
+} from "./destinationSearch";
 import { Button } from "@material-tailwind/react";
 import SearchResult from "./SearchResult";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Pagination } from "flowbite-react";
 
 function SearchPage() {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const location = useLocation();
 	const [showSearch, setShowSearch] = useState(false);
-	const [hotels, setHotels] = useState([]);
+	const [hotelsPageData, setHotelsPageData] = useState([]);
+	const [hotelsPriceSorted, setHotelsPriceSorted] = useState([]);
+	const [totalNumResults, setTotalNumResults] = useState(0);
 
 	//pass dates from search to rendered results
+	const days = (date_1, date_2) => {
+		let difference = date_1.getTime() - date_2.getTime();
+		let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+		return TotalDays;
+	};
+
 	const startdateobj = location.state.start;
 	const enddateobj = location.state.end;
+	const numDaysStay = days(enddateobj, startdateobj);
 	const startDateString =
 		startdateobj.getDate() +
 		"/" +
@@ -21,54 +34,93 @@ function SearchPage() {
 		"/" +
 		startdateobj.getFullYear();
 
+	const startDateStringReversed =
+		startdateobj.getFullYear() +
+		"-" +
+		(startdateobj.getMonth() + 1) +
+		"-" +
+		startdateobj.getDate();
+
 	const endDateString =
 		enddateobj.getDate() +
 		"/" +
 		(enddateobj.getMonth() + 1) +
 		"/" +
 		enddateobj.getFullYear();
+
+	const endDateStringReversed =
+		enddateobj.getFullYear() +
+		"-" +
+		(enddateobj.getMonth() + 1) +
+		"-" +
+		enddateobj.getDate();
 	//pass dates from search to rendered results
 
+	//hotel sorted price fetching
+	useEffect(() => {
+		const f = async () => {
+			const data = await getHotelsPricesForDestinationAsync(
+				location.state.destinationObj.uid,
+				startDateStringReversed,
+				endDateStringReversed,
+				"SGD",
+				"SG",
+				2
+			);
+			console.log(data);
+			setHotelsPriceSorted(data.hotels);
+			setTotalNumResults(data.hotels.length);
+		};
+		f();
+	}, []);
+
+	console.log("hi", hotelsPriceSorted);
+
+	//hotel sorted price fetching
+
 	// pagingation management
-	const currentPage = 1;
-	const totalResults = 535;
+
 	const resultsPerPage = 10;
-	const totalPages = Math.ceil(totalResults / resultsPerPage);
+	const currentPage = 1;
 
 	const [page, setPage] = useState(currentPage);
+
+	const totalPages = Math.ceil(totalNumResults / resultsPerPage);
+	console.log("totalPages", totalPages);
 
 	const onPageChange = (page) => {
 		setPage(page);
 	};
-
 	useEffect(() => {
 		setPage(currentPage);
 	}, [currentPage]);
 	// pagingation management
 
-	//hotel fetching
+	//hotel on demand data fetching
 	useEffect(() => {
-		const getHotels = async () => {
-			const getHotelsFromServer = await fetchHotels();
-			setHotels(getHotelsFromServer);
+		const lastIndex = page * resultsPerPage - 1;
+		const firstIndex = lastIndex - resultsPerPage + 1;
+		const thisPageHotels = hotelsPriceSorted.slice(
+			firstIndex,
+			lastIndex + 1
+		);
+		const getHotelData = async (thisPageHotels) => {
+			const thisPageHotelsData = [];
+			for (const hotel of thisPageHotels) {
+				console.log("hotelid", hotel.id);
+				const hotelData = await getHotelInfoByIdAsync(hotel.id);
+				console.log("hotelData", hotelData);
+				thisPageHotelsData.push({ ...hotelData, ...hotel });
+			}
+			setHotelsPageData(thisPageHotelsData);
 		};
-		getHotels();
-	}, [page]);
+		console.log("trugin");
+		getHotelData(thisPageHotels);
+	}, [page, hotelsPriceSorted]);
 
-	const axios = require("axios");
-	const fetchHotels = async () => {
-		console.log("resultsPerPage", resultsPerPage);
-		const res = await axios.get("http://localhost:5001/hotels", {
-			params: {
-				_page: page,
-				_limit: resultsPerPage,
-			},
-		});
-		const data = res.data;
-		// const totalResults = res.headers["x-total-count"]
-		return data;
-	};
-	//hotel fetching
+	console.log(hotelsPageData);
+
+	//hotel on demand data fetching
 
 	return (
 		<div className="relative">
@@ -85,8 +137,8 @@ function SearchPage() {
 			</div>
 			<div className="p-6 space-4">
 				<p className="mb-2">
-					{totalResults} stays · {startDateString} to {endDateString}{" "}
-					· {location.state.inputRooms} Rooms ·{" "}
+					{totalNumResults} stays · {startDateString} to{" "}
+					{endDateString} · {location.state.inputRooms} Rooms ·{" "}
 					{location.state.inputAdults} Adults ·{" "}
 					{location.state.inputChildren} Children
 				</p>
@@ -100,7 +152,7 @@ function SearchPage() {
 					<Button variant="outlined">More filters</Button>
 				</div>
 			</div>
-			{hotels.map((hotel) => (
+			{hotelsPageData.map((hotel) => (
 				<SearchResult
 					data={hotel}
 					id={hotel.id}
@@ -114,8 +166,15 @@ function SearchPage() {
 					description={hotel.description}
 					amenities={Object.keys(hotel.amenities).join(" · ")}
 					star={hotel.trustyou.score.kaligo_overall}
-					price="$123"
-					total="$1234"
+					price={hotel.price}
+					total={
+						Math.round(
+							hotel.price *
+								location.state.inputRooms *
+								numDaysStay *
+								100
+						) / 100
+					}
 				/>
 			))}
 
