@@ -7,7 +7,7 @@
  */
 export async function getHotelInfoByIdAsync(hotel_id) {
 	let url = `https://hotelapi.loyalty.dev/api/hotels/${hotel_id}`;
-	console.log("url", url);
+	// const url = `http://localhost:5001/hotels/${hotel_id}`;
 	let response = await fetch(url);
 	let data = await response.json();
 	return data;

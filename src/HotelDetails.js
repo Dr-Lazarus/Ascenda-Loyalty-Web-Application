@@ -20,17 +20,17 @@ const HotelDetails = () => {
 	return (
 		<>
 			<Gmaps />
-			<div class="flex flex-col items-center bg-white rounded-lg shadow-md  m-6  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+			<div className="flex flex-col items-center bg-white rounded-lg shadow-md  m-6  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 				<img
-					class="object-cover w-full rounded-t-lg md:h-96   md:rounded-none md:rounded-l-lg"
+					className="object-cover w-full rounded-t-lg md:h-96   md:rounded-none md:rounded-l-lg"
 					src={img}
 					alt=""
 				/>
-				<div class="flex-1 flex-col justify-between p-4 leading-normal">
-					<p class="mb-2 font-semibold tracking-tight text-gray-800 dark:text-white">
+				<div className="flex-1 flex-col justify-between p-4 leading-normal">
+					<p className="mb-2 font-semibold tracking-tight text-gray-800 dark:text-white">
 						{hotelName}
 					</p>
-					<p class="font-normal text-gray-700 dark:text-gray-400">
+					<p className="font-normal text-gray-700 dark:text-gray-400">
 						{address}
 					</p>
 					<p className="mb-3 font-light text-sm text-gray-700 dark:text-gray-400">

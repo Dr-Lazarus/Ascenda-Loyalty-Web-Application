@@ -67,6 +67,7 @@ function SearchPage() {
 				"SG",
 				2
 			);
+			console.log("ran once");
 			console.log(data);
 			setHotelsPriceSorted(data.hotels);
 			setTotalNumResults(data.hotels.length);
@@ -83,7 +84,7 @@ function SearchPage() {
 	const resultsPerPage = 10;
 	const currentPage = 1;
 
-	const [page, setPage] = useState(currentPage);
+	const [page, setPage] = useState(1);
 
 	const totalPages = Math.ceil(totalNumResults / resultsPerPage);
 	console.log("totalPages", totalPages);
@@ -91,9 +92,9 @@ function SearchPage() {
 	const onPageChange = (page) => {
 		setPage(page);
 	};
-	useEffect(() => {
-		setPage(currentPage);
-	}, [currentPage]);
+	// useEffect(() => {
+	// 	setPage(currentPage);
+	// }, [currentPage]);
 	// pagingation management
 
 	//hotel on demand data fetching
@@ -107,14 +108,12 @@ function SearchPage() {
 		const getHotelData = async (thisPageHotels) => {
 			const thisPageHotelsData = [];
 			for (const hotel of thisPageHotels) {
-				console.log("hotelid", hotel.id);
 				const hotelData = await getHotelInfoByIdAsync(hotel.id);
 				console.log("hotelData", hotelData);
 				thisPageHotelsData.push({ ...hotelData, ...hotel });
 			}
 			setHotelsPageData(thisPageHotelsData);
 		};
-		console.log("trugin");
 		getHotelData(thisPageHotels);
 	}, [page, hotelsPriceSorted]);
 
@@ -163,17 +162,27 @@ function SearchPage() {
 					}
 					address={hotel.address}
 					hotelName={hotel.name}
-					description={hotel.description}
-					amenities={Object.keys(hotel.amenities).join(" · ")}
+					description={
+						hotel.description === " "
+							? hotel.description
+							: "<No description>"
+					}
+					amenities={
+						hotel.amenities
+							? Object.keys(hotel.amenities).join(" · ")
+							: "<No Amenities Data>"
+					}
 					star={hotel.trustyou.score.kaligo_overall}
-					price={hotel.price}
+					price={"$ " + hotel.price}
 					total={
+						"$ " +
 						Math.round(
 							hotel.price *
 								location.state.inputRooms *
 								numDaysStay *
 								100
-						) / 100
+						) /
+							100
 					}
 				/>
 			))}
