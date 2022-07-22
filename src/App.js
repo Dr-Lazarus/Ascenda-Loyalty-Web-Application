@@ -46,10 +46,18 @@ const App = () => {
 							}
 						></Route>
 						<Route path={"/search"} element={<SearchPage />}>
-							<Route
-								path=":destinationId"
-								element={<SearchPage />}
-							/>
+							<Route path=":destinationId">
+								<Route path=":startDate">
+									<Route path=":endDate">
+										<Route path=":inputAdults">
+											<Route
+												path=":inputRooms"
+												element={<SearchPage />}
+											/>
+										</Route>
+									</Route>
+								</Route>
+							</Route>
 						</Route>
 						<Route
 							path="/change-password"

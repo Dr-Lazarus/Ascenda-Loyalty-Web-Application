@@ -59,9 +59,7 @@ const Profile = () => {
 			<div className="justify-center text-5xl font-bold mb-10 mt-10">
 				<h1 className="flex justify-center">
 					{"Welcome, "}
-					<span className="text-blue-500">
-						{location.state.firstName}
-					</span>
+					<span className="text-blue-500">{firstName}</span>
 				</h1>
 			</div>
 			<div className="flex flex-col md:flex-row justify-center items-center">
