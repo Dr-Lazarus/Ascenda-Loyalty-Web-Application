@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { GrBaby } from "react-icons/gr";
@@ -10,6 +10,7 @@ import Select from "react-select";
 
 const Search = () => {
 	const navigate = useNavigate();
+	let [searchParams, setSearchParams] = useSearchParams();
 	const [inputAdults, setInputAdults] = useState(1);
 	const [inputChildren, setInputChildren] = useState(0);
 	const [inputRooms, setInputRooms] = useState(1);
@@ -147,8 +148,9 @@ const Search = () => {
 			</div>
 			<div className="">
 				<Button
-					onClick={() =>
-						navigate("/search", {
+					onClick={() => {
+						let destinationId = destinationObj.uid;
+						navigate(`/search/${destinationId}`, {
 							state: {
 								destinationObj: destinationObj,
 								start: startDate,
@@ -157,8 +159,8 @@ const Search = () => {
 								inputChildren: inputChildren,
 								inputRooms: inputRooms,
 							},
-						})
-					}
+						});
+					}}
 				>
 					<AiOutlineSearch className="flex-none right-2 mt-1 scale-125" />
 				</Button>

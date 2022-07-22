@@ -45,8 +45,11 @@ const App = () => {
 								</RequireAuth>
 							}
 						></Route>
-						<Route path="/search" element={<SearchPage />}>
-							<Route path=":page" element={<SearchPage />} />
+						<Route path={"/search"} element={<SearchPage />}>
+							<Route
+								path=":destinationId"
+								element={<SearchPage />}
+							/>
 						</Route>
 						<Route
 							path="/change-password"
