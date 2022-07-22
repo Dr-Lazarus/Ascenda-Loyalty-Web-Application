@@ -4,6 +4,7 @@ import {
 	getHotelsPricesForDestinationAsync,
 	getHotelInfoByIdAsync,
 } from "./destinationSearch";
+import { dateStringMaker } from "./dateStringMaker";
 import { Button } from "@material-tailwind/react";
 import SearchResult from "./SearchResult";
 import { useLocation } from "react-router-dom";
@@ -27,33 +28,10 @@ function SearchPage() {
 	const startdateobj = location.state.start;
 	const enddateobj = location.state.end;
 	const numDaysStay = days(enddateobj, startdateobj);
-	const startDateString =
-		startdateobj.getDate() +
-		"/" +
-		(startdateobj.getMonth() + 1) +
-		"/" +
-		startdateobj.getFullYear();
-
-	const startDateStringReversed =
-		startdateobj.getFullYear() +
-		"-" +
-		(startdateobj.getMonth() + 1) +
-		"-" +
-		startdateobj.getDate();
-
-	const endDateString =
-		enddateobj.getDate() +
-		"/" +
-		(enddateobj.getMonth() + 1) +
-		"/" +
-		enddateobj.getFullYear();
-
-	const endDateStringReversed =
-		enddateobj.getFullYear() +
-		"-" +
-		(enddateobj.getMonth() + 1) +
-		"-" +
-		enddateobj.getDate();
+	const startDateString = dateStringMaker(startdateobj);
+	const startDateStringReversed = dateStringMaker(startdateobj, true);
+	const endDateString = dateStringMaker(enddateobj);
+	const endDateStringReversed = dateStringMaker(enddateobj, true);
 	//pass dates from search to rendered results
 
 	//hotel sorted price fetching
@@ -154,35 +132,22 @@ function SearchPage() {
 			{hotelsPageData.map((hotel) => (
 				<SearchResult
 					data={hotel}
-					id={hotel.id}
-					img={
-						hotel.image_details.prefix +
-						hotel.default_image_index +
-						hotel.image_details.suffix
-					}
-					address={hotel.address}
-					hotelName={hotel.name}
-					description={
-						hotel.description === " "
-							? hotel.description
-							: "<No description>"
-					}
-					amenities={
-						Object.keys(hotel.amenities).join(" · ")
-						// "<No Amenities Data>"
-					}
-					star={hotel.trustyou.score.kaligo_overall}
-					price={"$ " + hotel.price}
+					hotelId={hotel.id}
+					destinationId={location.state.destinationObj.uid}
+					price={hotel.price}
 					total={
-						"$ " +
 						Math.round(
 							hotel.price *
 								location.state.inputRooms *
 								numDaysStay *
 								100
-						) /
-							100
+						) / 100
 					}
+					numDaysStay={numDaysStay}
+					startDateObj={startdateobj}
+					endDateObj={startdateobj}
+					numAdults={location.state.inputAdults}
+					numRooms={location.state.inputRooms}
 				/>
 			))}
 

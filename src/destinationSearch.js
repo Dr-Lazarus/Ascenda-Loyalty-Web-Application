@@ -120,7 +120,7 @@ async function getHotelsForDestinationAsync(destination_id) {
   
    * @returns the api json response for the prices and info for booking the given hotel at given dates
    */
-async function getHotelsPricesForHotelAsync(
+export async function getHotelsPricesForHotelAsync(
 	hotelid,
 	destination_id,
 	checkin,

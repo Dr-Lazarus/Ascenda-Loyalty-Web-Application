@@ -1,25 +1,48 @@
-import Gmaps from "./Gmaps";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { dateStringMaker } from "./dateStringMaker";
+import { getHotelsPricesForHotelAsync } from "./destinationSearch";
 
 const HotelDetails = () => {
 	const location = useLocation();
-	const hotel = location.state.data;
+	const hotelData = location.state.data;
+	const hotelId = location.state.hotelId;
+	const destinationId = location.state.destinationId;
 	const img =
-		hotel.image_details.prefix +
-		hotel.default_image_index +
-		hotel.image_details.suffix;
-	const address = hotel.address;
-	const hotelName = hotel.name;
-	const description = hotel.description;
-	const amenities = Object.keys(hotel.amenities).join(" · ");
-	const star = hotel.trustyou.score.kaligo_overall;
-	const price = "$123";
-	const total = "$1234";
+		hotelData.image_details.prefix +
+		hotelData.default_image_index +
+		hotelData.image_details.suffix;
+	const address = hotelData.address;
+	const hotelName = hotelData.name;
+	const description = hotelData.description;
+	const amenities = Object.keys(hotelData.amenities).join(" · ");
+	const star = hotelData.trustyou.score.kaligo_overall;
+	const price = location.state.price;
+	const total = location.state.total;
+
+	const [roomData, setRoomData] = useState([]);
+
+	useEffect(() => {
+		const fetchHotelRoomPrices = async () => {
+			const data = await getHotelsPricesForHotelAsync(
+				hotelId,
+				destinationId,
+				dateStringMaker(location.state.startDateObj, true),
+				dateStringMaker(location.state.endDateObj, true),
+				"SGD",
+				"SG",
+				location.state.numRooms
+			);
+			console.log(data);
+			setRoomData(data);
+		};
+		fetchHotelRoomPrices();
+	}, []);
 
 	return (
 		<>
-			<Gmaps />
+			{/* <Gmaps /> */}
 			<div className="flex flex-col items-center bg-white rounded-lg shadow-md  m-6  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 				<img
 					className="object-cover w-full rounded-t-lg md:h-96   md:rounded-none md:rounded-l-lg"

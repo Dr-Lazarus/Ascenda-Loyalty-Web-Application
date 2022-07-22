@@ -38,20 +38,14 @@ const Search = () => {
 	};
 
 	// get destination
-	const destinations = require("./destinations.json");
-	// console.log(destinations.length);
-	const uniqueData = [
-		...destinations
-			.reduce((map, obj) => map.set(obj.term, obj), new Map())
-			.values(),
-	];
+	const destinations = require("../public/destinations.json");
 
 	return (
 		<div className=" flex flex-col md:flex-row backdrop-blue-3xl bg-white/50 p-2 space-x-10 justify-center ">
 			<div className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px] focus-within:border-blue-500">
 				<Select
 					className="flex-1"
-					options={uniqueData.slice(0, 1000)}
+					options={destinations.slice(0, 1000)}
 					getOptionLabel={(option) => option.term}
 					getOptionValue={(option) => option.uid}
 					placeholder="Location..."
