@@ -3,7 +3,7 @@
 //POST FOR REGISTER
 import asyncHandler from "express-async-handler";
 import User from "./userModel.js";
-import generateToken from "./generateToken.js"
+import generateToken from "./JWTMiddleware/generateToken.js"
 
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;

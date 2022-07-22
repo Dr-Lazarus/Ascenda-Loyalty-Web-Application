@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import data from "./data.js";
 import userRoutes from "./userRoutes.js";
-import connectDB from "./db.js"
+import connectDB from "./mongooseconfig/db.js"
 
 dotenv.config();
 connectDB();

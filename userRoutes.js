@@ -5,7 +5,7 @@ import {
   updateUserProfile,
 } from "./userController.js";
 
-import { protect } from "./authController.js";
+import { protect } from "./JWTMiddleware/authController.js";
 const router = express.Router();
 
 // router.route("/").post()
