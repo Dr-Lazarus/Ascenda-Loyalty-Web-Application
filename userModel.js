@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 const userSchema = mongoose.Schema(
   {
@@ -16,19 +16,19 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       minlength: 8,
-      select: false
+      // select: false
 
     },
-    passwordConfirm: {
-        type: String,
-        required: [true, 'Please confirm your password'],
-        validate: {
+    // passwordConfirm: {
+    //     type: String,
+    //     required: [true, 'Please confirm your password'],
+    //     validate: {
          
-          validator: function(check) {
-            return check === this.password;
-          },
-          message: "Passwords do not match"
-        } },
+    //       validator: function(check) {
+    //         return check === this.password;
+    //       },
+    //       message: "Passwords do not match"
+    //     } },
     
     pic: {
       type: String,
@@ -40,9 +40,9 @@ const userSchema = mongoose.Schema(
   }
 );
 
-// userSchema.methods.matchPassword = async function (enteredPassword) {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 
 userSchema.pre("save", async function (next) {
