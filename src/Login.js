@@ -3,58 +3,40 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { useLocation } from "react-router-dom";
+import useAuth from "./useAuth";
 
 const Login = ({ Login, error }) => {
 	const navigate = useNavigate();
-	const location = useLocation();
-	// const [details, setDetails] = useState({
-	// 	email: "",
-	// 	password: "",
-	// });
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
+	const { login } = useAuth();
+	const { state } = useLocation();
+
+	// const [firstName, setFirstName] = useState("john");
+	// const [lastName, setLastName] = useState("cena");
+	const [email, setEmail] = useState("raw@wwe.com");
 	const [password, setPassword] = useState();
-	const [contact, setContact] = useState("");
-	var loginState = false;
-	//console.log(location.state);
-	// if (location.state != null) {
-	// 	navigate("/profile", {
-	// 		state: {
-	// 			firstName: firstName,
-	// 			lastName: lastName,
-	// 			email: email,
-	// 			password: password,
-	// 			loginState: location.state.loginState,
-	// 			contact: contact,
-	// 		},
-	// 	});
-	// }
+	// const [contact, setContact] = useState("");
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		//console.log(email);
-		if (email == "test@admin.com" && password == "123") {
-			//console.log("login to test successful");
-			loginState = !loginState;
-			//console.log(loginState);
-			navigate("/profile", {
-				state: {
-					firstName: firstName,
-					lastName: lastName,
-					email: email,
-					password: password,
-					loginState: loginState,
-					contact: contact,
-				},
+		if (email === "test@admin.com" && password === "123") {
+			// console.log("correct credentials");
+			login().then(() => {
+				console.log("promise", state);
+				navigate(state?.path || "/profile", {
+					state: {
+						// firstName: firstName,
+						// lastName: lastName,
+						// email: email,
+						// password: password,
+						// contact: contact,
+					},
+				});
 			});
 		} else {
 			alert(
 				"Your account doesn't exit\nPlease click on \"don't have an account?\" to register. "
 			);
 		}
-
-		// Login(details);
 	};
 
 	return (
@@ -86,15 +68,14 @@ const Login = ({ Login, error }) => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</div>
-				<Link to={"/profile"} className="button-login">
-					<Button
-						onClick={submitHandler}
-						className="flex w-52 justify-center mt-5"
-						data-testid="test-button"
-					>
-						LOGIN
-					</Button>
-				</Link>
+
+				<Button
+					onClick={submitHandler}
+					className="flex w-52 justify-center mt-5"
+					data-testid="test-button"
+				>
+					LOGIN
+				</Button>
 
 				<Link to={"/register"} className="button-register">
 					<p className="mt-2 text-sm">don't have an account?</p>

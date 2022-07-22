@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Avatar } from "@material-tailwind/react";
-import { Button } from "@material-tailwind/react";
-import { AiOutlineSearch } from "react-icons/ai";
+// import { Button } from "@material-tailwind/react";
+// import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {
 	return (
@@ -17,10 +17,7 @@ const Header = () => {
 					</Link>
 				</div>
 				<div className="flex space-x-3 justify-end items-center">
-					{/* <Button className="border" variant="gradient">
-						Login
-					</Button> */}
-					<Link to="/login">
+					<Link to="/profile">
 						<Avatar src={require("./img/user.png")} size="md" />
 					</Link>
 				</div>

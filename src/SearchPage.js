@@ -82,7 +82,7 @@ function SearchPage() {
 	// pagingation management
 
 	const resultsPerPage = 10;
-	const currentPage = 1;
+	// const currentPage = 1;
 
 	const [page, setPage] = useState(1);
 
@@ -168,9 +168,8 @@ function SearchPage() {
 							: "<No description>"
 					}
 					amenities={
-						hotel.amenities
-							? Object.keys(hotel.amenities).join(" · ")
-							: "<No Amenities Data>"
+						Object.keys(hotel.amenities).join(" · ")
+						// "<No Amenities Data>"
 					}
 					star={hotel.trustyou.score.kaligo_overall}
 					price={"$ " + hotel.price}

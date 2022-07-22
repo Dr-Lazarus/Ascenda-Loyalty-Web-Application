@@ -1,39 +1,39 @@
-import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-// import "./Profile.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "./useAuth";
 
 const Profile = () => {
 	const navigate = useNavigate();
+	const { authed, logout } = useAuth();
 	const location = useLocation();
 	const warnDelete = () => {
 		const delacc = window.confirm(
 			"Are you sure that you want to DELETE YOUR ACCOUNT?"
 		);
-		if (delacc == true) {
+		if (delacc === true) {
 			window.alert("Account deleted successfully");
 			navigate("/");
 		}
 		console.log(delacc);
 	};
-	var firstName = "Oakar";
-	var lastName = "Min";
-	var email = "oakkarrr00@gmail.com";
-	var contact = "97795461";
-	console.log(location.state);
-	if (location.state.firstName != "") {
-		firstName = location.state.firstName;
-	}
-	if (location.state.lastName != "") {
-		lastName = location.state.lastName;
-	}
-	if (location.state.email != "") {
-		email = location.state.email;
-	}
-	if (location.state.contact != "") {
-		contact = location.state.contact;
-	}
+	const firstName = "Oakar";
+	const lastName = "Min";
+	const email = "oakkarrr00@gmail.com";
+	const contact = "97795461";
+	const password = "123";
+	// console.log(location.state);
+	// if (location.state.firstName !== "") {
+	// 	firstName = location.state.firstName;
+	// }
+	// if (location.state.lastName !== "") {
+	// 	lastName = location.state.lastName;
+	// }
+	// if (location.state.email !== "") {
+	// 	email = location.state.email;
+	// }
+	// if (location.state.contact !== "") {
+	// 	contact = location.state.contact;
+	// }
 
 	const handleEdit = (e) => {
 		navigate("/edit-profile", {
@@ -41,8 +41,7 @@ const Profile = () => {
 				firstName: firstName,
 				lastName: lastName,
 				email: email,
-				password: location.state.password,
-				loginState: location.state.loginState,
+				password: password,
 				contact: contact,
 			},
 		});
@@ -51,7 +50,7 @@ const Profile = () => {
 		window.alert("This feature will be implemented soon!");
 	};
 	const handleLogout = (e) => {
-		location.state.loginState = !location.state.loginState;
+		logout();
 		navigate("/");
 	};
 
@@ -117,9 +116,14 @@ const Profile = () => {
 					Edit Profile
 				</Button>
 
-				<Button className="w-48 h-16 mx-4 my-4" onClick={handleLogout}>
-					Logout
-				</Button>
+				{authed && (
+					<Button
+						className="w-48 h-16 mx-4 my-4"
+						onClick={handleLogout}
+					>
+						Logout
+					</Button>
+				)}
 			</div>
 			<div className="flex flex-row justify-center space-x-10 mt-10 mb-10">
 				<Button
