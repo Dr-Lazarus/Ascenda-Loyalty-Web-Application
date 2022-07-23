@@ -38,7 +38,7 @@ const Search = () => {
 	};
 
 	// get destination
-	const destinations = require("../public/destinations.json");
+	const destinations = require("./destinations.json");
 
 	return (
 		<div className=" flex flex-col md:flex-row backdrop-blue-3xl bg-white/50 p-2 space-x-10 justify-center ">
