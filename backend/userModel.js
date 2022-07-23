@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     lastName: {
-      type: Strong,
+      type: String,
       required: true,
       
     },
@@ -29,16 +29,16 @@ const userSchema = mongoose.Schema(
       required:true,
       unique: true
     },
-    passwordConfirm: {
-        type: String,
-        required: [true, 'Please confirm your password'],
-        validate: {
+    // passwordConfirm: {
+    //     type: String,
+    //     required: [true, 'Please confirm your password'],
+    //     validate: {
          
-          validator: function(check) {
-            return check === this.password;
-          },
-          message: "Passwords do not match"
-        } },
+    //       validator: function(check) {
+    //         return check === this.password;
+    //       },
+    //       message: "Passwords do not match"
+    //     } },
     
     pic: {
       type: String,
@@ -61,6 +61,8 @@ userSchema.pre("save", async function (next) {
   }
   const salt = await bcrypt.genSalt(8);
   this.password = await bcrypt.hash(this.password, salt);
+  // this.passwordConfirm = undefined;
+  next();
 });
 
 const User = mongoose.model("User", userSchema);

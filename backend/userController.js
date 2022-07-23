@@ -60,7 +60,9 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User not found, please contact administrator");
   }
 });
-
+// const getUserProfile = asyncHandler(async (req, res) => {
+//   const { firstName, lastName, contactNumber, email, password, pic } = req.body;
+// })fg
 function checkAuthenticated(req,res,next){
   if (req.isAuthenticated()) {
       return next()
@@ -104,6 +106,32 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       throw new Error("User Not Found");
     }
   });
+  
+  const getOneUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (!user) res.status(404).send("User not found");
+    res.status(200).json({
+  data : {
+  _id: user._id,
+  name: user.name,
+  email: user.email,
+  token: generateToken(user._id),
+  pic: user.pic}
+});
+})
+// const getOneUser = (req,res,next)=> {
+//   const user =  User.findOne(u => u.id === parseInt(req.params.id));
+//   if (!user) res.status(404).send("User not found");
+
+// res.status(200).json({
+//   data : {
+//   _id: user._id,
+//   name: user.name,
+//   email: user.email,
+//   token: generateToken(user._id),
+//   pic: user.pic}
+// });
+// };
 
 const getAllUsers = asyncHandler(async (req, res, next) => {
     const users = await User.find();
@@ -117,4 +145,4 @@ const getAllUsers = asyncHandler(async (req, res, next) => {
       }
     });
   });
-  export { getAllUsers,authUser, updateUserProfile, registerUser, checkAuthenticated, checkNotAuthenticated };
+  export {getOneUser, getAllUsers,authUser, updateUserProfile, registerUser, checkAuthenticated, checkNotAuthenticated };
