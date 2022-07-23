@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
-import { useLocation } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const Login = ({ Login, error }) => {
 	const navigate = useNavigate();
-	const { login } = useAuth();
+	const { authed, login } = useAuth();
 	const { state } = useLocation();
 
 	// const [firstName, setFirstName] = useState("john");
@@ -18,10 +16,9 @@ const Login = ({ Login, error }) => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		if (email === "test@admin.com" && password === "123") {
-			// console.log("correct credentials");
-			login().then(() => {
-				console.log("promise", state);
+		login(email, password).then(
+			() => {
+				console.log("promise", authed);
 				navigate(state?.path || "/profile", {
 					state: {
 						// firstName: firstName,
@@ -31,12 +28,13 @@ const Login = ({ Login, error }) => {
 						// contact: contact,
 					},
 				});
-			});
-		} else {
-			alert(
-				"Your account doesn't exit\nPlease click on \"don't have an account?\" to register. "
-			);
-		}
+			},
+			() => {
+				alert(
+					"Your account doesn't exit\nPlease click on \"don't have an account?\" to register. "
+				);
+			}
+		);
 	};
 
 	return (
