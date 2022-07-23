@@ -13,7 +13,7 @@ const authUser = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      name: user.name,
+      name: user.firstName,
       email: user.email,
       pic: user.pic,
       token: generateToken(user._id),
@@ -25,7 +25,7 @@ const authUser = asyncHandler(async (req, res) => {
 
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, pic } = req.body;
+  const { firstName, lastName, contactNumber, email, password, pic } = req.body;
 
   const existingUser = await User.findOne({ email });
 
@@ -34,10 +34,13 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    name,
+    firstName,
+    lastName,
+    contactNumber,
     email,
     password,
     pic,
+
   });
 
   if (user) {
@@ -79,9 +82,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     console.log(`My user exists $(user)`)
   
     if (user) {
-      user.name = req.body.name || user.name;
+      user.name = req.body.firstName || user.firstName;
       user.email = req.body.email || user.email;
       user.pic = req.body.pic || user.pic;
+      user.contactNumber = req.body.contactNumber || user.contactNumber;
       if (req.body.password) {
         user.password = req.body.password;
       }

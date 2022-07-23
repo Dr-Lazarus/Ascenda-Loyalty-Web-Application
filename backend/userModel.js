@@ -3,9 +3,14 @@ import bcrypt from "bcrypt";
 
 const userSchema = mongoose.Schema(
   {
-    name: {
+    firstName: {
       type: String,
       required: true,
+    },
+    lastName: {
+      type: Strong,
+      required: true,
+      
     },
     email: {
       type: String,
@@ -19,16 +24,21 @@ const userSchema = mongoose.Schema(
       // select: false
 
     },
-    // passwordConfirm: {
-    //     type: String,
-    //     required: [true, 'Please confirm your password'],
-    //     validate: {
+    contactNumber:{
+      type: String,
+      required:true,
+      unique: true
+    },
+    passwordConfirm: {
+        type: String,
+        required: [true, 'Please confirm your password'],
+        validate: {
          
-    //       validator: function(check) {
-    //         return check === this.password;
-    //       },
-    //       message: "Passwords do not match"
-    //     } },
+          validator: function(check) {
+            return check === this.password;
+          },
+          message: "Passwords do not match"
+        } },
     
     pic: {
       type: String,
