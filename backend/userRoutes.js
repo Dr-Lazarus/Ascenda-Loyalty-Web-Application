@@ -14,7 +14,7 @@ const router = express.Router();
 
 router 
     .route("/viewprofile")
-    .get(getOneUser)
+    .get(protect, getOneUser)
 router
     .route("/")
     .get(getAllUsers)
