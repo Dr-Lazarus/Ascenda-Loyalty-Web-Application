@@ -8,7 +8,8 @@ import {
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Home from "./../Home";
-import Banner from "./../Banner";
+import Search from "./../Search";
+import App from "../App";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import React from "react";
 import button from "@material-tailwind/react/theme/components/button";
@@ -41,7 +42,7 @@ test("renders banner button", () => {
 	expect(bannerButton).toBeTruthy();
 });
 
-test("renders drop down show search", async () => {
+test("renders drop down show search when clicked once", async () => {
 	const homeRoute = "/";
 	const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
 	const bannerButton = getByTestId("showSearchButtonTest");
@@ -49,12 +50,46 @@ test("renders drop down show search", async () => {
 	expect(bannerButton).toHaveTextContent("Hide");
 });
 
-test("renders drop down show search", async () => {
+test("hides drop down show search when clicked twice", async () => {
 	const homeRoute = "/";
 	const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
 	const bannerButton = getByTestId("showSearchButtonTest");
 	await fireEvent.dblClick(bannerButton);
 	expect(bannerButton).toHaveTextContent("Book your next destination here!");
+});
+
+test("renders DatePicker Button", () => {
+	const searchRoute = "/search";
+	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+	const datepickerButton = getByTestId("date-picker-button-test");
+	expect(datepickerButton).toBeTruthy();
+	expect(datepickerButton).toHaveTextContent("Select Dates");
+});
+
+test("renders DatePicker when clicked once", async () => {
+	const searchRoute = "/search";
+	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+	const datepickerButton = getByTestId("date-picker-button-test");
+	await fireEvent.click(datepickerButton);
+	expect(datepickerButton).toHaveTextContent("hide");
+});
+
+test("hides DatePicker when clicked twice", async () => {
+	const searchRoute = "/search";
+	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+	const datepickerButton = getByTestId("date-picker-button-test");
+	await fireEvent.dblClick(datepickerButton);
+	expect(datepickerButton).toHaveTextContent("Select Dates");
+});
+
+test("Header rendered", async () => {
+	await render(<App />);
+	expect("Header").toBeTruthy();
+});
+
+test("Footer rendered", async () => {
+	await render(<App />);
+	expect("Footer").toBeTruthy();
 });
 
 // test("can I login?", async () => {

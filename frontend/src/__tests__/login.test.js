@@ -32,13 +32,13 @@ test("it works!", () => {
 	expect(actual).toBe(expected);
 });
 
-test("renders login component", () => {
-	//Tests if the wholep login page has been rendered
-	const loginRoute = "/login";
-	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-	expect(getByTestId("login-page")).toHaveTextContent("Login");
-	expect(getByTestId("test-button")).toHaveTextContent("LOGIN"); //Button is rendered with text called "LOGIN"
-});
+// test("renders login component", () => {
+// 	//Tests if the wholep login page has been rendered
+// 	const loginRoute = "/login";
+// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
+// 	expect(getByTestId("login-page")).toHaveTextContent("Login");
+// 	expect(getByTestId("test-button")).toHaveTextContent("LOGIN"); //Button is rendered with text called "LOGIN"
+// });
 
 // test("can I login?", async () => {
 // 	const loginRoute = "/login";
@@ -54,16 +54,16 @@ test("renders login component", () => {
 // 	expect(screen.
 // });
 
-test("email inputs are being read", () => {
-	const loginRoute = "/login";
-	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-	const emailInput = getByTestId("email-input");
-	expect(emailInput).toBeTruthy();
-});
+// test("email inputs are being read", () => {
+// 	const loginRoute = "/login";
+// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
+// 	const emailInput = getByTestId("email-input");
+// 	expect(emailInput).toBeTruthy();
+// });
 
-test("password inputs are being read", () => {
-	const loginRoute = "/login";
-	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-	const passwordInput = getByTestId("password-input");
-	expect(passwordInput).toBeTruthy();
-});
+// test("password inputs are being read", () => {
+// 	const loginRoute = "/login";
+// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
+// 	const passwordInput = getByTestId("password-input");
+// 	expect(passwordInput).toBeTruthy();
+// });

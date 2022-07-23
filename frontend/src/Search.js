@@ -81,6 +81,7 @@ const Search = () => {
 
 				<Button
 					className=" w-full md:w-[330px] "
+					data-testid="date-picker-button-test"
 					onClick={() => setShowDates(!showDates)}
 					variant="outlined"
 				>
