@@ -144,6 +144,7 @@ const Search = () => {
 
 				<Button
 					className="w-full duration-300 hover:bg-white"
+					data-testid="travellers-button-test"
 					onClick={() => setShowDetails(!showDetails)}
 					variant="outlined"
 				>

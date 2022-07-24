@@ -9,9 +9,11 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Login from "./../Login";
 import Profile from "../Profile";
+import useAuth from "../useAuth";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import React from "react";
 import button from "@material-tailwind/react/theme/components/button";
+import { BsJustifyLeft } from "react-icons/bs";
 
 afterEach(() => {
 	cleanup();
@@ -32,10 +34,13 @@ test("it works!", () => {
 	expect(actual).toBe(expected);
 });
 
+// jest.mock("../useAuth.js");
 // test("renders login component", () => {
 // 	//Tests if the wholep login page has been rendered
 // 	const loginRoute = "/login";
+// 	const { authed, login } = useAuth();
 // 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
+
 // 	expect(getByTestId("login-page")).toHaveTextContent("Login");
 // 	expect(getByTestId("test-button")).toHaveTextContent("LOGIN"); //Button is rendered with text called "LOGIN"
 // });
