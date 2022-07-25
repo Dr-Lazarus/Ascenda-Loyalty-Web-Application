@@ -10,7 +10,9 @@ const Banner = () => {
 	return (
 		<div className="relative h-[80vh] bg-center bg-[url('https://media.cntraveler.com/photos/5db1d0dd11c1e500092e7133/master/pass/airbnb-ski-aspen-28328347.jpg')]">
 			<div className="flex flex-col relative justify-between z-10 bg-white/75">
-				{showSearch && <Search className="" />}
+				{showSearch && (
+					<Search className="" data-testid="search-test" />
+				)}
 
 				<Button
 					className="w-full h-16 text-lg duration-300 text-blue-500"

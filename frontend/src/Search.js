@@ -39,13 +39,22 @@ const Search = () => {
 
 	// get destination
 	const destinations = require("./destinations.json");
+	// console.log(destinations.length);
+	const uniqueData = [
+		...destinations
+			.reduce((map, obj) => map.set(obj.term, obj), new Map())
+			.values(),
+	];
 
 	return (
-		<div className=" flex flex-col md:flex-row backdrop-blue-3xl bg-white/50 p-2 space-x-10 justify-center ">
-			<div className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px] focus-within:border-blue-500">
+		<div className=" flex flex-col md:flex-row backdrop-blue-3xl bg-white/50 p-2 md:space-x-10 justify-center">
+			<div
+				className=""
+				//className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px] focus-within:border-blue-500"
+			>
 				<Select
-					className="flex-1"
-					options={destinations.slice(0, 1000)}
+					className=" w-full md:w-[330px]"
+					options={uniqueData.slice(0, 1000)}
 					getOptionLabel={(option) => option.term}
 					getOptionValue={(option) => option.uid}
 					placeholder="Location..."
@@ -60,9 +69,10 @@ const Search = () => {
 					onChange={(e) => setdestinationObj(e)}
 				/>
 			</div>
-			<div className="flex flex-col relative justify-between z-12 w-[330px]">
+			<div className="flex flex-col z-12 items-center">
 				{showDates && (
 					<DateRange
+						className="flex justify-center"
 						ranges={[selectionRange]}
 						onChange={handleSelect}
 						minDate={new Date()}
@@ -70,16 +80,17 @@ const Search = () => {
 				)}
 
 				<Button
-					className="w-full"
+					className=" w-full md:w-[330px] "
+					data-testid="date-picker-button-test"
 					onClick={() => setShowDates(!showDates)}
 					variant="outlined"
 				>
 					{showDates ? "hide" : "Select Dates"}
 				</Button>
 			</div>
-			<div className="flex flex-col text-lg justify-between z-10 w-[330px]">
+			<div className="flex flex-col text-lg z-10 w-full md:w-[330px] ">
 				{showDetails && (
-					<div className=" pb-4 flex flex-col gap-y-2">
+					<div className=" pb-4 flex flex-col gap-y-2 item-center">
 						<div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500">
 							<div className="flex gap-x-2 items-center">
 								<BsFillPeopleFill />
@@ -133,6 +144,7 @@ const Search = () => {
 
 				<Button
 					className="w-full duration-300 hover:bg-white"
+					data-testid="travellers-button-test"
 					onClick={() => setShowDetails(!showDetails)}
 					variant="outlined"
 				>
@@ -141,26 +153,21 @@ const Search = () => {
 			</div>
 			<div className="">
 				<Button
-					onClick={() => {
-						let destinationId = destinationObj.uid;
-						let startDateString = startDate.toDateString();
-						let endDateString = endDate.toDateString();
-						navigate(
-							`/search/${destinationId}/${startDateString}/${endDateString}/${inputAdults}/${inputRooms}`,
-							{
-								state: {
-									destinationObj: destinationObj,
-									start: startDate,
-									end: endDate,
-									inputAdults: inputAdults,
-									inputChildren: inputChildren,
-									inputRooms: inputRooms,
-								},
-							}
-						);
-					}}
+					className="flex w-full md:w-auto justify-center"
+					onClick={() =>
+						navigate("/search", {
+							state: {
+								destinationObj: destinationObj,
+								start: startDate,
+								end: endDate,
+								inputAdults: inputAdults,
+								inputChildren: inputChildren,
+								inputRooms: inputRooms,
+							},
+						})
+					}
 				>
-					<AiOutlineSearch className="flex-none right-2 mt-1 scale-125" />
+					<AiOutlineSearch className="flex right-2 scale-125" />
 				</Button>
 			</div>
 		</div>

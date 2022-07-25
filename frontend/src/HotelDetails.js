@@ -3,9 +3,13 @@ import { useLocation } from "react-router-dom";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { dateStringMaker } from "./dateStringMaker";
 import { getHotelsPricesForHotelAsync } from "./destinationSearch";
+import BookPage from "./BookPage";
+import { useNavigate } from "react-router-dom";
+import Button from "@material-tailwind/react/components/Button";
 
 const HotelDetails = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
 	const hotelData = location.state.data;
 	const hotelId = location.state.hotelId;
 	const destinationId = location.state.destinationId;
@@ -72,9 +76,23 @@ const HotelDetails = () => {
 							<AiFillStar className="scale-150" />
 							<p className="font-bold text-xl">{star}</p>
 						</div>
-						<div>
-							<h2>{price}</h2>
-							<p>{total}</p>
+						<div className="flex flex-col text-end">
+							<div className="mr-4">
+								<h2>{price}</h2>
+								<p>{total}</p>
+							</div>
+							<div>
+								<Button
+									className="h-12 text-lg"
+									onClick={() =>
+										navigate(`/book/${hotelId}`, {
+											state: { hotel: hotelData },
+										})
+									}
+								>
+									BOOK{" "}
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>
