@@ -1,20 +1,20 @@
 {
   "name": "backend",
-  "type" : "module",
+  "type": "module",
   "version": "1.0.0",
-  "dependencies" : {
+  "dependencies": {
     "bcrypt": "^5.0.1",
-		"bcryptjs": "^2.4.3",
-		"colors": "^1.4.0",
-		"dotenv": "^16.0.1",
-		"express": "^4.18.1",
-		"express-async-handler": "^1.2.0",
-		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^6.4.5"
+    "bcryptjs": "^2.4.3",
+    "chromedriver": "^103.0.0",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.5",
+    "selenium-webdriver": "^4.3.1"
   },
-
   "scripts": {
-    
     "devStart": "nodemon server.js"
   },
   "devDependencies": {

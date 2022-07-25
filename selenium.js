@@ -1,13 +1,15 @@
-const {By,Key,Builder, until} = require("selenium-webdriver");
+const {By,Key,Builder} = require("selenium-webdriver");
 require("chromedriver");
 
 async function test(){
     const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-    //To wait for browser to build and launch properly
+    // To wait for browser to build and launch properly
     let driver = await new Builder().forBrowser("chrome").build();
-
+    
     // Step 1 - To fetch our server from the browser with our code.
-    await driver.get("https://localhost:3000");
+    
+    
+    await driver.get("http://localhost:3000");
     await driver.manage().setTimeouts({ implicit: 5000 });
     console.info(await driver.manage().getTimeouts());
     // get login button
@@ -20,6 +22,7 @@ async function test(){
     //entering details
     let firstName = await driver.findElement(By.name("firstName"));
     let lastName = await driver.findElement(By.name("lastName"));
+
     let contact = await driver.findElement(By.name("contact"));
     let email = await driver.findElement(By.name("email"));
     let password = await driver.findElement(By.name("password"));
@@ -30,30 +33,22 @@ async function test(){
     await email.sendKeys("Bryan@gmail.com")
     await password.sendKeys("iloveboobs")
     await repassword.sendKeys("iloveboobs")
-   
+    await driver.findElement(By.id("registerbutton")).click()
+
+    await driver.sleep(10000)
 
 
     //login 
     let email1 = await driver.findElement(By.name("email"));
     let password2 = await driver.findElement(By.name("password"))
     
-    await email.click()
-    await email.sendKeys("Sharryl Seto")
-    await password.click()
-    await password.sendKeys("caomeipiaoliang12345")
+    await email1.click()
+    await email1.sendKeys("Bryan@gmail.com")
+    await password2.click()
+    await password2.sendKeys("iloveboobs")
     await driver.findElement(By.id("submit")).click()
+    await driver.close()
 
-
-    let hotelCards = driver.findElement(By.name("HotelCard"));
-    await sleep(5000);
-    await driver.findElement(By.name("HotelsSearchBar")).click();
-    // load search input bar then continue
-    let inputBar = driver.findElement(By.name("dest_input"));
-    await inputBar.click();
-    await inputBar.clear();
-    await sleep(3000);
-await driver.close()
-
-
-
+}
+test()
 
