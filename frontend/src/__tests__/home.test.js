@@ -139,6 +139,7 @@ test("hides Travellers when clicked twice", async () => {
 	await fireEvent.dblClick(travellersButton);
 	expect(travellersButton).toHaveTextContent("Travellers");
 });
+
 for (var i = 0; i < n.length; i++) {
 	let k = n[i];
 	test("Travellers when clicked" + k + " times", async () => {
