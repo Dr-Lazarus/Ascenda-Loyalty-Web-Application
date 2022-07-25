@@ -70,6 +70,7 @@ const Login = ({ Login, error }) => {
 				</div>
 
 				<Button
+					id = "submit"
 					onClick={submitHandler}
 					className="flex w-52 justify-center mt-5"
 					data-testid="test-button"

@@ -1,19 +1,12 @@
 {
 	"name": "Ascenda-Hotels-C5G5",
-
-
-	
 	"version": "0.1.0",
-	"dependencies": {},
-	"scripts": {
-		"client" : "cd frontend && npm run start",
-		"server" : "cd backend && npm run devStart",
-		"install" : "cd frontend && npm install && cd ../backend && npm install"
-	
-
-		
+	"dependencies": {
+		"selenium-webdriver": "^4.3.1"
 	},
-	"devDependencies": {
-
+	"scripts": {
+		"client": "cd frontend && npm run start",
+		"server": "cd backend && npm run devStart",
+		"install": "cd frontend && npm install && cd ../backend && npm install"
 	}
 }

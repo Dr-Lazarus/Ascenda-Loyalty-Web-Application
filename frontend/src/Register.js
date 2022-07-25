@@ -72,7 +72,7 @@ function Register() {
 								id="repassword"
 							/>
 						</div>
-						<Button className="mt-5 w-52">REGISTER</Button>
+						<Button id = "registerbutton" className="mt-5 w-52">REGISTER</Button>
 					</div>
 				</div>
 			</form>
