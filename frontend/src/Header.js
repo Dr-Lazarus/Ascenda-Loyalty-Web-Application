@@ -18,7 +18,12 @@ const Header = () => {
 				</div>
 				<div className="flex space-x-3 justify-end items-center">
 					<Link to="/profile">
-						<Avatar id = "loginbutton" src={require("./img/user.png")} size="md" />
+						<Avatar id = "loginbutton"
+			
+							src={require("./img/user.png")}
+							size="md"
+							data-testid="icon-button-test"
+						/>
 					</Link>
 				</div>
 			</div>

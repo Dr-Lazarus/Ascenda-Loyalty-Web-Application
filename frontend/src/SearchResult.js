@@ -14,6 +14,19 @@ const SearchResult = ({
 	numRooms,
 }) => {
 	const navigate = useNavigate();
+	const camelToNormal = (input) => {
+		var temp = input.split(" ");
+		var final = [];
+		for (var i = 0; i < temp.length; i++) {
+			if (temp[i] != "·") {
+				final.push(temp[i].charAt(0).toUpperCase() + temp[i].slice(1));
+			}
+		}
+		final = final.toString();
+		final = final.replace(/([A-Z])/g, " $1");
+		final = final.replace("T V", "TV");
+		return final;
+	};
 	return (
 		<div
 			onClick={() =>
@@ -35,7 +48,7 @@ const SearchResult = ({
 			className="flex flex-col items-center bg-white rounded-lg shadow-md  m-6 md:flex-row md:max-w-full hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
 		>
 			<img
-				className="object-cover md:object-fill w-full h-96 rounded-t-lg md:h-48 md:w-96 md:rounded-none md:rounded-l-lg"
+				className="object-cover md:object-fill w-full h-96 rounded-t-lg md:h-64 md:w-96 md:rounded-none md:rounded-l-lg"
 				src={
 					data.image_details.prefix +
 					data.default_image_index +
@@ -48,15 +61,21 @@ const SearchResult = ({
 				}}
 			/>
 			<div className="flex-1 flex-col justify-between p-4 leading-normal">
-				<p className="mb-2 font-semibold tracking-tight text-gray-800 dark:text-white">
+				<p className="mb-0 font-semibold tracking-tight text-gray-800 dark:text-white">
 					{data.name}
 				</p>
-				<p className="font-normal text-gray-700 dark:text-gray-400">
+				<p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
 					{data.address}
 				</p>
-				<p className="mb-3 font-light text-sm text-gray-700 dark:text-gray-400">
+				<div
+					className="mb-3 font-light text-sm text-gray-700 dark:text-gray-400"
+					dangerouslySetInnerHTML={{
+						__html: data.description.slice(0, 250) + "...",
+					}}
+				/>
+				{/* <p className="mb-3 font-light text-sm text-gray-700 dark:text-gray-400">
 					_____________
-				</p>
+				</p> */}
 				{/* <div
 					className="md:hidden"
 					dangerouslySetInnerHTML={{
@@ -65,7 +84,8 @@ const SearchResult = ({
 				/> */}
 				<br className="md:hidden" />
 				<p className="text-sm">
-					{Object.keys(data.amenities).join(" · ")}
+					Amenities:{" "}
+					{camelToNormal(Object.keys(data.amenities).join(" · "))}
 				</p>
 				<div className="flex flex-row justify-between  p-2">
 					<div className="grid grid-cols-2 items-center">

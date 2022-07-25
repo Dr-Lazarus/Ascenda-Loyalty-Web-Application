@@ -15,6 +15,7 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import HotelDetails from "./HotelDetails";
 import ChangePassword from "./ChangePassword";
+import BookPage from "./BookPage";
 import useAuth from "./useAuth";
 import { AuthProvider } from "./useAuth";
 
@@ -69,6 +70,9 @@ const App = () => {
 						></Route>
 						<Route path={"/hotel"}>
 							<Route path=":id" element={<HotelDetails />} />
+						</Route>
+						<Route path={"/book"}>
+							<Route path=":id" element={<BookPage />} />
 						</Route>
 						<Route path="/login" element={<Login />}></Route>
 						<Route
