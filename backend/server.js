@@ -3,10 +3,12 @@ import dotenv from "dotenv";
 import data from "./data.js";
 import userRoutes from "./userRoutes.js";
 import connectDB from "./mongooseconfig/db.js";
+import cors from 'cors';
 
 dotenv.config();
 connectDB();
 const app = express();
+app.use(cors())
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

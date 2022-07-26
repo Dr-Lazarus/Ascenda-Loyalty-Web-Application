@@ -14,7 +14,7 @@ async function test(){
     console.info(await driver.manage().getTimeouts());
     // get login button
     await driver.findElement(By.id("loginbutton")).click()
-    await driver.sleep(5000)
+    await driver.sleep(10000)
 
     // await firstName.sendKeys("Bryan")
     // await lastName.sendKeys("Sitoh")
@@ -38,7 +38,7 @@ async function test(){
     await password2.sendKeys("123")
     await driver.findElement(By.id("submit")).click()
     
-    await driver.sleep(2000)
+    await driver.sleep(10000)
 
     await driver.close()
     

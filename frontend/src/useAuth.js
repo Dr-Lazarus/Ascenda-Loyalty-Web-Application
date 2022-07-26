@@ -13,7 +13,7 @@ function useAuth() {
 				console.log("waiting");
 				axios({
 					method: "POST",
-					url: "http://localhost:3000/api/users/login",
+					url: "http://localhost:5001/api/users/login",
 					data: {
 						email: email,
 						password: password,
