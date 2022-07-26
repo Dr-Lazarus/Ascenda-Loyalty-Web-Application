@@ -118,8 +118,8 @@ function SearchPage() {
 				<p className="mb-2">
 					{totalNumResults} stays · {startDateString} to{" "}
 					{endDateString} · {location.state.inputRooms} Rooms ·{" "}
-					{location.state.inputAdults} Adults ·{" "}
-					{location.state.inputChildren} Children
+					{location.state.inputAdults} Adults{" "}
+					{/* {location.state.inputChildren} Children */}
 				</p>
 
 				<p className="text-2xl font-bold mb-10">Stays nearby</p>

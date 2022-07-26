@@ -94,9 +94,9 @@ const SearchResult = ({
 							{data.trustyou.score.kaligo_overall}
 						</p>
 					</div>
-					<div>
-						<h2>{"$" + price}</h2>
-						<p>{"$" + total}</p>
+					<div className="text-end">
+						<h2 className="text-2xl font-bold">{"$" + total}</h2>
+						<p>{"$" + price}/Night</p>
 					</div>
 				</div>
 			</div>

@@ -97,7 +97,7 @@ const Search = () => {
 								<p>Number of Adults: </p>
 							</div>
 							<input
-								className="w-16 right-4 outline-none"
+								className="w-16 right-4 outline-none rounded-lg"
 								value={inputAdults}
 								onInput={(e) => setInputAdults(e.target.value)}
 								min={1}
@@ -112,7 +112,7 @@ const Search = () => {
 								<p>Number of Rooms: </p>
 							</div>
 							<input
-								className="w-16 right-4 outline-none"
+								className="w-16 right-4 outline-none rounded-lg"
 								value={inputRooms}
 								onInput={(e) => setInputRooms(e.target.value)}
 								min={1}
@@ -122,7 +122,7 @@ const Search = () => {
 							/>
 						</div>
 
-						<div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500">
+						{/* <div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500">
 							<div className="flex gap-x-2 items-center">
 								<GrBaby className="scale-125" />
 								<p>Number of Children: </p>
@@ -138,7 +138,7 @@ const Search = () => {
 								defaultValue={0}
 								type="number"
 							/>
-						</div>
+						</div> */}
 					</div>
 				)}
 

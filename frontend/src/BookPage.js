@@ -7,7 +7,8 @@ const BookPage = () => {
 	const navigate = useNavigate();
 	const roomData = location.state.hotel;
 	const hotelName = location.state.hotelName;
-
+	const hotelId = location.state.hotelId;
+	const destinationId = location.state.destinationId;
 	const days = location.state.numDaysStay;
 	const rooms = location.state.numRooms;
 	const adults = location.state.numAdults;
@@ -128,6 +129,10 @@ const BookPage = () => {
 							>
 								Login to Book
 							</p> */}
+							<p>
+								HotelID: {hotelId}, DestinationID:{" "}
+								{destinationId}
+							</p>
 						</div>
 					</form>
 				</div>
