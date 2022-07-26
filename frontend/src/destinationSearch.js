@@ -1,3 +1,4 @@
+import axios from "axios";
 //functions to be used
 
 /**
@@ -20,7 +21,8 @@ export async function getHotelInfoByIdAsync(hotel_id) {
  * @param {*} checkout The date for checkout in YYYY-MM-DD format (eg 2022-08-19)
  * @param {*} currency The currency code e.g SGD, USD, CAD
  * @param {*} country_code The 2 Letter Country Code (Each country has an official one, Singapore is Sg for example)
- * @param {*} guests Number of guests staying per room, If there are more than one room, append with `|` separator
+ * @param {*} adults Number of guests staying per room, If there are more than one room, append with `|` separator
+ * @param {*} rooms Number of rooms
  * @returns the prices for all hotels in that destination for those dates
  */
 export const getHotelsPricesForDestinationAsync = async (
@@ -29,11 +31,15 @@ export const getHotelsPricesForDestinationAsync = async (
 	checkout,
 	currency,
 	country_code,
-	guests
+	adults,
+	rooms
 ) => {
-	let response = await fetch(
-		"https://hotelapi.loyalty.dev/api/hotels/prices?" +
-			new URLSearchParams({
+	let guests = new Array(rooms).fill(adults).join("|");
+
+	let response = await axios.get(
+		"https://hotelapi.loyalty.dev/api/hotels/prices",
+		{
+			params: {
 				destination_id: destination_id,
 				checkin: checkin,
 				checkout: checkout,
@@ -42,10 +48,12 @@ export const getHotelsPricesForDestinationAsync = async (
 				country_code: country_code,
 				guests: guests,
 				partner_id: "1",
-			})
+			},
+			withCredentials: true,
+		}
 	);
-	let data = await response.json();
-	console.log(data.hotels[1].lowest_converted_price);
+	console.log(response);
+	let data = response.data;
 	data.hotels.sort((a, b) =>
 		parseInt(a.lowest_converted_price) > parseInt(b.lowest_converted_price)
 			? 1
@@ -109,17 +117,17 @@ async function getHotelsForDestinationAsync(destination_id) {
 }
 
 /**
-   * 
-   * @param {*} hotelid The Id of the hotel whose price you want to check
-   * @param {*} destination_id The Id of the destination where the hotel is
-   * @param {*} checkin The date for checkin in YYYY-MM-DD format (e.g 2022-08-18) 
-   * @param {*} checkout The date for checkout in YYYY-MM-DD format (eg 2022-08-19)
-   * @param {*} currency The currency code e.g SGD, USD, CAD
-   * @param {*} country_code The 2 Letter Country Code (Each country has an official one, Singapore is Sg for example)
-   * @param {*} guests Number of guests staying per room, If there are more than one room, append with `|` separator
-  
-   * @returns the api json response for the prices and info for booking the given hotel at given dates
-   */
+ *
+ * @param {*} hotelid The Id of the hotel whose price you want to check
+ * @param {*} destination_id The Id of the destination where the hotel is
+ * @param {*} checkin The date for checkin in YYYY-MM-DD format (e.g 2022-08-18)
+ * @param {*} checkout The date for checkout in YYYY-MM-DD format (eg 2022-08-19)
+ * @param {*} currency The currency code e.g SGD, USD, CAD
+ * @param {*} country_code The 2 Letter Country Code (Each country has an official one, Singapore is Sg for example)
+ * @param {*} adults Number of guests staying per room, If there are more than one room, append with `|` separator
+ * @param {*} rooms Number of rooms
+ * @returns the api json response for the prices and info for booking the given hotel at given dates
+ */
 export async function getHotelsPricesForHotelAsync(
 	hotelid,
 	destination_id,
@@ -127,8 +135,11 @@ export async function getHotelsPricesForHotelAsync(
 	checkout,
 	currency,
 	country_code,
-	guests
+	adults,
+	rooms
 ) {
+	let guests = new Array(rooms).fill(adults).join("|");
+
 	let response = await fetch(
 		"https://hotelapi.loyalty.dev/api/hotels/" +
 			hotelid +

@@ -9,6 +9,7 @@ import { Button } from "@material-tailwind/react";
 import SearchResult from "./SearchResult";
 import { useLocation } from "react-router-dom";
 import { Pagination } from "flowbite-react";
+import axios from "axios";
 
 function SearchPage() {
 	// const navigate = useNavigate();
@@ -47,10 +48,11 @@ function SearchPage() {
 			);
 			console.log("ran once");
 			console.log(data);
+			console.log(data.completed);
 			setHotelsPriceSorted(data.hotels);
 			setTotalNumResults(data.hotels.length);
 		};
-		f();
+		setInterval(f, 8000);
 	}, []);
 
 	console.log("hi", hotelsPriceSorted);
