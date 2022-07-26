@@ -147,7 +147,7 @@ function SearchPage() {
 					}
 					numDaysStay={numDaysStay}
 					startDateObj={startdateobj}
-					endDateObj={startdateobj}
+					endDateObj={enddateobj}
 					numAdults={location.state.inputAdults}
 					numRooms={location.state.inputRooms}
 				/>

@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { dateStringMaker } from "./dateStringMaker";
-import { getHotelsPricesForHotelAsync } from "./destinationSearch";
+import { getRoomPricesForHotelAsync } from "./destinationSearch";
 import BookPage from "./BookPage";
-import { useNavigate } from "react-router-dom";
+import RoomDetails from "./RoomDetails";
 import Button from "@material-tailwind/react/components/Button";
 
 const HotelDetails = () => {
 	const location = useLocation();
-	const navigate = useNavigate();
 	const hotelData = location.state.data;
 	const hotelId = location.state.hotelId;
 	const destinationId = location.state.destinationId;
@@ -29,20 +28,23 @@ const HotelDetails = () => {
 
 	useEffect(() => {
 		const fetchHotelRoomPrices = async () => {
-			const data = await getHotelsPricesForHotelAsync(
+			const data = await getRoomPricesForHotelAsync(
 				hotelId,
 				destinationId,
 				dateStringMaker(location.state.startDateObj, true),
 				dateStringMaker(location.state.endDateObj, true),
 				"SGD",
 				"SG",
+				location.state.numAdults,
 				location.state.numRooms
 			);
-			console.log(data);
-			setRoomData(data);
+			setRoomData(data.rooms);
 		};
 		fetchHotelRoomPrices();
+		// setInterval(fetchHotelRoomPrices, 5000);
 	}, []);
+
+	console.log(roomData);
 
 	return (
 		<>
@@ -70,7 +72,6 @@ const HotelDetails = () => {
 						}}
 					/>
 					<br className="md:hidden" />
-					<p className="text-sm">{amenities}</p>
 					<div className="flex flex-row justify-between  p-2">
 						<div className="grid grid-cols-2 items-center">
 							<AiFillStar className="scale-150" />
@@ -81,23 +82,24 @@ const HotelDetails = () => {
 								<h2>{price}</h2>
 								<p>{total}</p>
 							</div>
-							<div>
-								<Button
-									className="h-12 text-lg"
-									onClick={() =>
-										navigate(`/book/${hotelId}`, {
-											state: { hotel: hotelData },
-										})
-									}
-								>
-									BOOK{" "}
-								</Button>
-							</div>
 						</div>
 					</div>
 				</div>
 				<AiOutlineHeart className="flex-none absolute right-0 mt-6 mr-10 self-start scale-150" />
 			</div>
+			{roomData.map((room) => (
+				<RoomDetails
+					className="p-10 m-10"
+					data={room}
+					hotelId={hotelId}
+					hotelName={hotelName}
+					startDate={location.state.startDateObj}
+					endDate={location.state.endDateObj}
+					numDaysStay={location.state.numDaysStay}
+					numAdults={location.state.numAdults}
+					numRooms={location.state.numRooms}
+				/>
+			))}
 		</>
 	);
 };

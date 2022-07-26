@@ -1,54 +1,37 @@
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "@material-tailwind/react/components/Button";
+import { dateStringMaker } from "./dateStringMaker";
+
 const BookPage = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const hotelData = location.state.hotel;
-	const hotelName = hotelData.name;
-	const roomType = "Chee Bye Room";
-	const startDate = new Date();
-	const startDateString =
-		startDate.getDate() +
-		"/" +
-		(startDate.getMonth() + 1) +
-		"/" +
-		startDate.getFullYear();
-	const endDateString =
-		startDate.getDate() +
-		4 +
-		"/" +
-		(startDate.getMonth() + 1) +
-		"/" +
-		startDate.getFullYear();
-	const days = 4;
-	const rooms = 1;
-	const adults = 2;
-	const children = 0;
-	const totalCost = 420;
-	const img =
-		hotelData.image_details.prefix +
-		hotelData.default_image_index +
-		hotelData.image_details.suffix;
-	const img1 =
-		hotelData.image_details.prefix +
-		(hotelData.default_image_index + 1) +
-		hotelData.image_details.suffix;
+	const roomData = location.state.hotel;
+	const hotelName = location.state.hotelName;
+
+	const days = location.state.numDaysStay;
+	const rooms = location.state.numRooms;
+	const adults = location.state.numAdults;
+	const totalCost = "$1000";
+	const img = roomData.images[0].url;
 	return (
 		<div className="flex flex-col md:flex-row item-center bg-white rounded-lg shadow-md  m-6 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ">
 			<div>
 				<img
 					className="m-2 rounded-lg h-[42vh] w-screen md:w-[40vw]"
 					src={img}
+					alt="Room"
 				></img>
 				<img
 					className="m-2 rounded-lg h-[45vh] w-screen md:w-[40vw]"
-					src={img1}
+					src={img}
+					alt="Room"
 				></img>
 			</div>
 			<div className="ml-5 mt-2">
 				<h1 className="text-2xl font-bold">{hotelName}</h1>
-				<h2 className="text-xl ">{roomType}</h2>
+				<h2 className="text-xl ">
+					{roomData.roomNormalizedDescription}
+				</h2>
 				<p>
 					This is the room description. This room is very big and very
 					wide and very scenic and it is very good because it has a
@@ -67,11 +50,11 @@ const BookPage = () => {
 								placeholder=""
 								required
 							>
-								<option value="mr">Mr</option>
-								<option value="ms">Ms</option>
-								<option value="mrs">Mrs</option>
-								<option value="dr">Dr</option>
-								<option value="prof">Prof</option>
+								<option value="Mr">Mr</option>
+								<option value="Ms">Ms</option>
+								<option value="Mrs">Mrs</option>
+								<option value="Dr">Dr</option>
+								<option value="Prof">Prof</option>
 							</select>
 							<input
 								className="rounded m-2"
@@ -109,9 +92,14 @@ const BookPage = () => {
 						<div className="flex flex-col md:flex-row text-center md:justify-center md:space-x-12">
 							<p className="m-2">
 								{" "}
-								Start Date: {startDateString}
+								Start Date:{" "}
+								{dateStringMaker(location.state.startDate)}
 							</p>
-							<p className="m-2"> End Date: {endDateString}</p>
+							<p className="m-2">
+								{" "}
+								End Date:{" "}
+								{dateStringMaker(location.state.endDate)}
+							</p>
 							<p className="m-2">Number of nights: {days}</p>
 						</div>
 						<div className="flex flex-col justify-center mx-4 md:mx-48 my-4">
@@ -127,14 +115,11 @@ const BookPage = () => {
 						<div className="flex flex-col md:flex-row text-center md:justify-center md:space-x-12">
 							<p className="m-2">Number of Adults: {adults}</p>
 							<p className="m-2">Number of Rooms: {rooms}</p>
-							<p className="m-2">
-								Number of Children: {children}
-							</p>
 						</div>
 
 						<div className="flex flex-col items-center md:items-end align-right w-full md:w-5/6">
 							<p className="flex justify-center md:justify-end text-2xl font-bold w-full my-2">
-								Total: $ {totalCost}
+								Total: {totalCost}
 							</p>
 							<Button className="my-2">Proceed to Payment</Button>
 							{/* <p
