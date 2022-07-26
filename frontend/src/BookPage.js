@@ -1,10 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "@material-tailwind/react/components/Button";
 import { dateStringMaker } from "./dateStringMaker";
+import useAuth from "./useAuth";
 
 const BookPage = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
+	const { username } = useAuth();
+	console.log(username);
 	const roomData = location.state.hotel;
 	const hotelName = location.state.hotelName;
 
@@ -12,7 +15,7 @@ const BookPage = () => {
 	const rooms = location.state.numRooms;
 	const adults = location.state.numAdults;
 	const totalCost = "$1000";
-	const img = roomData.images[0].url;
+	const img = roomData.images[0]?.url;
 	return (
 		<div className="flex flex-col md:flex-row item-center bg-white rounded-lg shadow-md  m-6 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ">
 			<div>

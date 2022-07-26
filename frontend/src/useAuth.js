@@ -5,9 +5,11 @@ const authContext = React.createContext();
 
 function useAuth() {
 	const [authed, setAuthed] = React.useState(false);
+	const [username, setUsername] = React.useState("");
 
 	return {
 		authed,
+		username,
 		login(email, password) {
 			return new Promise((resolve, reject) => {
 				console.log("waiting");
@@ -22,6 +24,7 @@ function useAuth() {
 					.then(function (response) {
 						if (response.statusText === "OK") {
 							setAuthed(true);
+							setUsername(email);
 							console.log("success", "Logged in successfully!");
 							resolve("logged in");
 						}
