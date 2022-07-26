@@ -6,7 +6,7 @@ const BookPage = () => {
 	const navigate = useNavigate();
 	const hotelData = location.state.hotel;
 	const hotelName = hotelData.name;
-	const roomType = "Chee Bye Room";
+	const roomType = "This Room";
 	const startDate = new Date();
 	const startDateString =
 		startDate.getDate() +
