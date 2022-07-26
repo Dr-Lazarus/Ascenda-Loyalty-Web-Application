@@ -19,14 +19,9 @@ const Login = ({ Login, error }) => {
 		login(email, password).then(
 			() => {
 				console.log("promise", authed);
+				console.log(state?.path);
 				navigate(state?.path || "/profile", {
-					state: {
-						// firstName: firstName,
-						// lastName: lastName,
-						// email: email,
-						// password: password,
-						// contact: contact,
-					},
+					state: state.prev_data,
 				});
 			},
 			() => {

@@ -22,11 +22,15 @@ import { AuthProvider } from "./useAuth";
 function RequireAuth({ children }) {
 	const { authed } = useAuth();
 	const location = useLocation();
-
+	console.log("prev_state:", location.state);
 	return authed === true ? (
 		children
 	) : (
-		<Navigate to="/login" replace state={{ path: location.pathname }} />
+		<Navigate
+			to="/login"
+			replace
+			state={{ path: location.pathname, prev_data: location.state }}
+		/>
 	);
 }
 
@@ -72,7 +76,15 @@ const App = () => {
 							<Route path=":id" element={<HotelDetails />} />
 						</Route>
 						<Route path={"/book"}>
-							<Route path=":id" element={<BookPage />} />
+							<Route
+								path=":id"
+								element={
+									<RequireAuth
+										children={<BookPage />}
+										test="hi"
+									></RequireAuth>
+								}
+							/>
 						</Route>
 						<Route path="/login" element={<Login />}></Route>
 						<Route
