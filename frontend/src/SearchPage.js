@@ -5,7 +5,7 @@ import {
 	getHotelInfoByIdAsync,
 } from "./destinationSearch";
 import { dateStringMaker } from "./dateStringMaker";
-import { Button } from "@material-tailwind/react";
+import Button from "@material-tailwind/react/components/Button";
 import SearchResult from "./SearchResult";
 import { useLocation } from "react-router-dom";
 import { Pagination } from "flowbite-react";
@@ -107,7 +107,7 @@ function SearchPage() {
 				{showSearch && <Search className="" />}
 
 				<Button
-					className="w-full h-16 text-lg duration-300 hover:bg-white"
+					className="w-full py-2 px-4 bg-transparent text-blue-500 font-semibold rounded hover:bg-blue-500 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:translate-y-1 active:translate-y-0"
 					onClick={() => setShowSearch(!showSearch)}
 					variant="outlined"
 				>
@@ -147,7 +147,7 @@ function SearchPage() {
 					}
 					numDaysStay={numDaysStay}
 					startDateObj={startdateobj}
-					endDateObj={startdateobj}
+					endDateObj={enddateobj}
 					numAdults={location.state.inputAdults}
 					numRooms={location.state.inputRooms}
 				/>

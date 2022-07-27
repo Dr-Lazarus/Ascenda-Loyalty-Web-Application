@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { Avatar } from "@material-tailwind/react";
-// import { Button } from "@material-tailwind/react";
+import { Avatar } from "flowbite-react";
 // import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {
@@ -18,10 +17,11 @@ const Header = () => {
 				</div>
 				<div className="flex space-x-3 justify-end items-center">
 					<Link to="/profile">
-						<Avatar id = "loginbutton"
-			
-							src={require("./img/user.png")}
-							size="md"
+						<Avatar
+							img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+							id = "loginbutton"
+							rounded={true}
+							bordered={true}
 							data-testid="icon-button-test"
 						/>
 					</Link>

@@ -128,7 +128,7 @@ async function getHotelsForDestinationAsync(destination_id) {
  * @param {*} rooms Number of rooms
  * @returns the api json response for the prices and info for booking the given hotel at given dates
  */
-export async function getHotelsPricesForHotelAsync(
+export async function getRoomPricesForHotelAsync(
 	hotelid,
 	destination_id,
 	checkin,
@@ -140,11 +140,10 @@ export async function getHotelsPricesForHotelAsync(
 ) {
 	let guests = new Array(rooms).fill(adults).join("|");
 
-	let response = await fetch(
-		"https://hotelapi.loyalty.dev/api/hotels/" +
-			hotelid +
-			"/price?" +
-			new URLSearchParams({
+	let response = await axios.get(
+		`https://hotelapi.loyalty.dev/api/hotels/${hotelid}/price`,
+		{
+			params: {
 				destination_id: destination_id,
 				checkin: checkin,
 				checkout: checkout,
@@ -153,9 +152,24 @@ export async function getHotelsPricesForHotelAsync(
 				country_code: country_code,
 				guests: guests,
 				partner_id: "1",
-			})
+			},
+			withCredentials: true,
+		}
 	);
-	let data = await response.json();
+	const url = `http://hotelapi.loyalty.dev/api/hotels/${hotelid}/price`;
+	const params = {
+		destination_id: destination_id,
+		checkin: checkin,
+		checkout: checkout,
+		lang: "en_US",
+		currency: currency,
+		country_code: country_code,
+		guests: guests,
+		partner_id: "1",
+	};
+	// let test = axios.getUri({ url, params });
+	// console.log(test);
+	let data = response.data;
 	return data;
 }
 

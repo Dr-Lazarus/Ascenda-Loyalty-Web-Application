@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import Button from "@material-tailwind/react/components/Button";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-// import "./Profile.css";
 
 const EditProfile = () => {
 	const navigate = useNavigate();
@@ -15,7 +14,12 @@ const EditProfile = () => {
 	var loginState = location.state.loginState;
 	const handleClick = (event) => {
 		event.preventDefault();
-		if (firstName == "" || lastName == "" || contact == "" || email == "") {
+		if (
+			firstName === "" ||
+			lastName === "" ||
+			contact === "" ||
+			email === ""
+		) {
 			alert("Please fill in ALL the details!");
 		} else {
 			navigate("/profile", {

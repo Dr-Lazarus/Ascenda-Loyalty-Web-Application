@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import Button from "@material-tailwind/react/components/Button";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 // import "./Profile.css";
@@ -20,9 +20,9 @@ const ChangePassword = () => {
 	const handleClick = (event) => {
 		event.preventDefault();
 		console.log(current, newPassword, confirmPassword);
-		if (confirmPassword != newPassword) {
+		if (confirmPassword !== newPassword) {
 			alert("Your new passwords does not match.");
-		} else if (current == confirmPassword) {
+		} else if (current === confirmPassword) {
 			alert("You cannot change to your previous password.");
 		} else {
 			alert("Password Reset Successful");
