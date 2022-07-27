@@ -14,7 +14,7 @@ function Register() {
 	const submitHandler = (e) => {
 		axios({
 			method: "POST",
-			url: "http://localhost:3000/api/users/register",
+			url: "http://localhost:5001/api/users/register",
 			data: {
 				email: email,
 				password: password,
