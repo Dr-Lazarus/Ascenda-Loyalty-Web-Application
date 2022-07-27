@@ -4,19 +4,17 @@ import axios from "axios";
 const authContext = React.createContext();
 
 function useAuth() {
-	const [authed, setAuthed] = React.useState(false);
-	const [username, setUsername] = React.useState("");
+	const [authed, setAuthed] = React.useState((flag = false) => {
+		localStorage.getItem("token") ? (flag = true) : (flag = false);
+		return flag;
+	});
+	const [userid, setUserid] = React.useState("");
 	const [token, setToken] = React.useState("");
 
 	return {
 		authed,
-		username,
+		userid,
 		token,
-		hasJWT() {
-			let flag = false;
-			localStorage.getItem("token") ? (flag = true) : (flag = false);
-			return flag;
-		},
 		login(email, password) {
 			return new Promise((resolve, reject) => {
 				console.log("waiting");
@@ -31,9 +29,10 @@ function useAuth() {
 					.then(function (response) {
 						if (response.statusText === "OK") {
 							setAuthed(true);
-							setUsername(email);
-							localStorage.setItem("token", token);
+							setUserid(response.data._id);
 							setToken(response.data.token);
+							console.log("userid: ", response.data._id);
+							localStorage.setItem("token", response.data.token);
 							console.log("success", "Logged in successfully!");
 							resolve("logged in");
 						}
@@ -48,6 +47,7 @@ function useAuth() {
 		logout() {
 			return new Promise((res) => {
 				setAuthed(false);
+				localStorage.removeItem("token");
 				res();
 			});
 		},

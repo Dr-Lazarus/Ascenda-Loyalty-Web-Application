@@ -18,7 +18,7 @@ const SearchResult = ({
 		var temp = input.split(" ");
 		var final = [];
 		for (var i = 0; i < temp.length; i++) {
-			if (temp[i] != "·") {
+			if (temp[i] !== "·") {
 				final.push(temp[i].charAt(0).toUpperCase() + temp[i].slice(1));
 			}
 		}

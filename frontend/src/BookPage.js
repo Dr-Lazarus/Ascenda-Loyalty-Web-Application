@@ -6,8 +6,8 @@ import useAuth from "./useAuth";
 const BookPage = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const { username } = useAuth();
-	console.log(username);
+	const { userid } = useAuth();
+	console.log("userID: ", userid);
 	const roomData = location.state.hotel;
 	const hotelName = location.state.hotelName;
 

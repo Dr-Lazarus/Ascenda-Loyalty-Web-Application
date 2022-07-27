@@ -15,7 +15,12 @@ const EditProfile = () => {
 	var loginState = location.state.loginState;
 	const handleClick = (event) => {
 		event.preventDefault();
-		if (firstName == "" || lastName == "" || contact == "" || email == "") {
+		if (
+			firstName === "" ||
+			lastName === "" ||
+			contact === "" ||
+			email === ""
+		) {
 			alert("Please fill in ALL the details!");
 		} else {
 			navigate("/profile", {
