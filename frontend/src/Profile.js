@@ -35,17 +35,16 @@ const Profile = () => {
 		.then(function (response) {
 			if (response.statusText === "OK") {
 				console.log("user data fetched successfully!");
-				consoel;
-				setFirstName(response.data.name);
-				setLastName();
+				setFirstName(response.data.firstName);
+				setLastName(response.data.lastName);
 				setEmail(response.data.email);
-				setContact();
-				setPassword(response.data.name);
+				setContact(response.data.contactNumber);
 			}
 			console.log(response);
 		})
 		.catch(function (error) {
-			console.log("error", error.response.data.message);
+			console.log(token);
+			console.log("error", error.response);
 		});
 
 	const handleEdit = (e) => {

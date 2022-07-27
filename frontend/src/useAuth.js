@@ -9,7 +9,7 @@ function useAuth() {
 		return flag;
 	});
 	const [userid, setUserid] = React.useState("");
-	const [token, setToken] = React.useState("");
+	const [token, setToken] = React.useState(localStorage.getItem("token"));
 
 	return {
 		authed,
