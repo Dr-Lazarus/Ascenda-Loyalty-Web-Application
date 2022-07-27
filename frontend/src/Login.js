@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-// import { Button } from "flowbite-react";
+import Button from "@material-tailwind/react/components/Button";
 import useAuth from "./useAuth";
 
 const Login = ({ Login, error }) => {
@@ -58,13 +58,13 @@ const Login = ({ Login, error }) => {
 					/>
 				</div>
 
-				<button
+				<Button
 					onClick={submitHandler}
 					className="flex w-52 justify-center mt-5"
 					data-testid="test-button"
 				>
 					LOGIN
-				</button>
+				</Button>
 
 				<Link to={"/register"} className="button-register">
 					<p className="mt-2 text-sm">don't have an account?</p>

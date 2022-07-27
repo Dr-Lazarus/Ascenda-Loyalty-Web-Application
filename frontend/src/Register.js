@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { Button } from "flowbite-react";
+import Button from "@material-tailwind/react/components/Button";
 import axios from "axios";
 
 function Register() {
@@ -107,9 +107,9 @@ function Register() {
 								id="repassword"
 							/>
 						</div>
-						<button className="mt-5 w-52" onClick={submitHandler}>
+						<Button className="mt-5 w-52" onClick={submitHandler}>
 							REGISTER
-						</button>
+						</Button>
 					</div>
 				</div>
 			</form>

@@ -1,4 +1,4 @@
-// import { Button } from "flowbite-react";
+import Button from "@material-tailwind/react/components/Button";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "./useAuth";
@@ -110,38 +110,38 @@ const Profile = () => {
 				</div>
 			</div>
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10 ">
-				<button
+				<Button
 					className="w-48 h-16 mx-4 my-4"
 					onClick={returnComingSoon}
 				>
 					My favourites
-				</button>
-				<button
+				</Button>
+				<Button
 					className="w-48 h-16 mx-4 my-4"
 					onClick={returnComingSoon}
 				>
 					View Booking History
-				</button>
-				<button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
+				</Button>
+				<Button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
 					Edit Profile
-				</button>
+				</Button>
 
 				{authed && (
-					<button
+					<Button
 						className="w-48 h-16 mx-4 my-4"
 						onClick={handleLogout}
 					>
 						Logout
-					</button>
+					</Button>
 				)}
 			</div>
 			<div className="flex flex-row justify-center space-x-10 mt-10 mb-10">
-				<button
+				<Button
 					className=" w-52 bg-red-600 hover:bg-white hover:text-red-600 hover:shadow-red-600"
 					onClick={warnDelete}
 				>
 					DELETE ACCOUNT
-				</button>
+				</Button>
 			</div>
 		</div>
 	);

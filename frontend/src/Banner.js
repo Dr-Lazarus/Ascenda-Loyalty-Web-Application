@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Search from "./Search";
-// import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 
 const Banner = () => {

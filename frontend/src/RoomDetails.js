@@ -30,7 +30,7 @@ const RoomDetails = ({
 			<p className="font-normal text-gray-700 dark:text-gray-400">
 				{`Lowest Price: ${data.lowest_price}`}
 			</p>
-			<button
+			<Button
 				className="h-12 text-lg"
 				onClick={() =>
 					navigate(`/book/${hotelId}`, {
@@ -47,7 +47,7 @@ const RoomDetails = ({
 				}
 			>
 				BOOK{" "}
-			</button>
+			</Button>
 		</Card>
 	);
 };

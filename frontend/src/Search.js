@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { Button } from "flowbite-react";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { GrBaby } from "react-icons/gr";
 import { DateRange } from "react-date-range";
