@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Avatar } from "flowbite-react";
-// import { Button } from "flowbite-react";
 // import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { Button } from "flowbite-react";
+import Button from "@material-tailwind/react/components/Button";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 // import "./Profile.css";
@@ -100,12 +100,12 @@ const ChangePassword = () => {
 				</div>
 			</form>
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10">
-				<button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
+				<Button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
 					Confirm Details
-				</button>
-				<button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>
+				</Button>
+				<Button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>
 					Back
-				</button>
+				</Button>
 			</div>
 		</div>
 	);
