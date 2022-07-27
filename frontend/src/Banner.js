@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Search from "./Search";
-import { Button } from "@material-tailwind/react";
+// import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
@@ -14,14 +14,14 @@ const Banner = () => {
 					<Search className="" data-testid="search-test" />
 				)}
 
-				<Button
-					className="w-full h-16 text-lg duration-300 text-blue-500"
+				<button
+					className="w-full py-2 px-4 bg-transparent text-blue-500 font-semibold rounded hover:bg-blue-500 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:translate-y-1 active:translate-y-0"
 					onClick={() => setShowSearch(!showSearch)}
 					variant="outlined"
 					data-testid="showSearchButtonTest"
 				>
 					{showSearch ? "Hide" : "Book your next destination here!"}
-				</Button>
+				</button>
 			</div>
 			<div className="invisible md:visible absolute z-0 bottom-0 left-0 bg-black w-80 pt-6 px-10 pb-8 text-white">
 				<p className="text-xl ">Get out and stretch your imagination</p>
@@ -29,13 +29,13 @@ const Banner = () => {
 					Plan a different kind of getaway to uncover the hidden gems
 					near you.
 				</p>
-				<Button
-					className="!bg-black !text-white !font-bold !mt-6 hover:!bg-white hover:!text-[#ff7779]"
+				<button
+					className="!bg-black !text-white !font-bold !mt-6 hover:bg-white hover:!text-[#ff7779]"
 					onClick={() => navigate("/search")}
 					variant="outlined"
 				>
 					Explore Nearby
-				</Button>
+				</button>
 			</div>
 		</div>
 	);

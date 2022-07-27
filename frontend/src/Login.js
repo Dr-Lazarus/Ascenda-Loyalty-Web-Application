@@ -1,32 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+// import { Button } from "flowbite-react";
 import useAuth from "./useAuth";
 
 const Login = ({ Login, error }) => {
 	const navigate = useNavigate();
 	const { authed, login } = useAuth();
 	const { state } = useLocation();
-
-	// const [firstName, setFirstName] = useState("john");
-	// const [lastName, setLastName] = useState("cena");
-	const [email, setEmail] = useState("raw@wwe.com");
-	const [password, setPassword] = useState();
-	// const [contact, setContact] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		login(email, password).then(
 			() => {
 				console.log("promise", authed);
+				console.log(state?.path);
 				navigate(state?.path || "/profile", {
-					state: {
-						// firstName: firstName,
-						// lastName: lastName,
-						// email: email,
-						// password: password,
-						// contact: contact,
-					},
+					state: state.prev_data,
 				});
 			},
 			() => {
@@ -67,14 +58,14 @@ const Login = ({ Login, error }) => {
 					/>
 				</div>
 
-				<Button
-					id = "submit"
+				<button
 					onClick={submitHandler}
+					id = "submit"
 					className="flex w-52 justify-center mt-5"
 					data-testid="test-button"
 				>
 					LOGIN
-				</Button>
+				</button>
 
 				<Link to={"/register"} className="button-register">
 					<p className="mt-2 text-sm">don't have an account?</p>

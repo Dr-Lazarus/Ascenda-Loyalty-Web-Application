@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+// import { Button } from "flowbite-react";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { GrBaby } from "react-icons/gr";
 import { DateRange } from "react-date-range";
@@ -11,7 +11,6 @@ import Select from "react-select";
 const Search = () => {
 	const navigate = useNavigate();
 	const [inputAdults, setInputAdults] = useState(1);
-	const [inputChildren, setInputChildren] = useState(0);
 	const [inputRooms, setInputRooms] = useState(1);
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
@@ -53,7 +52,7 @@ const Search = () => {
 				//className=" flex flex-row bg-white rounded-full border-2 p-2 h-12 w-[330px] focus-within:border-blue-500"
 			>
 				<Select
-					className=" w-full md:w-[330px]"
+					className=" w-full md:w-[330px] h-10 px-5 m-2"
 					options={uniqueData.slice(0, 1000)}
 					getOptionLabel={(option) => option.term}
 					getOptionValue={(option) => option.uid}
@@ -79,19 +78,19 @@ const Search = () => {
 					/>
 				)}
 
-				<Button
-					className=" w-full md:w-[330px] "
+				<button
+					className=" w-full md:w-[330px] h-10 px-5 m-2 duration-300 border rounded-lg text-blue-500 font-semibold border-blue-400 hover:bg-white"
 					data-testid="date-picker-button-test"
 					onClick={() => setShowDates(!showDates)}
 					variant="outlined"
 				>
-					{showDates ? "hide" : "Select Dates"}
-				</Button>
+					{showDates ? "Hide" : "Select Dates"}
+				</button>
 			</div>
 			<div className="flex flex-col text-lg z-10 w-full md:w-[330px] ">
 				{showDetails && (
 					<div className=" pb-4 flex flex-col gap-y-2 item-center">
-						<div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500">
+						<div className="flex flex-row justify-between gap-x-6 p-2 bg-white  border rounded-lg border-blue-400">
 							<div className="flex gap-x-2 items-center">
 								<BsFillPeopleFill />
 								<p>Number of Adults: </p>
@@ -106,7 +105,7 @@ const Search = () => {
 								type="number"
 							/>
 						</div>
-						<div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500 ">
+						<div className="flex flex-row justify-between gap-x-6 p-2  bg-white  border rounded-lg border-blue-400">
 							<div className="flex gap-x-2 items-center">
 								<FaBed className="scale-125" />
 								<p>Number of Rooms: </p>
@@ -122,7 +121,7 @@ const Search = () => {
 							/>
 						</div>
 
-						<div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500">
+						{/* <div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500">
 							<div className="flex gap-x-2 items-center">
 								<GrBaby className="scale-125" />
 								<p>Number of Children: </p>
@@ -138,22 +137,22 @@ const Search = () => {
 								defaultValue={0}
 								type="number"
 							/>
-						</div>
+						</div> */}
 					</div>
 				)}
 
-				<Button
-					className="w-full duration-300 hover:bg-white"
+				<button
+					className="w-full md:w-[330px] h-10 px-5 m-2 duration-300  text-blue-500 font-semibold hover:bg-white  border rounded-lg border-blue-400"
 					data-testid="travellers-button-test"
 					onClick={() => setShowDetails(!showDetails)}
 					variant="outlined"
 				>
 					{showDetails ? "hide" : "Travellers"}
-				</Button>
+				</button>
 			</div>
 			<div className="">
-				<Button
-					className="flex w-full md:w-auto justify-center"
+				<button
+					className="flex w-full md:w-auto justify-center h-10 px-5 m-2 duration-200  bg-blue-500 hover:bg-white border rounded-lg transition ease-in transform hover:translate-y-1 active:translate-y-0"
 					onClick={() =>
 						navigate("/search", {
 							state: {
@@ -161,14 +160,13 @@ const Search = () => {
 								start: startDate,
 								end: endDate,
 								inputAdults: inputAdults,
-								inputChildren: inputChildren,
 								inputRooms: inputRooms,
 							},
 						})
 					}
 				>
-					<AiOutlineSearch className="flex right-2 scale-125" />
-				</Button>
+					<AiOutlineSearch className="mt-2 scale-125" />
+				</button>
 			</div>
 		</div>
 	);

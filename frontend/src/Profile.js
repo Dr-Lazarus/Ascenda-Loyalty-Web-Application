@@ -1,11 +1,20 @@
-import { Button } from "@material-tailwind/react";
+// import { Button } from "flowbite-react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "./useAuth";
+import axios from "axios";
 
 const Profile = () => {
 	const navigate = useNavigate();
-	const { authed, logout } = useAuth();
+	const { authed, token, logout } = useAuth();
 	const location = useLocation();
+
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [contact, setContact] = useState("");
+	const [password, setPassword] = useState("");
+
 	const warnDelete = () => {
 		const delacc = window.confirm(
 			"Are you sure that you want to DELETE YOUR ACCOUNT?"
@@ -16,24 +25,27 @@ const Profile = () => {
 		}
 		console.log(delacc);
 	};
-	const firstName = "Oakar";
-	const lastName = "Min";
-	const email = "oakkarrr00@gmail.com";
-	const contact = "97795461";
-	const password = "123";
-	// console.log(location.state);
-	// if (location.state.firstName !== "") {
-	// 	firstName = location.state.firstName;
-	// }
-	// if (location.state.lastName !== "") {
-	// 	lastName = location.state.lastName;
-	// }
-	// if (location.state.email !== "") {
-	// 	email = location.state.email;
-	// }
-	// if (location.state.contact !== "") {
-	// 	contact = location.state.contact;
-	// }
+
+	axios
+		.get("http://localhost:5001/api/users/viewprofile", {
+			headers: {
+				Authorization: "Bearer " + token,
+			},
+		})
+		.then(function (response) {
+			if (response.statusText === "OK") {
+				console.log("user data fetched successfully!");
+				setFirstName(response.data.name);
+				setLastName();
+				setEmail(response.data.email);
+				setContact();
+				setPassword(response.data.name);
+			}
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log("error", error.response.data.message);
+		});
 
 	const handleEdit = (e) => {
 		navigate("/edit-profile", {
@@ -98,38 +110,38 @@ const Profile = () => {
 				</div>
 			</div>
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10 ">
-				<Button
+				<button
 					className="w-48 h-16 mx-4 my-4"
 					onClick={returnComingSoon}
 				>
 					My favourites
-				</Button>
-				<Button
+				</button>
+				<button
 					className="w-48 h-16 mx-4 my-4"
 					onClick={returnComingSoon}
 				>
 					View Booking History
-				</Button>
-				<Button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
+				</button>
+				<button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
 					Edit Profile
-				</Button>
+				</button>
 
 				{authed && (
-					<Button
+					<button
 						className="w-48 h-16 mx-4 my-4"
 						onClick={handleLogout}
 					>
 						Logout
-					</Button>
+					</button>
 				)}
 			</div>
 			<div className="flex flex-row justify-center space-x-10 mt-10 mb-10">
-				<Button
+				<button
 					className=" w-52 bg-red-600 hover:bg-white hover:text-red-600 hover:shadow-red-600"
 					onClick={warnDelete}
 				>
 					DELETE ACCOUNT
-				</Button>
+				</button>
 			</div>
 		</div>
 	);
