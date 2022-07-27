@@ -46,7 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {
     res.json({
       _id: user._id,
-      name: user.name,
+      name: user.firstName,
       email: user.email,
       token: generateToken(user._id),
       pic: user.pic,
@@ -109,12 +109,16 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   
   const getOneUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
+
     if (!user) res.status(404).send("User not found");
+    console.log(user)
     res.status(200).json({
   data : {
   _id: user._id,
-  name: user.name,
+  firstName: user.firstName,
+  lastName: user.lastName,
   email: user.email,
+  contactNumber: user.contactNumber,
   token: generateToken(user._id),
   pic: user.pic}
 });
