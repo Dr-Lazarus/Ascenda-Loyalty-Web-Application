@@ -93,6 +93,7 @@ const HotelDetails = () => {
 					data={room}
 					hotelId={hotelId}
 					hotelName={hotelName}
+					destinationId={destinationId}
 					startDate={location.state.startDateObj}
 					endDate={location.state.endDateObj}
 					numDaysStay={location.state.numDaysStay}

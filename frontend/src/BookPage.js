@@ -10,7 +10,8 @@ const BookPage = () => {
 	console.log("userID: ", userid);
 	const roomData = location.state.hotel;
 	const hotelName = location.state.hotelName;
-
+	const destinationId = location.state.destinationId;
+	const hotelId = location.state.hotelId;
 	const days = location.state.numDaysStay;
 	const rooms = location.state.numRooms;
 	const adults = location.state.numAdults;

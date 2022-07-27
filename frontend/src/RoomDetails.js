@@ -8,6 +8,7 @@ const RoomDetails = ({
 	data,
 	hotelId,
 	hotelName,
+	destinationId,
 	startDate,
 	endDate,
 	numDaysStay,
@@ -37,6 +38,8 @@ const RoomDetails = ({
 						state: {
 							hotel: data,
 							hotelName: hotelName,
+							hotelId: hotelId,
+							destinationId: destinationId,
 							startDate: startDate,
 							endDate: endDate,
 							numDaysStay: numDaysStay,

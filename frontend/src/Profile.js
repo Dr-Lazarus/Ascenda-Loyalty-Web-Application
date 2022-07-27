@@ -35,6 +35,7 @@ const Profile = () => {
 		.then(function (response) {
 			if (response.statusText === "OK") {
 				console.log("user data fetched successfully!");
+				consoel;
 				setFirstName(response.data.name);
 				setLastName();
 				setEmail(response.data.email);
