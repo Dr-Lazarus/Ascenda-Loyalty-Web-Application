@@ -96,7 +96,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   
       res.json({
         _id: updatedUser._id,
-        name: updatedUser.name,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
         email: updatedUser.email,
         pic: updatedUser.pic,
         token: generateToken(updatedUser._id),
