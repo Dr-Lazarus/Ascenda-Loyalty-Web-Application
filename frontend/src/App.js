@@ -20,10 +20,10 @@ import useAuth from "./useAuth";
 import { AuthProvider } from "./useAuth";
 
 function RequireAuth({ children }) {
-	const { authed } = useAuth();
+	const { authed, hasJWT } = useAuth();
 	const location = useLocation();
 	console.log("prev_state:", location.state);
-	return authed === true ? (
+	return authed === true || hasJWT === true ? (
 		children
 	) : (
 		<Navigate

@@ -6,10 +6,17 @@ const authContext = React.createContext();
 function useAuth() {
 	const [authed, setAuthed] = React.useState(false);
 	const [username, setUsername] = React.useState("");
+	const [token, setToken] = React.useState("");
 
 	return {
 		authed,
 		username,
+		token,
+		hasJWT() {
+			let flag = false;
+			localStorage.getItem("token") ? (flag = true) : (flag = false);
+			return flag;
+		},
 		login(email, password) {
 			return new Promise((resolve, reject) => {
 				console.log("waiting");
@@ -25,6 +32,8 @@ function useAuth() {
 						if (response.statusText === "OK") {
 							setAuthed(true);
 							setUsername(email);
+							localStorage.setItem("token", token);
+							setToken(response.data.token);
 							console.log("success", "Logged in successfully!");
 							resolve("logged in");
 						}

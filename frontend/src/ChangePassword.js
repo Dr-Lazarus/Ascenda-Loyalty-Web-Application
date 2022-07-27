@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+// import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 // import "./Profile.css";
@@ -20,9 +20,9 @@ const ChangePassword = () => {
 	const handleClick = (event) => {
 		event.preventDefault();
 		console.log(current, newPassword, confirmPassword);
-		if (confirmPassword != newPassword) {
+		if (confirmPassword !== newPassword) {
 			alert("Your new passwords does not match.");
-		} else if (current == confirmPassword) {
+		} else if (current === confirmPassword) {
 			alert("You cannot change to your previous password.");
 		} else {
 			alert("Password Reset Successful");
@@ -100,12 +100,12 @@ const ChangePassword = () => {
 				</div>
 			</form>
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10">
-				<Button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
+				<button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
 					Confirm Details
-				</Button>
-				<Button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>
+				</button>
+				<button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>
 					Back
-				</Button>
+				</button>
 			</div>
 		</div>
 	);

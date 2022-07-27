@@ -22,15 +22,15 @@ const RoomDetails = ({
 				{data.roomNormalizedDescription}
 			</h5>
 			<p className="font-normal text-gray-700 dark:text-gray-400">
-				{data.amenities.join(" · ")}
+				Amenities: {data.amenities.join(" · ")}
 			</p>
 			<p className="font-normal text-gray-700 dark:text-gray-400">
-				{`Price: ${data.price}`}
+				Price: ${data.price}
 			</p>
 			<p className="font-normal text-gray-700 dark:text-gray-400">
 				{`Lowest Price: ${data.lowest_price}`}
 			</p>
-			<Button
+			<button
 				className="h-12 text-lg"
 				onClick={() =>
 					navigate(`/book/${hotelId}`, {
@@ -47,7 +47,7 @@ const RoomDetails = ({
 				}
 			>
 				BOOK{" "}
-			</Button>
+			</button>
 		</Card>
 	);
 };

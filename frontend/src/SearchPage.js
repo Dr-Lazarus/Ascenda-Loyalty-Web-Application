@@ -5,7 +5,7 @@ import {
 	getHotelInfoByIdAsync,
 } from "./destinationSearch";
 import { dateStringMaker } from "./dateStringMaker";
-import { Button } from "@material-tailwind/react";
+// import { button } from "flowbite-react";
 import SearchResult from "./SearchResult";
 import { useLocation } from "react-router-dom";
 import { Pagination } from "flowbite-react";
@@ -106,13 +106,13 @@ function SearchPage() {
 			<div className="flex flex-col relative justify-between z-10">
 				{showSearch && <Search className="" />}
 
-				<Button
-					className="w-full h-16 text-lg duration-300 hover:bg-white"
+				<button
+					className="w-full py-2 px-4 bg-transparent text-blue-500 font-semibold rounded hover:bg-blue-500 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:translate-y-1 active:translate-y-0"
 					onClick={() => setShowSearch(!showSearch)}
 					variant="outlined"
 				>
 					{showSearch ? "Hide" : "Book your next desitnation here!"}
-				</Button>
+				</button>
 			</div>
 			<div className="p-6 space-4">
 				<p className="mb-2">
@@ -124,11 +124,11 @@ function SearchPage() {
 
 				<p className="text-2xl font-bold mb-10">Stays nearby</p>
 				<div className="flex flex-wrap gap-4">
-					<Button variant="outlined">Cancellation</Button>
-					<Button variant="outlined">Type of place</Button>
-					<Button variant="outlined">Price</Button>
-					<Button variant="outlined">Rooms and beds</Button>
-					<Button variant="outlined">More filters</Button>
+					<button variant="outlined">Cancellation</button>
+					<button variant="outlined">Type of place</button>
+					<button variant="outlined">Price</button>
+					<button variant="outlined">Rooms and beds</button>
+					<button variant="outlined">More filters</button>
 				</div>
 			</div>
 			{hotelsPageData.map((hotel) => (
