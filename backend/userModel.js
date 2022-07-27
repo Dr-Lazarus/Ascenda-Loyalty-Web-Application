@@ -16,6 +16,9 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      validatate: [validateEmail , "Please enter a valid email"],
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+
     },
     password: {
       type: String,
@@ -49,7 +52,10 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
+var validateEmail = function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email)
+};
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
