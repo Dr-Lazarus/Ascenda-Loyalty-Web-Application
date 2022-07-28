@@ -71,7 +71,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     throw new Error("User not found, please contact administrator");
   }
-});
+}});
 // const getUserProfile = asyncHandler(async (req, res) => {
 //   const { firstName, lastName, contactNumber, email, password, pic } = req.body;
 // })fg
