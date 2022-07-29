@@ -53,7 +53,7 @@ const HotelDetails = () => {
 				<img
 					className="object-cover w-full rounded-t-lg md:h-96   md:rounded-none md:rounded-l-lg"
 					src={img}
-					alt=""
+					alt="boo hoo"
 				/>
 				<div className="flex-1 flex-col justify-between p-4 leading-normal">
 					<p className="mb-2 font-semibold tracking-tight text-gray-800 dark:text-white">
@@ -78,9 +78,11 @@ const HotelDetails = () => {
 							<p className="font-bold text-xl">{star}</p>
 						</div>
 						<div className="flex flex-col text-end">
-							<div className="mr-4">
-								<h2>{price}</h2>
-								<p>{total}</p>
+							<div className="text-end">
+								<h2 className="text-2xl font-bold">
+									{"$" + total}
+								</h2>
+								<p>{"$" + price}/Night</p>
 							</div>
 						</div>
 					</div>
