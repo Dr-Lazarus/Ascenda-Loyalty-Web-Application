@@ -65,6 +65,22 @@ const Profile = () => {
 		logout();
 		navigate("/");
 	};
+	const submitHandler = (e) => {
+
+		axios({
+			method: "GET",
+			url: "http://localhost:5001/api/bookings/getBookingHistory",
+			headers: {
+				Authorization: "Bearer " + token,
+			},
+		})
+			.then(async function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log("error", error.response.data.message);
+			});
+	};
 
 	return (
 		<div className="m5-50 ">
@@ -118,7 +134,7 @@ const Profile = () => {
 				</Button>
 				<Button
 					className="w-48 h-16 mx-4 my-4"
-					onClick={returnComingSoon}
+					onClick={submitHandler}
 				>
 					View Booking History
 				</Button>
