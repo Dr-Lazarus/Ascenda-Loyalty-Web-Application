@@ -18,7 +18,9 @@ function Register() {
 			data: {
 				email: email,
 				password: password,
-				name: firstname,
+				firstName: firstname,
+				lastName: lastname,
+				contactNumber: contact,
 				pic: "pic",
 			},
 		})
