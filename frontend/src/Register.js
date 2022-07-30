@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import Button from "@material-tailwind/react/components/Button";
 import axios from "axios";
 
 function Register() {
@@ -18,7 +18,9 @@ function Register() {
 			data: {
 				email: email,
 				password: password,
-				name: firstname,
+				firstName: firstname,
+				lastName: lastname,
+				contactNumber: contact,
 				pic: "pic",
 			},
 		})
@@ -107,7 +109,7 @@ function Register() {
 								id="repassword"
 							/>
 						</div>
-						<Button className="mt-5 w-52" onClick={submitHandler}>
+						<Button id = "registerbutton" className="mt-5 w-52" onClick={submitHandler}>
 							REGISTER
 						</Button>
 					</div>

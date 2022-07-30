@@ -2,7 +2,9 @@
 	"name": "ascenda_hotels-c5g5",
 	"version": "0.1.0",
 	"dependencies": {
-		"concurrently": "^7.3.0"
+		"concurrently": "^7.3.0",
+		"cors": "^2.8.5",
+		"selenium-webdriver": "^4.3.1"
 	},
 	"scripts": {
 		"client": "cd frontend && npm run start",
@@ -10,5 +12,7 @@
 		"install": "cd frontend && npm install && cd ../backend && npm install",
 		"start": "concurrently \"npm run server\" \"npm run client\" -k"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"chromedriver": "^103.0.0"
+	}
 }

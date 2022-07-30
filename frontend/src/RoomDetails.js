@@ -9,6 +9,7 @@ const RoomDetails = ({
 	destinationId,
 	hotelId,
 	hotelName,
+	destinationId,
 	startDate,
 	endDate,
 	numDaysStay,
@@ -24,7 +25,6 @@ const RoomDetails = ({
 		return data.images[0].url;
 	};
 	const img = setImage();
-	//const img = data.images[0].url;
 	return (
 		<Card>
 			<div className="flex flex-col md:flex-row h-fit w-full">
@@ -50,14 +50,16 @@ const RoomDetails = ({
 							{`Lowest Price: $${data.lowest_price}/Night`}
 						</p>
 						<Button
-							className="flex self-end h-12 text-lg"
+							className="h-12 text-lg"
 							onClick={() =>
 								navigate(`/book/${hotelId}`, {
 									state: {
 										hotel: data,
 										hotelName: hotelName,
-										destinationId: destinationId,
+
 										hotelId: hotelId,
+										destinationId: destinationId,
+
 										startDate: startDate,
 										endDate: endDate,
 										numDaysStay: numDaysStay,

@@ -49,7 +49,7 @@ export const getHotelsPricesForDestinationAsync = async (
 				guests: guests,
 				partner_id: "1",
 			},
-			withCredentials: true,
+			withCredentials: false,
 		}
 	);
 	console.log(response);
@@ -153,7 +153,7 @@ export async function getRoomPricesForHotelAsync(
 				guests: guests,
 				partner_id: "1",
 			},
-			withCredentials: true,
+			withCredentials: false,
 		}
 	);
 	const url = `http://hotelapi.loyalty.dev/api/hotels/${hotelid}/price`;

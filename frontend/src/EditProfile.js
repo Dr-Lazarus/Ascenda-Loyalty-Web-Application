@@ -1,34 +1,61 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-// import "./Profile.css";
+import Button from "@material-tailwind/react/components/Button";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "./useAuth";
+import axios from "axios";
 
 const EditProfile = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	var firstName = location.state.firstName;
-	var lastName = location.state.lastName;
-	var email = location.state.email;
-	var contact = location.state.contact;
-	var loginState = location.state.loginState;
+	const { authed, token } = useAuth();
+
+	const [firstName, setFirstName] = useState(location.state.firstName);
+	const [lastName, setLastName] = useState(location.state.lastName);
+	const [email, setEmail] = useState(location.state.email);
+	const [contact, setContact] = useState(location.state.contact);
+
+	const [password, setPassword] = useState("");
+
 	const handleClick = (event) => {
 		event.preventDefault();
-		if (firstName == "" || lastName == "" || contact == "" || email == "") {
+		if (
+			firstName === "" ||
+			lastName === "" ||
+			contact === "" ||
+			email === ""
+		) {
 			alert("Please fill in ALL the details!");
 		} else {
-			navigate("/profile", {
-				state: {
-					firstName: firstName,
-					lastName: lastName,
-					email: email,
-					loginState: location.state.loginState,
-					contact: contact,
-				},
-			});
+			axios
+				.post("http://localhost:5001/api/users/profile", {
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+					params: {
+						firstName: firstName,
+						lastName: lastName,
+						contact: contact,
+						email: email,
+					},
+				})
+				.then(function (response) {
+					if (response.statusText === "OK") {
+						console.log("user data fetched successfully!");
+						setFirstName(response.data.firstName);
+						setLastName(response.data.lastName);
+						setEmail(response.data.email);
+						setContact(response.data.contactNumber);
+					}
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(token);
+					console.log("error", error.response);
+				});
+			navigate("/profile");
 		}
 	};
+
 	// const handleChangePassword = (e) => {
 	// 	console.log(location.state.password);
 	// 	const currentPassword = prompt("Please type your current password: ");
@@ -42,15 +69,7 @@ const EditProfile = () => {
 	// 	}
 	// };
 	const handleBack = (event) => {
-		navigate("/profile", {
-			state: {
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				loginState: location.state.loginState,
-				contact: contact,
-			},
-		});
+		navigate("/profile");
 	};
 
 	const resetPasswordHandler = (e) => {
@@ -88,7 +107,7 @@ const EditProfile = () => {
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={firstName}
 							type="text"
-							onChange={(e) => (firstName = e.target.value)}
+							onChange={(e) => setFirstName(e.target.value)}
 						></input>
 					</div>
 
@@ -98,7 +117,7 @@ const EditProfile = () => {
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={lastName}
 							type="text"
-							onChange={(e) => (lastName = e.target.value)}
+							onChange={(e) => setLastName(e.target.value)}
 						></input>
 					</div>
 				</div>
@@ -110,7 +129,7 @@ const EditProfile = () => {
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={email}
 							type="text"
-							onChange={(e) => (email = e.target.value)}
+							onChange={(e) => setEmail(e.target.value)}
 						></input>
 					</div>
 
@@ -122,7 +141,7 @@ const EditProfile = () => {
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={contact}
 							type="text"
-							onChange={(e) => (contact = e.target.value)}
+							onChange={(e) => setContact(e.target.value)}
 						></input>
 					</div>
 				</div>
