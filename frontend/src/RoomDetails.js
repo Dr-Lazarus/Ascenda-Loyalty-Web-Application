@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const RoomDetails = ({
 	data,
+	destinationId,
 	hotelId,
 	hotelName,
 	destinationId,
@@ -55,8 +56,10 @@ const RoomDetails = ({
 									state: {
 										hotel: data,
 										hotelName: hotelName,
+
 										hotelId: hotelId,
 										destinationId: destinationId,
+
 										startDate: startDate,
 										endDate: endDate,
 										numDaysStay: numDaysStay,

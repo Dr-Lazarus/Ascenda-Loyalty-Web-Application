@@ -118,7 +118,9 @@ function SearchPage() {
 				<p className="mb-2">
 					{totalNumResults} stays · {startDateString} to{" "}
 					{endDateString} · {location.state.inputRooms} Rooms ·{" "}
+
 					{location.state.inputAdults} Adults
+
 					{/* {location.state.inputChildren} Children */}
 				</p>
 

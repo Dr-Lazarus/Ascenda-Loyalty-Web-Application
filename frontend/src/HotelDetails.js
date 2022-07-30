@@ -94,6 +94,7 @@ const HotelDetails = () => {
 					className="p-10 m-10"
 					data={room}
 					hotelId={hotelId}
+					destinationId={destinationId}
 					hotelName={hotelName}
 					destinationId={destinationId}
 					startDate={location.state.startDateObj}

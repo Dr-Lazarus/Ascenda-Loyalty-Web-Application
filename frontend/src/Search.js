@@ -95,6 +95,7 @@ const Search = () => {
 								<p>Number of Adults: </p>
 							</div>
 							<input
+
 								className="w-16 right-4 outline-none rounded-lg "
 								value={inputAdults}
 								onInput={(e) => setInputAdults(e.target.value)}
