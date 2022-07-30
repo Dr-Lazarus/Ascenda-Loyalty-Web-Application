@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const RoomDetails = ({
 	data,
-	destinationId,
 	hotelId,
 	hotelName,
 	destinationId,
