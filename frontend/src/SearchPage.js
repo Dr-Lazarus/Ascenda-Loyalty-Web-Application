@@ -16,6 +16,7 @@ function SearchPage() {
 	const location = useLocation();
 	const [showSearch, setShowSearch] = useState(false);
 	const [hotelsPageData, setHotelsPageData] = useState([]);
+	const [searchCompleted, setSearchCompleted] = useState(false);
 	const [hotelsPriceSorted, setHotelsPriceSorted] = useState([]);
 	const [totalNumResults, setTotalNumResults] = useState(0);
 
@@ -36,6 +37,7 @@ function SearchPage() {
 	//pass dates from search to rendered results
 
 	//hotel sorted price fetching
+
 	useEffect(() => {
 		const f = async () => {
 			const data = await getHotelsPricesForDestinationAsync(
@@ -49,10 +51,13 @@ function SearchPage() {
 			console.log("ran once");
 			console.log(data);
 			console.log(data.completed);
+			setSearchCompleted(data.completed);
 			setHotelsPriceSorted(data.hotels);
 			setTotalNumResults(data.hotels.length);
 		};
-		setInterval(f, 8000);
+		if (!searchCompleted) {
+			setInterval(f, 2000);
+		}
 	}, []);
 
 	console.log("hi", hotelsPriceSorted);
