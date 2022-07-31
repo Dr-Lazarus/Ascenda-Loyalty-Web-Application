@@ -95,7 +95,8 @@ const Search = () => {
 								<p>Number of Adults: </p>
 							</div>
 							<input
-								className="w-16 right-4 outline-none"
+
+								className="w-16 right-4 outline-none rounded-lg "
 								value={inputAdults}
 								onInput={(e) => setInputAdults(e.target.value)}
 								min={1}
@@ -110,7 +111,7 @@ const Search = () => {
 								<p>Number of Rooms: </p>
 							</div>
 							<input
-								className="w-16 right-4 outline-none"
+								className="w-16 right-4 outline-none rounded-lg"
 								value={inputRooms}
 								onInput={(e) => setInputRooms(e.target.value)}
 								min={1}

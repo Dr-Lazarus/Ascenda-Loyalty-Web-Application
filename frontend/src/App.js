@@ -18,6 +18,8 @@ import ChangePassword from "./ChangePassword";
 import BookPage from "./BookPage";
 import useAuth from "./useAuth";
 import { AuthProvider } from "./useAuth";
+import BookingSuccess from "./BookingSuccess";
+import BookingHistory from "./BookingHistory";
 
 function RequireAuth({ children }) {
 	const { authed } = useAuth();
@@ -86,6 +88,14 @@ const App = () => {
 								}
 							/>
 						</Route>
+						<Route
+							path="/booking-success"
+							element={<BookingSuccess />}
+						></Route>
+						<Route
+							path="/booking-history"
+							element={<BookingHistory />}
+						></Route>
 						<Route path="/login" element={<Login />}></Route>
 						<Route
 							path="/profile"

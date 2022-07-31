@@ -66,7 +66,6 @@ const Profile = () => {
 		navigate("/");
 	};
 	const submitHandler = (e) => {
-
 		axios({
 			method: "GET",
 			url: "http://localhost:5001/api/bookings/getBookingHistory",
@@ -80,6 +79,7 @@ const Profile = () => {
 			.catch(function (error) {
 				console.log("error", error.response.data.message);
 			});
+		navigate("/booking-history");
 	};
 
 	return (
@@ -132,10 +132,7 @@ const Profile = () => {
 				>
 					My favourites
 				</Button>
-				<Button
-					className="w-48 h-16 mx-4 my-4"
-					onClick={submitHandler}
-				>
+				<Button className="w-48 h-16 mx-4 my-4" onClick={submitHandler}>
 					View Booking History
 				</Button>
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
