@@ -88,14 +88,16 @@ const Search = () => {
 			</div>
 			<div className="flex flex-col text-lg z-10 w-full md:w-[330px] ">
 				{showDetails && (
-					<div className=" pb-4 flex flex-col gap-y-2 item-center">
+					<div
+						className=" pb-4 flex flex-col gap-y-2 item-center"
+						data-testid="travellers-button-test"
+					>
 						<div className="flex flex-row justify-between gap-x-6 p-2 bg-white  border rounded-lg border-blue-400">
 							<div className="flex gap-x-2 items-center">
 								<BsFillPeopleFill />
 								<p>Number of Adults: </p>
 							</div>
 							<input
-
 								className="w-16 right-4 outline-none rounded-lg "
 								value={inputAdults}
 								onInput={(e) => setInputAdults(e.target.value)}
@@ -103,6 +105,7 @@ const Search = () => {
 								max={5}
 								defaultValue={2}
 								type="number"
+								data-testid="num-adults-input"
 							/>
 						</div>
 						<div className="flex flex-row justify-between gap-x-6 p-2  bg-white  border rounded-lg border-blue-400">
@@ -118,6 +121,7 @@ const Search = () => {
 								max={3}
 								defaultValue={1}
 								type="number"
+								data-testid="num-rooms-input"
 							/>
 						</div>
 
@@ -153,6 +157,7 @@ const Search = () => {
 			<div className="">
 				<button
 					className="flex w-full md:w-auto justify-center h-10 px-5 m-2 duration-200  bg-blue-500 hover:bg-white border rounded-lg transition ease-in transform hover:translate-y-1 active:translate-y-0"
+					data-testid="search-button"
 					onClick={() =>
 						navigate("/search", {
 							state: {

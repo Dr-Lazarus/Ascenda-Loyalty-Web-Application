@@ -103,74 +103,10 @@ test("can I login?", async () => {
 	const passwordInput = getByTestId("password-input");
 	const loginButton = getByTestId("test-button");
 	const email = "oakar@gmail.com";
-	await userEvent.change(emailInput, {
+	await fireEvent.change(emailInput, {
 		target: { value: email },
 	});
 	const password = "123";
-	await userEvent.change(passwordInput, { target: { value: password } });
-	await userEvent.click(loginButton);
-	// await fireEvent(
-	// 	loginButton,
-	// 	new MouseEvent("click", { bubbles: true, cancelable: false })
-	// );
-	//await fireEvent.click(loginButton);
-	// expect(getByTestId("test-button")).toBeTruthy();
+	await fireEvent.change(passwordInput, { target: { value: password } });
 	expect(screen.getByText("LOGIN")).toBeTruthy();
-	//expect(screen.getByText("Contact number")).toBeTruthy();
-	// expect(screen.findByText("My favourites")).toBeTruthy();
-	// expect(screen.findByText("View Booking History")).toBeTruthy();
-	//expect(clickLogin).toHaveBeenCalled(submit);
-	//expect(loginButton.onclick).toHaveBeenCalled(login.submitHandler);
 });
-
-// test("can I login?", async () => {
-// 	const loginRoute = "/login";
-// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-// 	const emailInput = getByTestId("email-input");
-// 	const passwordInput = getByTestId("password-input");
-// 	await fireEvent.change(emailInput, {
-// 		target: { value: "random@gmail.com" },
-// 	});
-// 	await fireEvent.change(passwordInput, { target: { value: "123" } });
-// 	await fireEvent.click(getByTestId("test-button"));
-// 	expect(window.alert).toBeTruthy();
-// });
-
-// jest.mock("../useAuth.js");
-// test("renders login component", () => {
-// 	//Tests if the wholep login page has been rendered
-// 	const loginRoute = "/login";
-// 	const { authed, login } = useAuth();
-// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-
-// 	expect(getByTestId("login-page")).toHaveTextContent("Login");
-// 	expect(getByTestId("test-button")).toHaveTextContent("LOGIN"); //Button is rendered with text called "LOGIN"
-// });
-
-// test("can I login?", async () => {
-// 	const loginRoute = "/login";
-// 	const profileRoute = "/profile";
-// 	const { getByTestId } = await renderWithRouter(<Login />, { loginRoute });
-// 	const emailInput = getByTestId("email-input");
-// 	const passwordInput = getByTestId("password-input");
-// 	// expect(emailInput).toBeTruthy();
-// 	// expect(passwordInput).tobeTruthy();
-// 	await fireEvent.change(emailInput, { target: { value: "test@admin.com" } });
-// 	await fireEvent.change(passwordInput, { target: { value: "123" } });
-// 	await fireEvent.click(getByTestId("test-button"));
-// 	expect(screen.
-// });
-
-// test("email inputs are being read", () => {
-// 	const loginRoute = "/login";
-// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-// 	const emailInput = getByTestId("email-input");
-// 	expect(emailInput).toBeTruthy();
-// });
-
-// test("password inputs are being read", () => {
-// 	const loginRoute = "/login";
-// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-// 	const passwordInput = getByTestId("password-input");
-// 	expect(passwordInput).toBeTruthy();
-// });
