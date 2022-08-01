@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Button from "@material-tailwind/react/components/Button";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-// import "./Profile.css";
 
 const ChangePassword = () => {
 	const navigate = useNavigate();
