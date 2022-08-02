@@ -20,6 +20,21 @@ const Profile = () => {
 			"Are you sure that you want to DELETE YOUR ACCOUNT?"
 		);
 		if (delacc === true) {
+
+			axios
+		.get("http://localhost:5001/api/users/deleteUser", {
+			headers: {
+				Authorization: "Bearer " + token,
+			},
+		})
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(token);
+			console.log("error", error.response);
+		});
+		    logout();
 			window.alert("Account deleted successfully");
 			navigate("/");
 		}

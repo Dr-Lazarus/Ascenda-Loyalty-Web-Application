@@ -1,6 +1,6 @@
 import express from 'express';
-import {createBooking, getBooking, getAllBookings, updateBooking, deleteBooking,getCheckoutSession,getMyBookings}from "./bookingController.js";
-import { protect } from "./JWTMiddleware/authController.js";
+import {createBooking, getBooking, getAllBookings, updateBooking, deleteBooking,getCheckoutSession,getMyBookings}from "./../controllers/bookingController.js";
+import { protect } from "./../JWTMiddleware/authController.js";
 
 
 const router = express.Router();
@@ -15,6 +15,8 @@ router
 router
   .route('/getBookingHistory')
   .get(getMyBookings);
+
+
 
 
 

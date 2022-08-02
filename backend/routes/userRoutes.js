@@ -4,10 +4,11 @@ import {
   registerUser,
   updateUserProfile,
   getAllUsers,
-  getOneUser
-} from "./userController.js";
+  getOneUser,
+  deleteUser
+} from "./../controllers/userController.js";
 
-import { protect } from "./JWTMiddleware/authController.js";
+import { protect } from "./../JWTMiddleware/authController.js";
 const router = express.Router();
 
 // router.route("/").post()
@@ -27,5 +28,8 @@ router
 router
     .route("/profile")
     .post( protect, updateUserProfile);
+router
+      .route('/deleteUser')
+      .get(protect,deleteUser)
 
 export default router;
