@@ -52,8 +52,7 @@ test("Login page renders", () => {
 	const loginRoute = "/login";
 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
 	const loginComponent = getByTestId("login-page");
-	expect(loginComponent).toBeTruthy();
-	expect(screen.findByText("Login")).toBeTruthy();
+	expect(loginComponent).toBeInTheDocument();
 });
 
 test("input fields renders", () => {
@@ -61,15 +60,15 @@ test("input fields renders", () => {
 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
 	const emailInput = getByTestId("email-input");
 	const passwordInput = getByTestId("password-input");
-	expect(emailInput).toBeTruthy();
-	expect(passwordInput).toBeTruthy();
+	expect(emailInput).toBeInTheDocument();
+	expect(passwordInput).toBeInTheDocument();
 });
 
 test("Login buttons renders", () => {
 	const loginRoute = "/login";
 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
 	const loginButton = getByTestId("test-button");
-	expect(loginButton).toBeTruthy();
+	expect(loginButton).toBeInTheDocument();
 });
 var login = require("./../Login").login;
 var submit = require("./../Login").submitHandler;
@@ -98,15 +97,16 @@ test("password input is being read", async () => {
 
 test("can I login?", async () => {
 	const loginRoute = "/login";
-	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-	const emailInput = getByTestId("email-input");
-	const passwordInput = getByTestId("password-input");
-	const loginButton = getByTestId("test-button");
-	const email = "oakar@gmail.com";
+	const { user } = renderWithRouter(<Login />, { loginRoute });
+	const emailInput = screen.getByTestId("email-input");
+	const passwordInput = screen.getByTestId("password-input");
+	const loginButton = screen.getByTestId("test-button");
+	const email = "johncena@gmail.com";
 	await fireEvent.change(emailInput, {
 		target: { value: email },
 	});
-	const password = "123";
+	const password = "12345678";
 	await fireEvent.change(passwordInput, { target: { value: password } });
-	expect(screen.getByText("LOGIN")).toBeTruthy();
+	// await fireEvent.click(loginButton);
+	expect(global.window.location.pathname).toEqual("/");
 });

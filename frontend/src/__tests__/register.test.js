@@ -58,17 +58,6 @@ describe("Register page render", () => {
 	const email = "hello@gmail.com";
 	const contactNumber = "98508791";
 
-	const { user } = renderWithRouter(<Register />, { registerRoute });
-
-	const firstNameInput = screen.getByTestId("firstName-input");
-	const lastNameInput = screen.getByTestId("lastName-input");
-	const contactNumberInput = screen.getByTestId("contactNumber-input");
-	const emailInput = screen.getByTestId("email-input");
-	const passwordInput = screen.getByTestId("password-input");
-	const confirmPasswordInput = screen.getByTestId("confirm-password-input");
-	const registerButton = screen.getByTestId("register-button");
-	const registerPage = screen.getByTestId("register-page");
-
 	test("it works!", () => {
 		const expected = true;
 		const actual = true;
@@ -76,24 +65,45 @@ describe("Register page render", () => {
 	});
 
 	test("Register page renders", () => {
-		expect(screen.findByText("Register an Account")).toBeTruthy();
-		expect(screen.findByText("REGISTER")).toBeTruthy();
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+		const registerPage = screen.getByTestId("register-page");
+		expect(registerPage).toBeInTheDocument();
 	});
 
 	test("ALL input fields renders", () => {
-		expect(firstNameInput).toBeTruthy();
-		expect(lastNameInput).toBeTruthy();
-		expect(contactNumberInput).toBeTruthy();
-		expect(emailInput).toBeTruthy();
-		expect(passwordInput).toBeTruthy();
-		expect(confirmPasswordInput).toBeTruthy();
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+		const firstNameInput = screen.getByTestId("firstName-input");
+		const lastNameInput = screen.getByTestId("lastName-input");
+		const contactNumberInput = screen.getByTestId("contactNumber-input");
+		const emailInput = screen.getByTestId("email-input");
+		const passwordInput = screen.getByTestId("password-input");
+		const confirmPasswordInput = screen.getByTestId(
+			"confirm-password-input"
+		);
+
+		expect(firstNameInput).toBeInTheDocument();
+		expect(lastNameInput).toBeInTheDocument();
+		expect(contactNumberInput).toBeInTheDocument();
+		expect(emailInput).toBeInTheDocument();
+		expect(passwordInput).toBeInTheDocument();
+		expect(confirmPasswordInput).toBeInTheDocument();
 	});
 
-	test("Login buttons renders", () => {
-		expect(registerButton).toBeTruthy();
+	test("Register buttons renders", () => {
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+		const registerButton = screen.getByTestId("register-button");
+		const registerPage = screen.getByTestId("register-page");
+		expect(registerButton).toBeInTheDocument();
 	});
 
 	test("password inputs are being read", async () => {
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+		const passwordInput = screen.getByTestId("password-input");
+		const confirmPasswordInput = screen.getByTestId(
+			"confirm-password-input"
+		);
+		const registerButton = screen.getByTestId("register-button");
+
 		await fireEvent.change(passwordInput, {
 			target: { value: invalidPassword1 },
 		});
@@ -102,10 +112,15 @@ describe("Register page render", () => {
 		});
 		expect(passwordInput.value).toBe(invalidPassword1);
 		expect(confirmPasswordInput.value).toBe(invalidPassword1);
-		expect(registerButton).toBeTruthy();
+		expect(registerButton).toBeInTheDocument();
 	});
 
 	test("name inputs are being read", async () => {
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+
+		const firstNameInput = screen.getByTestId("firstName-input");
+		const lastNameInput = screen.getByTestId("lastName-input");
+		const registerButton = screen.getByTestId("register-button");
 		await fireEvent.change(firstNameInput, {
 			target: { value: firstName },
 		});
@@ -114,10 +129,22 @@ describe("Register page render", () => {
 		});
 		expect(firstNameInput.value).toBe(firstName);
 		expect(lastNameInput.value).toBe(lastName);
-		expect(registerButton).toBeTruthy();
+		expect(registerButton).toBeInTheDocument();
 	});
 
 	test("successful register", async () => {
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+
+		const firstNameInput = screen.getByTestId("firstName-input");
+		const lastNameInput = screen.getByTestId("lastName-input");
+		const contactNumberInput = screen.getByTestId("contactNumber-input");
+		const emailInput = screen.getByTestId("email-input");
+		const passwordInput = screen.getByTestId("password-input");
+		const confirmPasswordInput = screen.getByTestId(
+			"confirm-password-input"
+		);
+		const registerButton = screen.getByTestId("register-button");
+		const registerPage = screen.getByTestId("register-page");
 		await fireEvent.change(firstNameInput, {
 			target: { value: firstName },
 		});
@@ -138,17 +165,32 @@ describe("Register page render", () => {
 		});
 		expect(registerButton).toBeTruthy();
 		await fireEvent.click(registerButton);
-
-		expect(screen.findByTestId("profile-page")).toBeTruthy();
+		// expect(screen.findByTestId("profile-page")).toBeInTheDocument();
+		expect(global.window.location.pathname).toEqual("/");
 	});
 
-	test("empty register", async () => {
-		await user.click(registerButton);
-		expect(registerButton).toBeTruthy();
-		expect(registerPage).toBeTruthy();
-	});
+	// test("empty register", async () => {
+	// 	const { user } = renderWithRouter(<Register />, { registerRoute });
+	// 	const registerButton = screen.getByTestId("register-button");
+	// 	const registerPage = screen.getByTestId("register-page");
+	// 	await user.click(registerButton);
+	// 	expect(registerButton).toBeInTheDocument();
+	// 	expect(registerPage).toBeInTheDocument();
+	// });
 
 	test("unsuccessful register - password too short", async () => {
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+
+		const firstNameInput = screen.getByTestId("firstName-input");
+		const lastNameInput = screen.getByTestId("lastName-input");
+		const contactNumberInput = screen.getByTestId("contactNumber-input");
+		const emailInput = screen.getByTestId("email-input");
+		const passwordInput = screen.getByTestId("password-input");
+		const confirmPasswordInput = screen.getByTestId(
+			"confirm-password-input"
+		);
+		const registerButton = screen.getByTestId("register-button");
+		const registerPage = screen.getByTestId("register-page");
 		await fireEvent.change(firstNameInput, {
 			target: { value: firstName },
 		});
@@ -167,12 +209,24 @@ describe("Register page render", () => {
 		await fireEvent.change(confirmPasswordInput, {
 			target: { value: invalidPassword1 },
 		});
-		expect(registerButton).toBeTruthy();
+		expect(registerButton).toBeInTheDocument();
 		await fireEvent.click(registerButton);
-		expect(registerPage).toBeTruthy();
+		expect(registerPage).toBeInTheDocument();
 	});
 
 	test("unsuccessful register -  mismatch password", async () => {
+		const { user } = renderWithRouter(<Register />, { registerRoute });
+
+		const firstNameInput = screen.getByTestId("firstName-input");
+		const lastNameInput = screen.getByTestId("lastName-input");
+		const contactNumberInput = screen.getByTestId("contactNumber-input");
+		const emailInput = screen.getByTestId("email-input");
+		const passwordInput = screen.getByTestId("password-input");
+		const confirmPasswordInput = screen.getByTestId(
+			"confirm-password-input"
+		);
+		const registerButton = screen.getByTestId("register-button");
+		const registerPage = screen.getByTestId("register-page");
 		await fireEvent.change(firstNameInput, {
 			target: { value: firstName },
 		});
@@ -191,8 +245,8 @@ describe("Register page render", () => {
 		await fireEvent.change(confirmPasswordInput, {
 			target: { value: invalidPassword2 },
 		});
-		expect(registerButton).toBeTruthy();
+		expect(registerButton).toBeInTheDocument();
 		await fireEvent.click(registerButton);
-		expect(registerPage).toBeTruthy();
+		expect(registerPage).toBeInTheDocument();
 	});
 });
