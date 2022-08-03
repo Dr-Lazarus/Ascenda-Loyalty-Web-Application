@@ -1,5 +1,5 @@
 import express from 'express';
-import {createBooking, getBooking, getAllBookings, updateBooking, deleteBooking,getCheckoutSession,getMyBookings}from "./../controllers/bookingController.js";
+import { getBooking, getAllBookings, updateBooking, deleteBooking,getCheckoutSession,getMyBookings}from "./../controllers/bookingController.js";
 import { protect } from "./../JWTMiddleware/authController.js";
 
 
