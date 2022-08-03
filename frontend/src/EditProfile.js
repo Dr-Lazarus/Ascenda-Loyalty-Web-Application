@@ -18,14 +18,14 @@ const EditProfile = () => {
 
 	const handleClick = (event) => {
 		event.preventDefault();
-		if (
-			firstName === "" ||
-			lastName === "" ||
-			contact === "" ||
-			email === ""
-		) {
-			alert("Please fill in ALL the details!");
-		} else {
+		// if (
+		// 	firstName === "" ||
+		// 	lastName === "" ||
+		// 	contact === "" ||
+		// 	email === ""
+		// ) {
+		// 	alert("Please fill in ALL the details!");
+		// } else {
 			axios
 				.post("http://localhost:5001/api/users/profile", {
 					headers: {
@@ -53,7 +53,7 @@ const EditProfile = () => {
 					console.log("error", error.response);
 				});
 			navigate("/profile");
-		}
+		// }
 	};
 
 	// const handleChangePassword = (e) => {
@@ -102,7 +102,7 @@ const EditProfile = () => {
 
 				<div className="mx-12">
 					<div className="flex flex-col w-48">
-						<label className="text-xl font-bold">First Name</label>
+						<label id = "firstnamechange" className="text-xl font-bold">First Name</label>
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={firstName}
@@ -112,7 +112,7 @@ const EditProfile = () => {
 					</div>
 
 					<div className="flex flex-col mt-8 mb-8">
-						<label className="text-xl font-bold">Last Name</label>
+						<label id = "lastnamechange" className="text-xl font-bold">Last Name</label>
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={lastName}
@@ -124,7 +124,7 @@ const EditProfile = () => {
 
 				<div className="mx-12">
 					<div className="flex flex-col w-48">
-						<label className="text-xl font-bold">Email</label>
+						<label id = "emailchange" className="text-xl font-bold">Email</label>
 						<input
 							className="border-2 border-black rounded outline-none focus:border-blue-500"
 							placeholder={email}
@@ -134,7 +134,7 @@ const EditProfile = () => {
 					</div>
 
 					<div className="flex flex-col mt-8 mb-8">
-						<label className="text-xl font-bold">
+						<label id = "contactnumberchange" className="text-xl font-bold">
 							Contact Number
 						</label>
 						<input
@@ -147,7 +147,7 @@ const EditProfile = () => {
 				</div>
 			</form>
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10">
-				<Button className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
+				<Button id = "confirmdetails" className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
 					Confirm Details
 				</Button>
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>

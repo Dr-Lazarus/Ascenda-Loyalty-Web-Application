@@ -150,12 +150,13 @@ const Profile = () => {
 				<Button className="w-48 h-16 mx-4 my-4" onClick={submitHandler}>
 					View Booking History
 				</Button>
-				<Button className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
+				<Button id = "editprofile123" className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
 					Edit Profile
 				</Button>
 
 				{authed && (
 					<Button
+						id = "logmeout"
 						className="w-48 h-16 mx-4 my-4"
 						onClick={handleLogout}
 					>
