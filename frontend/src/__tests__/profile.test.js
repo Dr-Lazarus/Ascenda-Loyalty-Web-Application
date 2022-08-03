@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import Profile from "./../Profile";
+import Profile, { returnComingSoon } from "./../Profile";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import React from "react";
 import button from "@material-tailwind/react/theme/components/button";
@@ -105,5 +105,24 @@ describe("test rendering elements", () => {
 		expect(histButton).toBeInTheDocument();
 		expect(editProfileButton).toBeInTheDocument();
 		expect(delAccButton).toBeInTheDocument();
+	});
+
+	test("History test", async () => {
+		const { user } = renderWithRouter(<Profile />, { profileRoute });
+		const histButton = screen.getByTestId("history-button");
+		await fireEvent.click(histButton);
+		expect(global.window.location.pathname).toEqual("/booking-history");
+	});
+	test("EditProfile test", async () => {
+		const { user } = renderWithRouter(<Profile />, { profileRoute });
+		const editProfileButton = screen.getByTestId("editProfile-button");
+		await fireEvent.click(editProfileButton);
+		expect(global.window.location.pathname).toEqual("/edit-profile");
+	});
+	test("DelAcc test", async () => {
+		const { user } = renderWithRouter(<Profile />, { profileRoute });
+		const delAccButton = screen.getByTestId("delAcc-button");
+		await fireEvent.click(delAccButton);
+		expect(global.window.location.pathname).toEqual("/");
 	});
 });
