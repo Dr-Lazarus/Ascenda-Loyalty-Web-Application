@@ -71,7 +71,9 @@ const SearchResult = ({
 				<div
 					className="mb-3 font-light text-sm text-gray-700 dark:text-gray-400"
 					dangerouslySetInnerHTML={{
-						__html: data.description.slice(0, 250) + "...",
+						__html:
+							(data?.description.slice(0, 200) || "Description") +
+							"...",
 					}}
 				/>
 				{/* <p className="mb-3 font-light text-sm text-gray-700 dark:text-gray-400">

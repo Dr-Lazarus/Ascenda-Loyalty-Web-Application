@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { dateStringMaker } from "./dateStringMaker";
-import { getRoomPricesForHotelAsync } from "./destinationSearch";
 import BookPage from "./BookPage";
 import RoomDetails from "./RoomDetails";
 import Button from "@material-tailwind/react/components/Button";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import axios from "axios";
+import { Spinner } from "flowbite-react";
 
 const HotelDetails = () => {
 	const location = useLocation();
@@ -25,23 +27,27 @@ const HotelDetails = () => {
 	const total = location.state.total;
 
 	const [roomData, setRoomData] = useState([]);
+	const [searchCompleted, setSearchCompleted] = useState(false);
 
 	useEffect(() => {
 		const fetchHotelRoomPrices = async () => {
-			const data = await getRoomPricesForHotelAsync(
-				hotelId,
-				destinationId,
-				dateStringMaker(location.state.startDateObj, true),
-				dateStringMaker(location.state.endDateObj, true),
-				"SGD",
-				"SG",
-				location.state.numAdults,
-				location.state.numRooms
-			);
-			setRoomData(data.rooms);
+			console.log(location.state);
+			let guests = new Array(location.state.numAdults)
+				.fill(location.state.numRooms)
+				.join("|");
+			console.log(guests);
+			const data = await axios.get("http://localhost:8000/roomprices", {
+				params: {
+					hotelid: hotelId,
+					checkin: dateStringMaker(location.state.startDateObj, true),
+					checkout: dateStringMaker(location.state.endDateObj, true),
+					guests: guests,
+				},
+			});
+			setRoomData(data.data.rooms);
+			setSearchCompleted(data.data.completed);
 		};
 		fetchHotelRoomPrices();
-		// setInterval(fetchHotelRoomPrices, 5000);
 	}, []);
 
 	console.log(roomData);
@@ -92,6 +98,11 @@ const HotelDetails = () => {
 				</div>
 				<AiOutlineHeart className="flex-none absolute right-0 mt-6 mr-10 self-start scale-150" />
 			</div>
+			{!searchCompleted && (
+				<div className="grid place-items-center">
+					<Spinner aria-label="Default status example" />
+				</div>
+			)}
 			{roomData.map((room) => (
 				<RoomDetails
 					className="p-10 m-10"
@@ -99,7 +110,6 @@ const HotelDetails = () => {
 					hotelId={hotelId}
 					destinationId={destinationId}
 					hotelName={hotelName}
-					destinationId={destinationId}
 					startDate={location.state.startDateObj}
 					endDate={location.state.endDateObj}
 					numDaysStay={location.state.numDaysStay}

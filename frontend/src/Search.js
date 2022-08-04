@@ -58,7 +58,7 @@ const Search = () => {
 					placeholder="Location..."
 					defaultValue={{
 						term: "Singapore, Singapore",
-						uid: "RsBU",
+						uid: "WD0M",
 						lat: 1.2800945,
 						lng: 103.8509491,
 						type: "city",
@@ -103,7 +103,7 @@ const Search = () => {
 								onInput={(e) => setInputAdults(e.target.value)}
 								min={1}
 								max={5}
-								defaultValue={2}
+								defaultValue={1}
 								type="number"
 								data-testid="num-adults-input"
 							/>
@@ -124,24 +124,6 @@ const Search = () => {
 								data-testid="num-rooms-input"
 							/>
 						</div>
-
-						{/* <div className="flex flex-row justify-between gap-x-6 p-2 rounded bg-white border-2 border-blue-500">
-							<div className="flex gap-x-2 items-center">
-								<GrBaby className="scale-125" />
-								<p>Number of Children: </p>
-							</div>
-							<input
-								className="w-16 right-4 outline-none"
-								value={inputChildren}
-								onInput={(e) =>
-									setInputChildren(e.target.value)
-								}
-								min={0}
-								max={3}
-								defaultValue={0}
-								type="number"
-							/>
-						</div> */}
 					</div>
 				)}
 

@@ -10,7 +10,7 @@
 		"client": "cd frontend && npm run start",
 		"server": "cd backend && npm run devStart",
 		"install": "cd frontend && npm install && cd ../backend && npm install",
-		"start": "concurrently \"npm run server\" \"npm run client\" -k"
+		"start": "concurrently \"npm run server\" \"npm run client\" \"uvicorn main:app --reload\" -k"
 	},
 	"devDependencies": {
 		"chromedriver": "^103.0.0"

@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import Search from "./Search";
-import {
-	getHotelsPricesForDestinationAsync,
-	getHotelInfoByIdAsync,
-} from "./destinationSearch";
+import { getHotelInfoByIdAsync } from "./destinationSearch";
 import { dateStringMaker } from "./dateStringMaker";
 import Button from "@material-tailwind/react/components/Button";
 import SearchResult from "./SearchResult";
 import { useLocation } from "react-router-dom";
-import { Pagination } from "flowbite-react";
+import { Pagination, Spinner } from "flowbite-react";
 import axios from "axios";
 
 function SearchPage() {
@@ -40,24 +37,30 @@ function SearchPage() {
 
 	useEffect(() => {
 		const f = async () => {
-			const data = await getHotelsPricesForDestinationAsync(
-				location.state.destinationObj.uid,
-				startDateStringReversed,
-				endDateStringReversed,
-				"SGD",
-				"SG",
-				2
-			);
+			let guests = new Array(location.state.inputRooms)
+				.fill(location.state.inputAdults)
+				.join("|");
+			const data = await axios.get("http://localhost:8000/hotelprices", {
+				params: {
+					checkin: startDateStringReversed,
+					checkout: endDateStringReversed,
+					guests: guests,
+				},
+			});
 			console.log("ran once");
-			console.log(data);
-			console.log(data.completed);
-			setSearchCompleted(data.completed);
-			setHotelsPriceSorted(data.hotels);
-			setTotalNumResults(data.hotels.length);
+			console.log(data.data);
+			console.log(data.data.completed);
+			let sorted_data = data.data.hotels.sort((a, b) =>
+				parseInt(a.lowest_converted_price) >
+				parseInt(b.lowest_converted_price)
+					? 1
+					: -1
+			);
+			setSearchCompleted(data.data.completed);
+			setHotelsPriceSorted(sorted_data);
+			setTotalNumResults(sorted_data.length);
 		};
-		if (!searchCompleted) {
-			setInterval(f, 2000);
-		}
+		f();
 	}, []);
 
 	console.log("hi", hotelsPriceSorted);
@@ -93,9 +96,13 @@ function SearchPage() {
 		const getHotelData = async (thisPageHotels) => {
 			const thisPageHotelsData = [];
 			for (const hotel of thisPageHotels) {
-				const hotelData = await getHotelInfoByIdAsync(hotel.id);
-				console.log("hotelData", hotelData);
-				thisPageHotelsData.push({ ...hotelData, ...hotel });
+				try {
+					const hotelData = await getHotelInfoByIdAsync(hotel.id);
+					console.log("hotelData", hotelData);
+					thisPageHotelsData.push({ ...hotelData, ...hotel });
+				} catch (error) {
+					console.log(error);
+				}
 			}
 			setHotelsPageData(thisPageHotelsData);
 		};
@@ -123,9 +130,7 @@ function SearchPage() {
 				<p className="mb-2">
 					{totalNumResults} stays · {startDateString} to{" "}
 					{endDateString} · {location.state.inputRooms} Rooms ·{" "}
-
 					{location.state.inputAdults} Adults
-
 					{/* {location.state.inputChildren} Children */}
 				</p>
 
@@ -138,6 +143,11 @@ function SearchPage() {
 					<Button variant="outlined">More filters</Button>
 				</div>
 			</div>
+			{!searchCompleted && (
+				<div className="grid place-items-center">
+					<Spinner aria-label="Default status example" />
+				</div>
+			)}
 			{hotelsPageData.map((hotel) => (
 				<SearchResult
 					data={hotel}
