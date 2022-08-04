@@ -98,7 +98,7 @@ const Profile = () => {
 	};
 
 	return (
-		<div className="m5-50 ">
+		<div className="m5-50 " data-testid="profile-page">
 			<div className="justify-center text-5xl font-bold mb-10 mt-10">
 				<h1 className="flex justify-center">
 					{"Welcome, "}
@@ -115,24 +115,27 @@ const Profile = () => {
 				</div>
 
 				<div className="mx-12">
-					<div className="">
+					<div className="" data-testid="firstName-display">
 						<label className="text-xl font-bold">First Name</label>
 						<p>{firstName}</p>
 					</div>
 
-					<div className="mt-8 mb-8">
+					<div className="mt-8 mb-8" data-testid="lastName-display">
 						<label className="text-xl font-bold">Last Name</label>
 						<p>{lastName}</p>
 					</div>
 				</div>
 
-				<div className="mx-12">
+				<div className="mx-12" data-testid="email-display">
 					<div className="">
 						<label className="text-xl font-bold">Email</label>
 						<p>{email}</p>
 					</div>
 
-					<div className="mt-8 mb-8">
+					<div
+						className="mt-8 mb-8"
+						data-testid="contactNumber-display"
+					>
 						<label className="text-xl font-bold">
 							Contact Number
 						</label>
@@ -144,13 +147,22 @@ const Profile = () => {
 				<Button
 					className="w-48 h-16 mx-4 my-4"
 					onClick={returnComingSoon}
+					data-testid="favourites-button"
 				>
 					My favourites
 				</Button>
-				<Button className="w-48 h-16 mx-4 my-4" onClick={submitHandler}>
+				<Button
+					className="w-48 h-16 mx-4 my-4"
+					onClick={submitHandler}
+					data-testid="history-button"
+				>
 					View Booking History
 				</Button>
-				<Button id = "editprofile123" className="w-48 h-16 mx-4 my-4" onClick={handleEdit}>
+				<Button
+					className="w-48 h-16 mx-4 my-4"
+					onClick={handleEdit}
+					data-testid="editProfile-button"
+				>
 					Edit Profile
 				</Button>
 
@@ -159,6 +171,7 @@ const Profile = () => {
 						id = "logmeout"
 						className="w-48 h-16 mx-4 my-4"
 						onClick={handleLogout}
+						data-testid="logout-button"
 					>
 						Logout
 					</Button>
@@ -168,6 +181,7 @@ const Profile = () => {
 				<Button
 					className=" w-52 bg-red-600 hover:bg-white hover:text-red-600 hover:shadow-red-600"
 					onClick={warnDelete}
+					data-testid="delAcc-button"
 				>
 					DELETE ACCOUNT
 				</Button>

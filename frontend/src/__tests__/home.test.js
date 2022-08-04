@@ -45,140 +45,165 @@ test("Footer rendered", async () => {
 });
 
 const n = [10, 21, 107];
-
-test("renders banner button", () => {
-	//Tests if the wholep login page has been rendered
-	const homeRoute = "/";
-	const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
-	const bannerButton = getByTestId("showSearchButtonTest");
-	expect(bannerButton).toBeTruthy();
-});
-
-test("renders drop down show search when clicked once", async () => {
-	const homeRoute = "/";
-	const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
-	const bannerButton = getByTestId("showSearchButtonTest");
-	await fireEvent.click(bannerButton);
-	expect(bannerButton).toHaveTextContent("Hide");
-});
-
-test("hides drop down show search when clicked twice", async () => {
-	const homeRoute = "/";
-	const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
-	const bannerButton = getByTestId("showSearchButtonTest");
-	await fireEvent.dblClick(bannerButton);
-	expect(bannerButton).toHaveTextContent("Book your next destination here!");
-});
-for (var i = 0; i < n.length; i++) {
-	let k = n[i];
-	test("show search when clicked " + k + " times", async () => {
+describe("testing Banner Button in home page", () => {
+	test("renders banner button", () => {
 		const homeRoute = "/";
 		const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
 		const bannerButton = getByTestId("showSearchButtonTest");
-		for (var j = 0; j < k; j++) {
-			await fireEvent.click(bannerButton);
-		}
-		if (k % 2 == 0) {
-			expect(bannerButton).toHaveTextContent(
-				"Book your next destination here!"
-			);
-		} else expect(bannerButton).toHaveTextContent("Hide");
+		expect(bannerButton).toBeTruthy();
 	});
-}
 
-test("renders DatePicker Button", () => {
-	const searchRoute = "/search";
-	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
-	const datepickerButton = getByTestId("date-picker-button-test");
-	expect(datepickerButton).toBeTruthy();
-	expect(datepickerButton).toHaveTextContent("Select Dates");
+	test("renders drop down show search when clicked once", async () => {
+		const homeRoute = "/";
+		const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
+		const bannerButton = getByTestId("showSearchButtonTest");
+		await fireEvent.click(bannerButton);
+		expect(bannerButton).toHaveTextContent("Hide");
+	});
+
+	test("hides drop down show search when clicked twice", async () => {
+		const homeRoute = "/";
+		const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
+		const bannerButton = getByTestId("showSearchButtonTest");
+		await fireEvent.dblClick(bannerButton);
+		expect(bannerButton).toHaveTextContent(
+			"Book your next destination here!"
+		);
+	});
+	for (var i = 0; i < n.length; i++) {
+		let k = n[i];
+		test("show search when clicked " + k + " times", async () => {
+			const homeRoute = "/";
+			const { getByTestId } = renderWithRouter(<Home />, { homeRoute });
+			const bannerButton = getByTestId("showSearchButtonTest");
+
+			for (var j = 0; j < k; j++) {
+				await fireEvent.click(bannerButton);
+			}
+			if (k % 2 == 0) {
+				expect(bannerButton).toHaveTextContent(
+					"Book your next destination here!"
+				);
+			} else expect(bannerButton).toHaveTextContent("Hide");
+		});
+	}
 });
 
-test("renders DatePicker when clicked once", async () => {
-	const searchRoute = "/search";
-	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
-	const datepickerButton = getByTestId("date-picker-button-test");
-	await fireEvent.click(datepickerButton);
-	expect(datepickerButton).toHaveTextContent("hide");
-});
-
-test("hides DatePicker when clicked twice", async () => {
-	const searchRoute = "/search";
-	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
-	const datepickerButton = getByTestId("date-picker-button-test");
-	await fireEvent.dblClick(datepickerButton);
-	expect(datepickerButton).toHaveTextContent("Select Dates");
-});
-for (var i = 0; i < n.length; i++) {
-	let k = n[i];
-	test("DatePicker when clicked" + k + " times", async () => {
+describe("testing datepicker", () => {
+	test("renders DatePicker Button", () => {
 		const searchRoute = "/search";
 		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
 		const datepickerButton = getByTestId("date-picker-button-test");
-		for (var j = 0; j < k; j++) {
-			await fireEvent.click(datepickerButton);
-		}
-		if (k % 2 == 0) {
-			expect(datepickerButton).toHaveTextContent("Select Dates");
-		} else expect(datepickerButton).toHaveTextContent("hide");
+		expect(datepickerButton).toBeTruthy();
+		expect(datepickerButton).toHaveTextContent("Select Dates");
 	});
-}
 
-test("renders Travellers when clicked once", async () => {
-	const searchRoute = "/search";
-	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
-	const travellersButton = getByTestId("travellers-button-test");
-	await fireEvent.click(travellersButton);
-	expect(travellersButton).toHaveTextContent("hide");
+	test("renders DatePicker when clicked once", async () => {
+		const searchRoute = "/search";
+		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+		const datepickerButton = getByTestId("date-picker-button-test");
+		await fireEvent.click(datepickerButton);
+		expect(datepickerButton).toHaveTextContent("Hide");
+	});
+
+	test("hides DatePicker when clicked twice", async () => {
+		const searchRoute = "/search";
+		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+		const datepickerButton = getByTestId("date-picker-button-test");
+		await fireEvent.dblClick(datepickerButton);
+		expect(datepickerButton).toHaveTextContent("Select Dates");
+	});
+	for (var i = 0; i < n.length; i++) {
+		let k = n[i];
+		test("DatePicker when clicked" + k + " times", async () => {
+			const searchRoute = "/search";
+			const { getByTestId } = renderWithRouter(<Search />, {
+				searchRoute,
+			});
+			const datepickerButton = getByTestId("date-picker-button-test");
+			for (var j = 0; j < k; j++) {
+				await fireEvent.click(datepickerButton);
+			}
+			if (k % 2 == 0) {
+				expect(datepickerButton).toHaveTextContent("Select Dates");
+			} else expect(datepickerButton).toHaveTextContent("Hide");
+		});
+	}
 });
 
-test("hides Travellers when clicked twice", async () => {
-	const searchRoute = "/search";
-	const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
-	const travellersButton = getByTestId("travellers-button-test");
-	await fireEvent.dblClick(travellersButton);
-	expect(travellersButton).toHaveTextContent("Travellers");
-});
-
-for (var i = 0; i < n.length; i++) {
-	let k = n[i];
-	test("Travellers when clicked" + k + " times", async () => {
+describe("testing travellers", () => {
+	test("renders Travellers when clicked once", async () => {
 		const searchRoute = "/search";
 		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
 		const travellersButton = getByTestId("travellers-button-test");
-		for (var j = 0; j < k; j++) {
-			await fireEvent.click(travellersButton);
-		}
-		if (k % 2 == 0) {
-			expect(travellersButton).toHaveTextContent("Travellers");
-		} else expect(travellersButton).toHaveTextContent("hide");
+		await fireEvent.click(travellersButton);
+		expect(travellersButton).toHaveTextContent("hide");
 	});
-}
 
-// test("can I login?", async () => {
-// 	const loginRoute = "/login";
-// 	const profileRoute = "/profile";
-// 	const { getByTestId } = await renderWithRouter(<Login />, { loginRoute });
-// 	const emailInput = getByTestId("email-input");
-// 	const passwordInput = getByTestId("password-input");
-// 	// expect(emailInput).toBeTruthy();
-// 	// expect(passwordInput).tobeTruthy();
-// 	await fireEvent.change(emailInput, { target: { value: "test@admin.com" } });
-// 	await fireEvent.change(passwordInput, { target: { value: "123" } });
-// 	await fireEvent.click(getByTestId("test-button"));
-// 	expect(screen.
-// });
+	test("hides Travellers when clicked twice", async () => {
+		const searchRoute = "/search";
+		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+		const travellersButton = getByTestId("travellers-button-test");
+		await fireEvent.dblClick(travellersButton);
+		expect(travellersButton).toHaveTextContent("Travellers");
+	});
 
-// test("email inputs are being read", () => {
-// 	const loginRoute = "/login";
-// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-// 	const emailInput = getByTestId("email-input");
-// 	expect(emailInput).toBeTruthy();
-// });
+	for (var i = 0; i < n.length; i++) {
+		let k = n[i];
+		test("Travellers when clicked" + k + " times", async () => {
+			const searchRoute = "/search";
+			const { getByTestId } = renderWithRouter(<Search />, {
+				searchRoute,
+			});
+			const travellersButton = getByTestId("travellers-button-test");
+			for (var j = 0; j < k; j++) {
+				await fireEvent.click(travellersButton);
+			}
+			if (k % 2 == 0) {
+				expect(travellersButton).toHaveTextContent("Travellers");
+			} else expect(travellersButton).toHaveTextContent("hide");
+		});
+	}
+	test("reads the travellers default values correctly", async () => {
+		const searchRoute = "/search";
+		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+		const travellersButton = getByTestId("travellers-button-test");
+		await fireEvent.click(travellersButton);
+		const adultsInput = getByTestId("num-adults-input");
+		const roomsInput = getByTestId("num-rooms-input");
+		expect(adultsInput).toHaveValue(1);
+		expect(roomsInput).toHaveValue(1);
+	});
+	test("Travellers invalid input(string) test", async () => {
+		const searchRoute = "/search";
+		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+		const travellersButton = getByTestId("travellers-button-test");
+		await fireEvent.click(travellersButton);
+		const adultsInput = getByTestId("num-adults-input");
+		const roomsInput = getByTestId("num-rooms-input");
 
-// test("password inputs are being read", () => {
-// 	const loginRoute = "/login";
-// 	const { getByTestId } = renderWithRouter(<Login />, { loginRoute });
-// 	const passwordInput = getByTestId("password-input");
-// 	expect(passwordInput).toBeTruthy();
-// });
+		await fireEvent.change(adultsInput, { target: { value: "five" } });
+		await fireEvent.change(roomsInput, {
+			target: { value: "two" },
+		});
+		expect(adultsInput).toHaveValue(1);
+		expect(roomsInput).toHaveValue(1);
+	});
+	test("Travellers invalid input(out of range) test", async () => {
+		const searchRoute = "/search";
+		const { getByTestId } = renderWithRouter(<Search />, { searchRoute });
+		const travellersButton = getByTestId("travellers-button-test");
+		await fireEvent.click(travellersButton);
+		const adultsInput = getByTestId("num-adults-input");
+		const roomsInput = getByTestId("num-rooms-input");
+
+		await fireEvent.change(adultsInput, { target: { value: 100 } });
+		await fireEvent.change(roomsInput, {
+			target: { value: 10 },
+		});
+		expect(adultsInput).not.toHaveValue(100);
+		expect(roomsInput).not.toHaveValue(10);
+		expect(adultsInput).toHaveValue(1);
+		expect(roomsInput).toHaveValue(1);
+	});
+});

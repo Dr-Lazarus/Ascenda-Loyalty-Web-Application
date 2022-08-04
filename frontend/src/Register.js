@@ -36,7 +36,7 @@ function Register() {
 			});
 	};
 	return (
-		<div className="flex justify-center p-20">
+		<div className="flex justify-center p-20" data-testid="register-page">
 			<form className="">
 				<h2 className="text-5xl font-bold text-blue-500 mb-5">
 					Register an Account
@@ -50,6 +50,7 @@ function Register() {
 								type="firstName"
 								name="firstName"
 								id="firstName"
+								data-testid="firstName-input"
 								onChange={(e) => setfirstname(e.target.value)}
 							/>
 						</div>
@@ -61,6 +62,7 @@ function Register() {
 								type="lastName"
 								name="lastName"
 								id="lastName"
+								data-testid="lastName-input"
 								onChange={(e) => setlastname(e.target.value)}
 							/>
 						</div>
@@ -72,6 +74,7 @@ function Register() {
 								type="contact"
 								name="contact"
 								id="contact"
+								data-testid="contactNumber-input"
 								onChange={(e) => setContact(e.target.value)}
 							/>
 						</div>
@@ -85,6 +88,7 @@ function Register() {
 								type="email"
 								name="email"
 								id="email"
+								data-testid="email-input"
 								onChange={(e) => setEmail(e.target.value)}
 							/>
 						</div>
@@ -96,6 +100,7 @@ function Register() {
 								type="password"
 								name="password"
 								id="password"
+								data-testid="password-input"
 								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
@@ -107,9 +112,15 @@ function Register() {
 								type="password"
 								name="repassword"
 								id="repassword"
+								data-testid="confirm-password-input"
 							/>
 						</div>
-						<Button id = "registerbutton" className="mt-5 w-52" onClick={submitHandler}>
+						<Button
+							id="registerbutton"
+							className="mt-5 w-52"
+							data-testid="register-button"
+							onClick={submitHandler}
+						>
 							REGISTER
 						</Button>
 					</div>

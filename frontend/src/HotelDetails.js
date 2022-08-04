@@ -49,7 +49,10 @@ const HotelDetails = () => {
 	return (
 		<>
 			{/* <Gmaps /> */}
-			<div className="flex flex-col items-center bg-white rounded-lg shadow-md  m-6  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+			<div
+				data-testid="hotel-details-page"
+				className="flex flex-col items-center bg-white rounded-lg shadow-md  m-6  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+			>
 				<img
 					className="object-cover w-full rounded-t-lg md:h-96   md:rounded-none md:rounded-l-lg"
 					src={img}
