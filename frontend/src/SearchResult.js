@@ -29,6 +29,7 @@ const SearchResult = ({
 	};
 	return (
 		<div
+			data-testid="hotel-search-results"
 			onClick={() =>
 				navigate(`/hotel/${hotelId}`, {
 					state: {
