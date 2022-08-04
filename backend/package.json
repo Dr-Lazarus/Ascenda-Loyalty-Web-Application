@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "proxy": "http://localhost:3000",
   "dependencies": {
-    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "chromedriver": "^103.0.0",

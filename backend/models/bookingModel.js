@@ -17,7 +17,7 @@ const bookingSchema = new mongoose.Schema(
         hotelID:{
             type: String,
             required: [true,"A hotel ID is required"],
-            select: false   
+            select: false
 
         },
         Number_of_nights:{
@@ -76,7 +76,6 @@ const bookingSchema = new mongoose.Schema(
     );
 
 
-
 bookingSchema.virtual('status').get(function() {
     var today = new Date();
     if(this.startDate>today.getDate() & this.endDate>today.getDate() )
@@ -98,6 +97,7 @@ bookingSchema.virtual('status').get(function() {
     next();
   });
   
+
 
 const Booking = mongoose.model('Booking', bookingSchema);
 

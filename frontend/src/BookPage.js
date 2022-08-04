@@ -68,7 +68,7 @@ const BookPage = () => {
 			.catch(function (error) {
 				console.log("error", error.response.data.message);
 			});
-
+		navigate("/booking-success");
 	};
 	return (
 		<div className="flex flex-col md:flex-row item-center bg-white rounded-lg shadow-md  m-6 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ">

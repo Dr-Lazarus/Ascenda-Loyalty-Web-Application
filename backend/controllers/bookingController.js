@@ -22,32 +22,11 @@ const catchAsync = fn => {
 
 
 
+const createBooking = createOne(Booking);
 
 const getCheckoutSession = catchAsync(async (req, res, next) => {
 
-
-
-
-
-  // 2) Create checkout session
-  const session = await stripe.checkout.sessions.create({
-    customer_email: req.user.email,
-    submit_type: 'book',
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        currency:'sgd',
-        amount: req.body.price * 100,
-        quantity: 1,
-        name:'Package Name'
-      },
-    ],
-    mode: 'payment',
-    success_url: `http://localhost:3000/booking-success`,
-    cancel_url: `http://localhost:3000/`,
-  });
-
-  //1 Create Booking 
+  // 1 Create Booking 
   const {destinationID,
 				hotelID,
 				Number_of_nights,
@@ -76,6 +55,28 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
     salutation,
     firstName,
     lastName});
+
+
+
+
+
+  // 2) Create checkout session
+  const session = await stripe.checkout.sessions.create({
+    customer_email: req.user.email,
+    submit_type: 'book',
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        currency:'sgd',
+        amount: req.body.price * 100,
+        quantity: 1,
+        name:'Package Name'
+      },
+    ],
+    mode: 'payment',
+    success_url: `http://localhost:3000/booking-success`,
+    cancel_url: `http://localhost:3000/`,
+  });
   res.json({
     data: doc,
     url: session.url
@@ -100,11 +101,10 @@ const getMyBookings = catchAsync(async (req, res, next) => {
 
 
 
-
 //const createBooking = createOne(Booking);
 const getBooking = getOne(Booking);
 const getAllBookings = getAll(Booking);
 const updateBooking = updateOne(Booking);
 const deleteBooking = deleteOne(Booking);
 
-export { getBooking, getAllBookings, updateBooking, deleteBooking,getCheckoutSession,getMyBookings};
+export {createBooking, getBooking, getAllBookings, updateBooking, deleteBooking,getCheckoutSession,getMyBookings};
