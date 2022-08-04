@@ -16,25 +16,46 @@ const EditProfile = () => {
 
 	const [password, setPassword] = useState("");
 
+
+	const submitHandler = (e) => {
+		console.log(token)
+		axios({
+			method: "POST",
+			url: "http://localhost:5001/api/users/changeProfile",
+			headers: {
+				Authorization: "Bearer " + token,
+			},
+			data:{
+				firstName: firstName,
+				lastName: lastName,
+				contactNumber: contact,
+				email: email,
+
+			}
+		})
+			.then(async function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log("error", error.response.data.message);
+			});
+		navigate("/profile");
+	};
+
+
 	const handleClick = (event) => {
 		event.preventDefault();
-		// if (
-		// 	firstName === "" ||
-		// 	lastName === "" ||
-		// 	contact === "" ||
-		// 	email === ""
-		// ) {
-		// 	alert("Please fill in ALL the details!");
-		// } else {
+
+
 			axios
-				.post("http://localhost:5001/api/users/profile", {
+				.post("http://localhost:5001/api/users/changeProfile", {
 					headers: {
 						Authorization: "Bearer " + token,
 					},
-					params: {
+					data: {
 						firstName: firstName,
 						lastName: lastName,
-						contact: contact,
+						contactNumber: contact,
 						email: email,
 					},
 				})
@@ -147,7 +168,7 @@ const EditProfile = () => {
 				</div>
 			</form>
 			<div className="flex flex-col md:flex-row items-center justify-center mt-10">
-				<Button id = "confirmdetails" className="w-48 h-16 mx-4 my-4" onClick={handleClick}>
+				<Button id = "confirmdetails" className="w-48 h-16 mx-4 my-4" onClick={submitHandler}>
 					Confirm Details
 				</Button>
 				<Button className="w-48 h-16 mx-4 my-4" onClick={handleBack}>

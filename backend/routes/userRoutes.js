@@ -21,6 +21,12 @@ router
     .get(getAllUsers)
 router
     .route("/register")
+
+
+router 
+    .route('/changeProfile')
+    .post (protect, updateUserProfile)
+
    
     .post(registerUser);
 router
