@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 
+
+  
+
+
 const bookingSchema = new mongoose.Schema(
     {
         destinationID:{
@@ -78,20 +82,20 @@ const bookingSchema = new mongoose.Schema(
 
 
 bookingSchema.virtual('status').get(function() {
-    var today = new Date();
-    if(this.startDate>today.getDate() & this.endDate>today.getDate() )
-    {
-        return 'active'
+
+    const date = new Date()
+    if(this.startDate > date && this.endDate > date){
+        return "Active"
     }
-    else if (this.startDate<=today.getDate() & this.endDate>=today.getDate() )
-    {
-        return 'in-progress'
+    else if (this.startDate <= date && this.endDate>=date){
+        return "In Progress"
     }
-    else
+    else 
     {
-        return 'completed'
+        return "Inactive"
     }
-  });
+
+})
 
   bookingSchema.pre(/^find/, function(next) {
     this.populate('user');
