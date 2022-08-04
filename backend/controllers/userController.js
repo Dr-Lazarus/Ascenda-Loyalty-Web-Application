@@ -1,10 +1,15 @@
 //POST FOR LOGIN
 //GET FOR PROFILE
 //POST FOR REGISTER
-import asyncHandler from "express-async-handler";
-import User from "./userModel.js";
-import generateToken from "./JWTMiddleware/generateToken.js";
 
+// Imports 
+import asyncHandler from "express-async-handler";
+import User from "./../models/userModel.js";
+import generateToken from "./../JWTMiddleware/generateToken.js";
+
+
+
+// Authenticaing User 
 const authUser = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
 
@@ -24,6 +29,12 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+
+
+
+
+
+// Registering User 
 const registerUser = asyncHandler(async (req, res) => {
 	const { firstName, lastName, contactNumber, email, password, pic } =
 		req.body;
@@ -72,9 +83,12 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User not found, please contact administrator");
   }
 }});
-// const getUserProfile = asyncHandler(async (req, res) => {
-//   const { firstName, lastName, contactNumber, email, password, pic } = req.body;
-// })fg
+
+
+
+
+
+//Check Authenticated
 function checkAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
@@ -88,6 +102,10 @@ function checkNotAuthenticated(req, res, next) {
 	next();
 }
 
+
+
+
+// Update User Profile 
 const updateUserProfile = asyncHandler(async (req, res) => {
 	console.log("Running123");
 	const user = await User.findById(req.user._id);
@@ -120,6 +138,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 	}
 });
 
+
+
+
+//Get One User 
 const getOneUser = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.user._id);
 
@@ -135,20 +157,12 @@ const getOneUser = asyncHandler(async (req, res) => {
 		pic: user.pic,
 	});
 });
-// const getOneUser = (req,res,next)=> {
-//   const user =  User.findOne(u => u.id === parseInt(req.params.id));
-//   if (!user) res.status(404).send("User not found");
 
-// res.status(200).json({
-//   data : {
-//   _id: user._id,
-//   name: user.name,
-//   email: user.email,
-//   token: generateToken(user._id),
-//   pic: user.pic}
-// });
-// };
 
+
+
+
+//Get all Users 
 const getAllUsers = asyncHandler(async (req, res, next) => {
 	const users = await User.find();
 
@@ -161,6 +175,29 @@ const getAllUsers = asyncHandler(async (req, res, next) => {
 		},
 	});
 });
+
+// Delete one User 
+const deleteUser = asyncHandler(async (req, res, next) => {
+    const doc = await User.findByIdAndDelete(req.user.id);
+
+    if (!doc) {
+      return next(new AppError('No document found with that ID', 404));
+    }
+
+	res.cookie('jwt', 'loggedout', {
+		expires: new Date(Date.now() + 10 * 1000),
+		httpOnly: true
+	  });
+
+    res.status(204).json({
+      status: 'success',
+      data: null
+    });
+  });
+
+
+
+
 export {
 	getOneUser,
 	getAllUsers,
@@ -169,4 +206,32 @@ export {
 	registerUser,
 	checkAuthenticated,
 	checkNotAuthenticated,
+	deleteUser
 };
+
+
+
+
+
+// ***************** COMMENTED CODES *****************************
+/*
+
+const getOneUser = (req,res,next)=> {
+  const user =  User.findOne(u => u.id === parseInt(req.params.id));
+  if (!user) res.status(404).send("User not found");
+
+res.status(200).json({
+  data : {
+  _id: user._id,
+  name: user.name,
+  email: user.email,
+  token: generateToken(user._id),
+  pic: user.pic}
+});
+};
+
+
+// const getUserProfile = asyncHandler(async (req, res) => {
+//   const { firstName, lastName, contactNumber, email, password, pic } = req.body;
+// })fg
+*/

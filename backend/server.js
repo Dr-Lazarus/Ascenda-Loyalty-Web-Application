@@ -1,8 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import data from "./data.js";
-import userRoutes from "./userRoutes.js";
-import bookingRoutes from "./bookingRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
 import connectDB from "./mongooseconfig/db.js";
 import cors from 'cors';
 

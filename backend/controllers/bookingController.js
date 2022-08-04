@@ -1,5 +1,5 @@
 //import stripe from ('stripe')('sk_test_51LMg98Ei1XoxZ9ryMaI6Prw4hZJROkcdhGBPyPZiFrAnGGHEBqKOULgEnSTIm2NN3JfA5PZhmyTsgSQIOcFHJ7xP00tfyMBPNK');
-import  Booking from './bookingModel.js';
+import  Booking from './../models/bookingModel.js';
 import Stripe from "stripe";
 const stripe = new Stripe('sk_test_51LMg98Ei1XoxZ9ryMaI6Prw4hZJROkcdhGBPyPZiFrAnGGHEBqKOULgEnSTIm2NN3JfA5PZhmyTsgSQIOcFHJ7xP00tfyMBPNK');
 
@@ -62,7 +62,7 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
 
   // 2) Create checkout session
   const session = await stripe.checkout.sessions.create({
-    customer_email: 'customer@example.com',
+    customer_email: req.user.email,
     submit_type: 'book',
     line_items: [
       {
@@ -74,7 +74,7 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
       },
     ],
     mode: 'payment',
-    success_url: `http://localhost:3000/`,
+    success_url: `http://localhost:3000/booking-success`,
     cancel_url: `http://localhost:3000/`,
   });
   res.json({
@@ -95,9 +95,11 @@ const getMyBookings = catchAsync(async (req, res, next) => {
 
   res.status(200).json( {
     title: 'My Bookings',
-    bookings
+    data: bookings
   });
 });
+
+
 
 //const createBooking = createOne(Booking);
 const getBooking = getOne(Booking);
