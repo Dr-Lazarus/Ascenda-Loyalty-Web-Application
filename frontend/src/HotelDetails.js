@@ -5,7 +5,7 @@ import { dateStringMaker } from "./dateStringMaker";
 import BookPage from "./BookPage";
 import RoomDetails from "./RoomDetails";
 import Button from "@material-tailwind/react/components/Button";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+//import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import axios from "axios";
 import { Spinner } from "flowbite-react";
 

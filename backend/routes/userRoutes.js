@@ -21,6 +21,7 @@ router
     .get(getAllUsers)
 router
     .route("/register")
+    .post(registerUser)
 
 
 router 
