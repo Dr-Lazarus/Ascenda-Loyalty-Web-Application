@@ -1,7 +1,3 @@
-//POST FOR LOGIN
-//GET FOR PROFILE
-//POST FOR REGISTER
-
 // Imports 
 import asyncHandler from "express-async-handler";
 import User from "./../models/userModel.js";
@@ -209,29 +205,3 @@ export {
 	deleteUser
 };
 
-
-
-
-
-// ***************** COMMENTED CODES *****************************
-/*
-
-const getOneUser = (req,res,next)=> {
-  const user =  User.findOne(u => u.id === parseInt(req.params.id));
-  if (!user) res.status(404).send("User not found");
-
-res.status(200).json({
-  data : {
-  _id: user._id,
-  name: user.name,
-  email: user.email,
-  token: generateToken(user._id),
-  pic: user.pic}
-});
-};
-
-
-// const getUserProfile = asyncHandler(async (req, res) => {
-//   const { firstName, lastName, contactNumber, email, password, pic } = req.body;
-// })fg
-*/
