@@ -13,23 +13,14 @@ import {
   getAll
 } from "./handlerFactory.js";
 
-
 const catchAsync = fn => {
   return (req, res, next) => {
     fn(req, res, next).catch(next);
   };
 };
 
-
-
-
 const getCheckoutSession = catchAsync(async (req, res, next) => {
-
-
-
-
-
-  // 2) Create checkout session
+	
   const session = await stripe.checkout.sessions.create({
     customer_email: req.user.email,
     submit_type: 'book',
@@ -81,11 +72,6 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
     url: session.url
   })
 
-  // // 3) Create session as response
-  // res.status(200).json({
-  //   status: 'success',
-  //   session
-  // });
 });
 
 const getMyBookings = catchAsync(async (req, res, next) => {
