@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# AscendaLoyalty Hotel Booking System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+AscendaLoyalty is a hotel booking system that allows users to register an account, search for hotels by destination, view detailed hotel information, book rooms, and manage their profiles and bookings. Developed by Team C5G5 over three months, this project encompasses a full-stack application with a focus on user experience, security, and performance.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **User Account Management**: Users can create, view, edit, and delete their accounts.
+- **Hotel Search**: Users can search for hotels by destination, including detailed hotel information and room availability.
+- **Booking Management**: Users can book rooms, view their booking history, and cancel bookings.
+- **Responsive Design**: Mobile compatibility ensures a seamless experience across devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Architecture
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: Developed with React, implementing features such as pagination and protected routes for an optimized user experience.
+- **Backend**: Node.js and Express framework, with MongoDB for data storage. Integration with Stripe for secure payment processing and implementation of CORS for resource sharing.
+- **Security**: Includes encryption for personally identifiable information (PII) and secure payment flow.
 
-### `npm test`
+## Implementation Challenges
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **API Response Optimization**: Achieved through pagination and caching strategies.
+- **Secure Payment Flow**: Utilized Stripe to handle payments securely without storing sensitive payment information.
+- **Mobile Compatibility**: Implemented flexible design for optimal viewing on mobile devices.
+- **Protected Routes**: Ensured that certain functionalities are accessible only by logged-in users.
 
-### `npm run build`
+## Testing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Unit Testing**: Conducted for both frontend and backend components to ensure individual parts perform correctly.
+- **System Testing**: Utilized Selenium for automated system testing, covering user flows such as login, registration, and booking.
+- **Robustness Testing**: Implemented mutation fuzzing to test the application's handling of unexpected or invalid input.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Lessons Learned
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Development Process**: Transitioned from Agile to Iterative and Incremental development processes based on the well-defined client requirements.
+- **Importance of Clarification**: Early discussion and clarification of application specifications are crucial for clear direction and progression.
+- **Workflow Management**: Utilization of GitHub branches for concurrent development and CI/CD for efficient deployment cycles.
+- **Testing Practices**: The significance of comprehensive testing and its role in refactoring and ensuring application robustness.
 
-### `npm run eject`
+## Resources
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Live Application**: [AscendaLoyalty](http://www.ascendahotels.live) (Note: The link may not work on networks that require an SSL certificate)
+- **GitHub Repository**: [AscendaLoyalty Repository](https://github.com/oakar-00/c5g5-things)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
