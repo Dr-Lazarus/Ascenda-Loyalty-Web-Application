@@ -16,13 +16,6 @@ async function test(){
     await driver.findElement(By.id("loginbutton")).click()
     await driver.sleep(10000)
 
-    // await firstName.sendKeys("Bryan")
-    // await lastName.sendKeys("Sitoh")
-    // await contact.sendKeys("91124586")
-    // await email.sendKeys("Bryan@gmail.com")
-    // await password.sendKeys("iloveboobs")
-    // await repassword.sendKeys("iloveboobs")
-    // await driver.findElement(By.id("registerbutton")).click()
 
     // await driver.sleep(10000)c
 
@@ -41,14 +34,6 @@ async function test(){
     await driver.sleep(10000)
 
     await driver.close()
-    
-    // await email1.click()
-    // await email1.sendKeys("Bryan@gmail.com"5
-    // await password2.click()
-    // await password2.sendKeys("iloveboobs")
-    // await driver.findElement(By.id("submit")).click()
-    // await driver.close()
-
 }
 test()
 
